@@ -2,7 +2,7 @@ from functools import wraps
 from flask import request, jsonify
 import jwt
 from api import app
-from api.db import mysql
+from api.db.db_config import mysql
  
 
 def token_required(func):
@@ -10,7 +10,7 @@ def token_required(func):
     def decorated(*args, **kwargs):
         print(kwargs) 
         token = None
-        if 'x-access-token' in request.headers: # si en los headers del request viene el token
+        if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
         if not token:
             return jsonify({'message': 'Falta el token'}), 401
@@ -24,8 +24,8 @@ def token_required(func):
 
 
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) # decodifica el token
-            token_id = data['id'] # obtiene el id del usuario
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"]) 
+            token_id = data['id'] 
 
             if int(user_id) != int(token_id):
                 return jsonify({'message': 'Usuario incorrecto'}), 401
@@ -41,12 +41,11 @@ def client_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
         print("Argumentos en client_resource: ", kwargs)
-        id_cliente = kwargs['id_client']
-        cur = mysql.connection.cursor() # conexión con la base de datos
-        cur.execute('SELECT id_user FROM client WHERE id = {0}'.format(id_cliente)) # ejecuta la consulta  
+        id_cliente = kwargs['id_cliente']
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT id_usuario FROM cliente WHERE id = {0}'.format(id_cliente)) 
         data = cur.fetchone()
         if data:
-            """print(data)""" # el propietario de cada registro
             id_prop = data[0]
             user_id = request.headers['user_id']
             if int(user_id) != int(id_prop):

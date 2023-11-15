@@ -1,3 +1,5 @@
+DROP DATABASE `proyecto_informatico`;
+
 CREATE database IF NOT EXISTS `proyecto_informatico`;
 USE `proyecto_informatico`;
 CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`usuario` (
@@ -5,7 +7,8 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`usuario` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `razon_social` VARCHAR(45) NOT NULL,
-  `CUIT` INT NOT NULL,
+  `cuit_cuil` INT NOT NULL,
+  `estado` TINYINT(1) NOT NULL,  
   PRIMARY KEY (`id`));
 
 CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`cliente` (
@@ -16,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`cliente` (
     `cuit_cuil` INT NOT NULL,
     `telefono` INT NOT NULL,
     `direccion` VARCHAR(45) NOT NULL,
+    `estado` TINYINT(1) NOT NULL,
     `id_usuario` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_usuario`) REFERENCES `proyecto_informatico`.`usuario`(`id`));
@@ -27,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`producto_servicio`(
     `precio` INT NOT NULL,
     `stock` INT NOT NULL,
     `categoria` VARCHAR(45) NOT NULL,
+    `estado` TINYINT(1) NOT NULL,
     `id_usuario` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_usuario`) REFERENCES `proyecto_informatico`.`usuario`(`id`));

@@ -6,6 +6,6 @@ from api import app
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'proyecto_informatico'
 app.config['MYSQL_PASSWORD'] ='zE((Yd2fCcBjd![Q'
-app.config['MYSQL_DB'] = 'db_proyecto_informatico'
+app.config['MYSQL_DB'] = 'proyecto_informatico'
 
 mysql = MySQL(app)
