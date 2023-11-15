@@ -20,6 +20,7 @@ def get_all_clientes(id_user):
 @app.route('/user/<int:id_user>/cliente/<int:id_cliente>', methods=['GET'])
 @token_required
 @user_resource
+@client_resource
 def get_cliente(id_user, id_cliente):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND id = {1}'.format(id_user, id_cliente))
