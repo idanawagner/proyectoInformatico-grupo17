@@ -1,14 +1,19 @@
 class Cliente():
     def __init__(self, row):
-        self._id = row[0]
-        self._nombre = row[1]
-        self._apellido = row[2]
-        self._email = row[3]
-        self._cuit_cuil = row[4]
-        self._telefono = row[5]
-        self._direccion = row[6]
-        self._estado = row[7]
-        self._id_usuario = row[8]
+        try:
+            self._id = row[0]
+            self._nombre = row[1]
+            self._apellido = row[2]
+            self._email = row[3]
+            self._cuit_cuil = row[4]
+            self._telefono = row[5]
+            self._direccion = row[6]
+            self._estado = row[7]
+            self._id_usuario = row[8]
+        except IndexError as e:
+            print(f"Error al inicializar Cliente con row: {row}")
+            print(f"Detalles del error: {e}")
+            raise
 
     def to_json(self):
         return {

@@ -42,7 +42,7 @@ def create_cliente(id_user):
     estado = request.get_json()['estado']
     id_usuario = id_user
 
-    """Control si existe el cuit_cuil en la BD"""
+    """Control si existe el cuit_cuil  y su estado en la BD"""
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM cliente WHERE cuit_cuil = %s', (cuit_cuil,)) 
     row = cur.fetchone() 
@@ -83,21 +83,28 @@ def update_cliente(id_user, id_cliente):
 
 
 
-@app.route('/user/<int:id_user>/cliente/<int:id_cliente>', methods=['PUT'])
+@app.route('/user/<int:id_user>/cliente/<int:id_cliente>', methods=['PATCH'])
 @token_required
 @user_resource
 @client_resource
 def delete_cliente(id_user, id_cliente):
-# Sentencia de update previo chequear el estado del cliente
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND id = {1}'.format(id_user, id_cliente))
-    data = cur.fetchone()
-    if data:
-        objClient = Cliente(data)
-        if objClient.estado == 1:
-            cur.execute('UPDATE cliente SET estado = 0 WHERE id = {0}'.format(id_cliente))
-            mysql.connection.commit()
-            return jsonify({'message': 'cliente eliminado', "id": id_cliente})
+    try:
+        cur = mysql.connection.cursor()
+
+        cur.execute('SELECT estado FROM cliente WHERE id_usuario = %s AND id = %s', (id_user, id_cliente))
+        row = cur.fetchone()
+        estado_cliente = row[0]
+
+        if estado_cliente:
+            if estado_cliente == 1:
+                cur.execute('UPDATE cliente SET estado = 0 WHERE id = %s', (id_cliente,))
+                mysql.connection.commit()
+                return jsonify({'message': 'Cliente eliminado', 'id': id_cliente})
+            else:
+                return jsonify({'message': 'El cliente ya se encuentra eliminado'})
         else:
-            return jsonify({'message': 'cliente ya eliminado', "id": id_cliente})
-    return jsonify({'message': 'No se encontro el cliente'})
+            return jsonify({'message': 'No se encontro el cliente'})
+    except Exception as e:
+        return jsonify({'error': 'Ocurrió un error al procesar la solicitud.'})
+    finally:
+        cur.close()
