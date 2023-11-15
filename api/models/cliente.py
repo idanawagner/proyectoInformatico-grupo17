@@ -10,6 +10,7 @@ class Cliente():
             self._direccion = row[6]
             self._estado = row[7]
             self._id_usuario = row[8]
+        # TODO: borrar al finalizar la depuracion
         except IndexError as e:
             print(f"Error al inicializar Cliente con row: {row}")
             print(f"Detalles del error: {e}")

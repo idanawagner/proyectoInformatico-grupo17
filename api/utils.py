@@ -37,6 +37,17 @@ def token_required(func):
         return func(*args, **kwargs)
     return decorated
 
+def user_resource(func):
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        print("Argumentos en user_resources: ", kwargs)
+        id_user_route = kwargs['id_user']
+        user_id = request.headers['user_id']
+        if int(user_id) != int(id_user_route):
+            return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
+        return func(*args, **kwargs)
+    return decorated
+
 def client_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
@@ -50,18 +61,53 @@ def client_resource(func):
             user_id = request.headers['user_id']
             if int(user_id) != int(id_prop):
                 return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
-
-
         return func(*args, **kwargs)
     return decorated
 
-def user_resource(func):
+def  producto_servicio_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en user_resources: ", kwargs)
-        id_user_route = kwargs['id_user']
-        user_id = request.headers['user_id']
-        if int(user_id) != int(id_user_route):
-            return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
+        print("Argumentos en producto_servicio_resource: ", kwargs)
+        id_producto_servicio = kwargs['id_producto_servicio']
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT id_usuario FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio)) 
+        data = cur.fetchone()
+        if data:
+            id_prop = data[0]
+            user_id = request.headers['user_id']
+            if int(user_id) != int(id_prop):
+                return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
+        return func(*args, **kwargs)
+    return decorated
+
+def factura_resource(func):
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        print("Argumentos en factura_resource: ", kwargs)
+        id_factura = kwargs['id_factura']
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT id_usuario FROM factura WHERE id = {0}'.format(id_factura)) 
+        data = cur.fetchone()
+        if data:
+            id_prop = data[0]
+            user_id = request.headers['user_id']
+            if int(user_id) != int(id_prop):
+                return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
+        return func(*args, **kwargs)
+    return decorated
+
+def detalle_resource(func):
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        print("Argumentos en detalle_resource: ", kwargs)
+        id_detalle = kwargs['id_detalle']
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT id_usuario FROM detalle WHERE id = {0}'.format(id_detalle)) 
+        data = cur.fetchone()
+        if data:
+            id_prop = data[0]
+            user_id = request.headers['user_id']
+            if int(user_id) != int(id_prop):
+                return jsonify({'message': 'No tiene permisos para acceder a este recurso'}), 401
         return func(*args, **kwargs)
     return decorated

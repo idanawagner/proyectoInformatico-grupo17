@@ -9,7 +9,7 @@ from api.db.db_config import mysql
 @user_resource
 def get_all_clientes(id_user):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0}'.format(id_user))
+    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND estado = 1'.format(id_user))
     data = cur.fetchall()
     clientList = []
     for row in data:
@@ -23,7 +23,7 @@ def get_all_clientes(id_user):
 @client_resource
 def get_cliente(id_user, id_cliente):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND id = {1}'.format(id_user, id_cliente))
+    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND id = {1} AND estado = 1'.format(id_user, id_cliente))
     data = cur.fetchone()
     if data:
         objClient = Cliente(data)
