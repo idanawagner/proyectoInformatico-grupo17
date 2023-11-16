@@ -45,7 +45,7 @@ def create_cliente(id_user):
 
     """Control si existe el cuit_cuil  y su estado en la BD"""
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM cliente WHERE cuit_cuil = %s', (cuit_cuil,)) 
+    cur.execute('SELECT cuit_cuil FROM cliente WHERE cuit_cuil = %s', (cuit_cuil,)) 
     row = cur.fetchone() 
     if row: 
         return jsonify({'message': 'cliente ya registrado'}) 
