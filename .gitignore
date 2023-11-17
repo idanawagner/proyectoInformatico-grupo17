@@ -1,5 +1,5 @@
-/.venv
-api/__pycache__
-api/models/__pycache__
-api/db/__pycache__
-api/routes/__pycache__
+backend/.venv
+backend/api/__pycache__
+backend/api/models/__pycache__
+backend/api/db/__pycache__
+backend/api/routes/__pycache__
