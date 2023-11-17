@@ -1,0 +1,5 @@
+backend/.venv
+backend/api/__pycache__
+backend/api/models/__pycache__
+backend/api/db/__pycache__
+backend/api/routes/__pycache__
