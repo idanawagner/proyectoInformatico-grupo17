@@ -1,3 +1,8 @@
+@import '../styles/_styles-components/_inputs-buttons.css';
+@import '../styles/_styles-components/_navbar.css';
+@import '../styles/_styles-components/_footer.css';
+
+
 * {
     --celeste-principal:#50bbc9 ;
     --verde-secundario: #2f5f59;
