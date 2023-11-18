@@ -4,13 +4,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Perfil </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/home.css">
-
     <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
-
-    <title>Página principal - Grupo 17</title>
-    <link rel="stylesheet" href="../styles/home.css" />
-
     <script defer src="../scripts/home.js"></script>
 
 </head>
@@ -20,15 +20,14 @@
     <!-- Navbar -->
     <main>
         <header class="cabecera__presentacion">
-            <h1> Nombre del grupo re fachero here </h1>
+            <h2> Bienvenido/a a tu perfil! </h2>
 
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dolores optio eveniet recusandae, earum ab vero voluptatum atque odit necessitatibus exercitationem excepturi 
-                sed laborum repellat, a laboriosam obcaecati debitis fuga vitae!
-            </p>
+            <p> Aquí podrás revisar las cuestiones más generales de tu negocio, como los últimos clientes agregados o tus facturaciones más recientes. </p>
+            <p> También puedes modificar tu información personal en caso de que necesites actualizar tus datos. </p>
         </header>
     </main>
 
+    <div> COLOCAR CADA ARTICLE UNO AL LADO DEL OTRO </div>
     <nav class="menu__nav" id="menu_nav">
         <div class="div__option">
             <a href="home.html">                    
@@ -74,9 +73,135 @@
             </a>
         </div>
     </nav>
-    <div>
-        CONTENIDO DE BIENVENIDA
-    </div>
+
+    <section class="section__inf__general">
+
+        <article class="art__client">
+            <h3> Ultimos 3 clientes agregados </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Nombre </th>
+                        <th> Email </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        
+        <article class="art__facturas">
+            <h3> Ultimas 3 facturaciones realizadas </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Cliente asociado </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="art__productos">
+            <h3> Top 3 productos vendidos </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Producto </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+    </section>
+
+    <section class="section__info__personal">
+        <h2> Tu información personal </h2>
+        <article>
+            <h3> Tu dirección </h3>
+            <span class="span__direccion"></span>
+            <form action="">
+                <input type="text">
+                <input type="submit" id="nueva_direccion">
+            </form>
+        </article>
+
+        <article>
+            <h3> Tu correo electrónico </h3>
+            <span class="span__email"></span>
+            <form action="">
+                <input type="email">
+                <input type="submit" id="nuevo_email">
+            </form>
+        </article>
+
+        <article>
+            <h3> Tu teléfono de contacto </h3>
+            <span class="span__telefono"></span>
+            <form action="">
+                <input type="number">
+                <input type="submit" id="nuevo_telefono">
+            </form>
+        </article>
+
+        <article>
+            <h3> Cambiar contraseña </h3>
+            <form action="">
+                <p> Ingresa tu contraseña actual </p>
+                <input type="password" id="pass_actual">
+                <p> Ingresa tu nueva contraseña </p>
+                <input type="password" id="pass_nuevo">
+                <p> Vuelve a ingresar tu nueva contraseña </p>
+                <input type="password" id="pass_confirm">
+                <input type="submit" id="nueva_contra">
+            </form>
+        </article>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">

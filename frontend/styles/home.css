@@ -1,44 +1,62 @@
+@import './variables.css';
+
 /* Comenzamos realizando un ajuste general */
 * {
-    /* font-family: Arial, Helvetica, sans-serif, 'Lato'; */
-    /* font-weight: 400; */
+    font-family: 'lato', sans-serif;
+    font-weight: 400;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
 
-/* Declaramos las variables a utilizar */
-:root {
-    --violeta-oscuro-principal: #4e2a8e;
-    --violeta-oscuro-secundario: #3c1f6b;
-    --violeta-hover: #6941b6;
-    --blanco: #ffffff;
-    --gris-claro: #f4f4f4;
-    --gris-texto: #555555;
-    
-    --borde: 1px solid var(--nivel-oscuro-0);
-    --sombra: 0 0 7px var(--nivel-oscuro-1);
-    --nav-width: 200px;
-}
-
 
 /* Configuramos el header */
 header {
-    background-color: var(--violeta-oscuro-principal);
+    background-color: var(--verde-secundario);
     color: var(--gris-claro);
-    font-family: sans-serif;
     font-style: italic;
+    text-align: center;
     width: 100%;
     height: 80px;
     justify-content: center;
     top: 0;
 }
 
+body {
+    padding: 20px;
+}
+
+section {
+    background-color: var(--celeste-principal);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20;
+}
+
+article {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid var(--verde-secundario);
+    background-color: var(--gris-claro);;
+    padding: 8px;
+    text-align: left;
+}
+
 /* Realizamos las configuraciones generales de la barra lateral para que sea elegante y responsiva */
 /* Ademas en las dos ultimas lineas ocultamos la barra de scroll para los navegadores firefox y Edge*/
 .menu__nav {
-    background-color: var(--violeta-oscuro-secundario);
+    background-color: var(--verde-secundario);
     width: 80px;
     height: 100%;
     top: 0;
@@ -46,7 +64,7 @@ header {
     z-index: 300;
     overflow-y: scroll;
     overflow: hidden;
-    border-right: 20px solid var(--violeta-oscuro-secundario);
+    border-right: 20px solid var(--verde-secundario);
     -ms-overflow-style: none;
     scrollbar-width: none;
     transition: width 0.3s ease;
@@ -60,11 +78,6 @@ header {
 /* Hacemos que la barra lateral aparezca cuando se pasa el puntero por encima */
 .menu__nav:hover {
     width: 250px;
-}
-
-/* Le damos un margen al primer hijo de la clase div__option dentro de la clase menu__nav con fines estéticos */
-.menu__nav .div__option:first-child {
-    margin-top: 150px;
 }
 
 /* Ajustamos los divisores dentro de la clase menu__nav con fines estéticos */
@@ -101,7 +114,7 @@ header {
 
 /* Agregamos efectos de hover con fines estéticos */
 .div__option>a:hover {
-    background-color: var(--violeta-hover);
+    background-color: var(--celeste-hover);
     border-radius: 5px;
 }
 
@@ -112,7 +125,6 @@ header {
     margin-left: 250px;
     transition: margin-left 0.3s ease;
 }
-
 
 .footer{
     background-color: var(--verde-secundario);
