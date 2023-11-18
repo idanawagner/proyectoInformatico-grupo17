@@ -1,79 +1,136 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto Informatico: Iniciar sesión</title>
+    <link rel="icon" href="../public/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/login.css" />
+    <script defer src="../scripts/login.js"></script>
+  </head>
+  <body class="body">
+    <main id="main__signIn">
+      <header class="header">
+        <div class="logotipo">
+          <img class="logotipo_img" src="../assets/logotipo.png" alt="" />
+        </div>
+      </header>
+      <p class="descripcion">
+        El proyecto consiste en un sistema de facturación. El mismo permite a
+        los clientes registrarse, CRUD de clientes, CRUD de productos y
+        servicios, realizar facturas y control de stock.
+      </p>
+      <div class="container_buttons">
+        <button
+          type="button"
+          class="button"
+          onclick="mostrarFormulario('registro')"
+        >
+          Registrarse
+        </button>
+        <button
+          type="button"
+          class="button"
+          onclick="mostrarFormulario('login')"
+        >
+          Iniciar Sesión
+        </button>
+      </div>
+      <div class="container_forms">
+        <!-- LOGIN -->
+        <div class="login-container">
+          <h2>Iniciar Sesión</h2>
+          <form action="" method="post">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username"  />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/main.css">
+            <label for="password-login">Contraseña:</label>
+            <input
+              type="password-login"
+              id="password-login"
+              name="password-login"
+              
+            />
 
-    <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
+            <button type="submit">Iniciar Sesión</button>
+          </form>
+        </div>
+        <!-- REGISTRO -->
+        <div class="register-container">
+          <h2>Registro de Usuario</h2>
+          <form action="" method="post" class="register-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre"  />
 
-    <title>Página principal - Grupo 17</title>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido"  />
 
-</head>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email"  />
 
-<body id="body">
+            <label for="password-register">Contraseña:</label>
+            <input
+              type="password"
+              id="password-register"
+              name="password-register"
+              
+            />
 
-    <main>
-        <header class="cabecera__presentacion">
-            <h1> Nombre del grupo re fachero here </h1>
+            <label for="confirm_password">Confirmar Contraseña:</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              
+            />
+            <input type="button" onclick="mostrarPago()" value="Ingresar pago" class="button">
+            <div class="pago_container">
+                <label for="tarjeta">Numero de tarjeta</label>
+                <input type="text" name="tarjeta"  value="tarjeta" >
+                <label for="codigoSeguridad">Codigo de seguridad</label>
+                <input type="text" name="codigoSeguridad"value="codigoSeguridad" >
+            </div>
+         
+            <input type="submit" value="Registrar" class="button"/>
+          </form>
 
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dolores optio eveniet recusandae, earum ab vero voluptatum atque odit necessitatibus exercitationem excepturi 
-                sed laborum repellat, a laboriosam obcaecati debitis fuga vitae!
-            </p>
-        </header>
+        </div>
+      </div>
+
+
+
+      
     </main>
+    <!-- Footer -->
+    <footer class="footer">
+      <span>
+        "Copyright © 2023 Fernandez Achilli Franco, López Julieta, Wagner
+        Cabrera Idana.";
+      </span>
+  </footer>
 
-    <nav class="menu__nav" id="menu_nav">
-        
-        <div class="div__option">
-            <a href="index.html">                    
-                <span>
-                    <i class="fa-solid fa-user" title="Perfil"></i>
-                </span>
-                <span class="nav__text"> Perfil </span>
-            </a>
-        </div>
-
-        <div class="div__option">
-            <a href="Clientes.html">                    
-                <span>
-                    <i class="fa-solid fa-address-book" title="Clientes"></i>
-                </span>
-                <span class="nav__text"> Clientes </span>
-            </a>
-        </div>
-
-        <div class="div__option">
-            <a href="PS.html">                    
-                <span>
-                    <i class="fa-solid fa-truck" title="Stock"></i>
-                </span>
-                <span class="nav__text"> Stock </span>
-            </a>
-        </div>
-
-        <div class="div__option">
-            <a href="Metricas.html">                    
-                <span>
-                    <i class="fa-solid fa-square-poll-vertical" title="Métricas"></i>
-                </span>
-                <span class="nav__text"> Métricas </span>
-            </a>
-        </div>
-
-        <div class="div__option">
-            <a href="Facturas.html">                    
-                <span>
-                    <i class="fa-solid fa-barcode" title="Facturaciones"></i>
-                </span>
-                <span class="nav__text"> Facturaciones </span>
-            </a>
-        </div>
-
-
-
-    <script src="../js/aside.js"> </script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
