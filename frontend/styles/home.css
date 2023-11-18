@@ -1,7 +1,7 @@
 /* Comenzamos realizando un ajuste general */
 * {
-    font-family: Arial, Helvetica, sans-serif, 'Lato';
-    font-weight: 400;
+    /* font-family: Arial, Helvetica, sans-serif, 'Lato'; */
+    /* font-weight: 400; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -22,10 +22,6 @@
     --nav-width: 200px;
 }
 
-/* Colocamos un margen en el body de 80px para colocar la barra lateral */
-body {
-    margin-left: 80px;
-}
 
 /* Configuramos el header */
 header {
@@ -45,7 +41,6 @@ header {
     background-color: var(--violeta-oscuro-secundario);
     width: 80px;
     height: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 300;
@@ -116,4 +111,15 @@ header {
 .body__move {
     margin-left: 250px;
     transition: margin-left 0.3s ease;
+}
+
+
+.footer{
+    background-color: var(--verde-secundario);
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    font-size: .8rem;
+    margin-top: 2rem;
+    height: 80px;
 }

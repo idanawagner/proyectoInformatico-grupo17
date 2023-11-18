@@ -1,0 +1,15 @@
+* {
+    --celeste-principal:#50bbc9 ;
+    --verde-secundario: #2f5f59;
+    --celeste-hover: #3fb1be;
+    --verde-hover: #006a4b;
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f4;
+    --gris-texto: #555555;
+    
+    --borde: 1px solid var(--nivel-oscuro-0);
+    --sombra: 0 0 7px var(--nivel-oscuro-1);
+    --nav-width: 200px;
+
+    --fuente-principal: 'Lato', sans-serif;;
+}
