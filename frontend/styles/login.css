@@ -1,5 +1,13 @@
 @import './variables.css';
 
+.login{
+    background-image: url(../assets/background-login.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 2rem;
+}
 .logotipo {
     display: flex;
     justify-content: center;
@@ -23,44 +31,26 @@
     height: 4rem;
    
 }
-.button{
-    background-color: var(--verde-secundario);
-    border: none;
-    padding: 1rem 2rem;
-    color: var(--blanco);
-    font-family: var(--fuente-principal);
-}
-.button:hover{
-    background-color: var(--verde-hover);
-    cursor: pointer;
-}
-.button:active {
-    background-color: var(--verde-hover); ;
-    box-shadow: inset 0 0 14px var(--blanco);
-    /* border: var(--celeste-principal) 3px solid; */
-}
 
 .register-container{
     display: none;
 }
-.register-form{
+.register-form, .login-container{
     display: flex;
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
-    padding: 2rem;
+    margin: 2rem 5rem;
     gap: 0.5rem;
+}
+.input-login{
+    width: 50%;
+}
+.input-pay{
+    width: 100%;
 }
 .pago_container{
     display: none;
+    flex-direction: column;
 }
 
-.footer{
-    background-color: var(--verde-secundario);
-    color: #ffffff;
-    padding: 2rem;
-    text-align: center;
-    font-size: .8rem;
-    margin-top: 2rem;
-    height: 80px;
-}

@@ -13,7 +13,7 @@ function mostrarFormulario(tipo) {
 
 function mostrarPago(){
     const pago_container = document.querySelector('.pago_container');
-    pago_container.style.display = 'block';
+    pago_container.style.display = 'flex';
     console.log('hola');
 }
 
