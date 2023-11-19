@@ -89,10 +89,10 @@ class Usuario{
 }
 
 
-// capturo el boton de login
+// Capturo el boton de login
 let btnLogin = document.getElementById('btn-login')
 
-// disparo el evento click, creo una instancia de Usuario y llamo al metodo login de la clase con los datos ingresados en el formulario
+// Disparo el evento click, creo una instancia de Usuario y llamo al metodo login de la clase con los datos ingresados en el formulario
 btnLogin.addEventListener('click', () =>{
     let username = document.getElementById('username-login').value;
     let password = document.getElementById('password-login').value;
@@ -100,24 +100,21 @@ btnLogin.addEventListener('click', () =>{
     usuario1.login();
 })
 
-// capturo el boton de registro}
+// Capturo el boton de registro
 let btnRegistro = document.getElementById('btn-register')
 
-
+// Disparo el evento click, creo una instancia de Usuario y llamo al metodo login de la clase con los datos ingresados en el formulario
 btnRegistro.addEventListener('click', () =>{
-
     let razon_social = document.getElementById('razon-social').value;
     let cuit = document.getElementById('cuit').value;
     let username = document.getElementById('username-register').value;
     let password = document.getElementById('password-register').value;
     let confirm_password = document.getElementById('confirm-password').value;
-    console.log(razon_social, cuit, username, password, confirm_password)
+
     if(password !== confirm_password){
         document.getElementById('errorRegister').innerHTML = 'Las contraseñas no coinciden'
     }else{
         let usuario2 = new Usuario(username, password, razon_social, parseInt(cuit), true)
-        console.log(usuario2)
         usuario2.register();
     }
-    document.getElementById('errorRegister').value = '';
 })
