@@ -1,3 +1,4 @@
+from api.models.detalle import DetalleFactura
 class Factura():
     def __init__(self, row):
         try:

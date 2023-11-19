@@ -3,6 +3,7 @@ from api.models.factura import Factura
 from api.utils import token_required, user_resource, factura_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
+from api.models.detalle import DetalleFactura
 
 @app.route('/user/<int:id_user>/factura', methods=['GET'])
 @token_required
@@ -26,8 +27,16 @@ def get_factura(id_user, id_factura):
     cur.execute('SELECT * FROM factura WHERE id_usuario = {0} AND id = {1}'.format(id_user, id_factura))
     data = cur.fetchone()
     if data:
+        detalleList = []
+        cur.execute('SELECT * FROM detalle_factura WHERE id_factura = {0}'.format(id_factura))
+        detalles = cur.fetchall()
+        for detalle in detalles:
+            objDetalle = DetalleFactura(detalle)
+            detalleList.append(objDetalle.to_json())
         objFactura = Factura(data)
-        return jsonify(objFactura.to_json())
+        objFactura = objFactura.to_json()
+        objFactura["detalle_factura"] = detalleList
+        return jsonify(objFactura)
     return jsonify({'message': 'No se encontro la factura'})
 
 @app.route('/user/<int:id_user>/factura', methods=['POST'])
