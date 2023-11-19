@@ -51,10 +51,13 @@ def get_factura(id_user, id_factura):
 @token_required
 @user_resource
 def create_factura(id_user):
+
+    """Obtener los datos del request para la creacion de la factura"""
     fecha = request.get_json()['fecha']
     id_cliente = request.get_json()['id_cliente']
     id_usuario = id_user
     total = request.get_json()['total']
+    
 
     """acceso a BD --> INSERT INTO"""
     cur = mysql.connection.cursor()
@@ -67,6 +70,22 @@ def create_factura(id_user):
     row = cur.fetchone()
     print(row)
     id = row[0]
+
+    """Obtener los datos del request para la creacion del detalle de la factura"""
+    detalle = request.get_json()['detalle_factura']
+    if detalle:
+        for item in detalle:
+            id_producto_servicio = item['id_producto_servicio']
+            cantidad = item['cantidad']
+            subtotal = item['subtotal']
+            """acceso a BD --> INSERT INTO"""
+            cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
+            mysql.connection.commit()
+    else:
+        return jsonify({'message': 'No se puede crear una factura sin detalle'})
+
+
+
     return jsonify({'message': 'factura creada', 'id': id})
 
 
