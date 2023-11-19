@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Proyecto_Informatico",
-    "dateExported": "2023-11-16T12:30:24.849Z",
+    "dateExported": "2023-11-19T17:36:47.617Z",
     "version": "1.1",
     "folders": [
         {
@@ -82,11 +82,11 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-11-16T11:19:01.258Z",
-            "modified": "2023-11-16T12:10:43.707Z",
+            "modified": "2023-11-19T17:31:29.945Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwMTQyNjMwfQ.oobkEo-wDdw-kz-ovNoi5KkEvOF6fBXn544Wo0Yj-o8"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwNDIxMDY5fQ.qZT5jGPE3QKWM7bck5JeB7fHkYVsWs1wgwNsvvJEXN4"
                 },
                 {
                     "name": "user-id",
@@ -352,15 +352,15 @@
             "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
             "containerId": "78ba8ca7-88a8-4377-94dc-c827fa4f9eb7",
             "name": "GET factura by id and user id",
-            "url": "/user/1/factura/1",
+            "url": "/user/1/factura/18",
             "method": "GET",
             "sortNum": 150000,
             "created": "2023-11-16T11:27:28.338Z",
-            "modified": "2023-11-16T11:28:45.913Z",
+            "modified": "2023-11-19T17:33:02.119Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwMTM5NzY0fQ.nzCfDMUyRdtB6lBh9NzBoNc0QN_4h0rRGh3fXESgRYA"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwNDIxMDY5fQ.qZT5jGPE3QKWM7bck5JeB7fHkYVsWs1wgwNsvvJEXN4"
                 },
                 {
                     "name": "user-id",
@@ -379,11 +379,11 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2023-11-16T11:34:45.025Z",
-            "modified": "2023-11-16T11:57:33.159Z",
+            "modified": "2023-11-19T17:32:56.838Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwMTM5NzY0fQ.nzCfDMUyRdtB6lBh9NzBoNc0QN_4h0rRGh3fXESgRYA"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwNDIxMDY5fQ.qZT5jGPE3QKWM7bck5JeB7fHkYVsWs1wgwNsvvJEXN4"
                 },
                 {
                     "name": "user-id",
@@ -393,7 +393,7 @@
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "  {\n    \"fecha\": \"2023-05-25\",\n    \"id_cliente\": 1,\n    \"id_usuario\": 1,\n    \"total\": 6500\n  }",
+                "raw": "{\n  \"detalle_factura\": [\n    {\n      \"cantidad\": 2,\n      \"id\": 4,\n      \"id_factura\": 3,\n      \"id_producto_servicio\": 7,\n      \"subtotal\": 25698\n    },\n    {\n      \"cantidad\": 2,\n      \"id\": 7,\n      \"id_factura\": 1,\n      \"id_producto_servicio\": 4,\n      \"subtotal\": 145236\n    }\n  ],\n  \"fecha\": \"2022-12-08\",\n  \"id\": 1,\n  \"id_cliente\": 1,\n  \"id_usuario\": 1,\n  \"total\": 958633\n}",
                 "form": []
             },
             "tests": []
