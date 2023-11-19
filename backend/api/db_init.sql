@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`usuario` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `razon_social` VARCHAR(45) NOT NULL,
-  `cuit_cuil` INT NOT NULL,
+  `cuit_cuil` BIGINT(20) NOT NULL,
   `estado` TINYINT(1) NOT NULL,  
   PRIMARY KEY (`id`));
 
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`cliente` (
     `nombre` VARCHAR(45) NOT NULL,
     `apellido` VARCHAR(45) NOT NULL,
     `email` VARCHAR(45) NOT NULL,
-    `cuit_cuil` INT NOT NULL,
+    `cuit_cuil` BIGINT(20) NOT NULL,
     `telefono` INT NOT NULL,
     `direccion` VARCHAR(45) NOT NULL,
     `estado` TINYINT(1) NOT NULL,

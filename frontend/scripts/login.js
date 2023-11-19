@@ -15,17 +15,22 @@ function mostrarPago(){
     pago_container.style.display = 'flex';
 }
 
-function Registro() {
-
-
+window.onload = function(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
 }
-const URL=`http://127.0.0.1:5200`
+
+const URL='http://127.0.0.1:5200';
 class Usuario{
-    constructor(username, password){
-        this.username = username;
-        this.password = password;
+    constructor(username, password, razon_social, cuit, estado){
+        this.username = username
+        this.password = password
+        this.razon_social = razon_social
+        this.cuit = cuit
+        this.estado = estado
     }
-    
+
     login(){  
         const requestOptions = {
             method: 'POST',
@@ -40,6 +45,8 @@ class Usuario{
           .then(data => {
                 if(data.token){
                     localStorage.setItem('token', data.token)
+                    localStorage.setItem('username', data.username)
+                    localStorage.setItem('id', data.id)
                     window.location.href = 'home.html'
                 }else{
                     document.getElementById('errorLogin').innerHTML = 'Usuario o contraseña incorrectos'
@@ -48,16 +55,69 @@ class Usuario{
           .catch(error => {
               console.error('Error al realizar la solicitud:', error);
           });
-          
-        }
+    }
+
+    register(){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: this.username,
+                password: this.password,
+                razon_social: this.razon_social,
+                cuit_cuil: this.cuit,
+                estado : this.estado
+
+            })
+        };
+
+        fetch(URL + '/register', requestOptions)
+          .then(response => response.json())
+          .then(data => {
+                if (data.message == 'Usuario creado correctamente'){
+                    document.getElementById('errorRegister').innerHTML = data.message
+                }else{
+                    document.getElementById('errorRegister').innerHTML = data.message
+                }
+          })
+          .catch(error => {
+              console.error('Error al realizar la solicitud:', error);
+          });
         
     }
 
+}
+
+
+// capturo el boton de login
 let btnLogin = document.getElementById('btn-login')
-    
+
+// disparo el evento click, creo una instancia de Usuario y llamo al metodo login de la clase con los datos ingresados en el formulario
 btnLogin.addEventListener('click', () =>{
-    let username = document.getElementById('username').value;
+    let username = document.getElementById('username-login').value;
     let password = document.getElementById('password-login').value;
     let usuario1 = new Usuario(username, password)
     usuario1.login();
+})
+
+// capturo el boton de registro}
+let btnRegistro = document.getElementById('btn-register')
+
+
+btnRegistro.addEventListener('click', () =>{
+
+    let razon_social = document.getElementById('razon-social').value;
+    let cuit = document.getElementById('cuit').value;
+    let username = document.getElementById('username-register').value;
+    let password = document.getElementById('password-register').value;
+    let confirm_password = document.getElementById('confirm-password').value;
+    console.log(razon_social, cuit, username, password, confirm_password)
+    if(password !== confirm_password){
+        document.getElementById('errorRegister').innerHTML = 'Las contraseñas no coinciden'
+    }else{
+        let usuario2 = new Usuario(username, password, razon_social, parseInt(cuit), true)
+        console.log(usuario2)
+        usuario2.register();
+    }
+    document.getElementById('errorRegister').value = '';
 })

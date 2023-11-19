@@ -54,7 +54,7 @@
     flex-direction: column;
 }
 
-#errorLogin{
+#errorLogin, #errorRegister{
     color: red;
     font-size: 0.8rem;
     height: 1rem;

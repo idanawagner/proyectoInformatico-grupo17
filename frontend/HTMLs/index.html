@@ -47,8 +47,8 @@
           <form class="login-form">
   
             <!-- Usuario -->
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username"  class="input input-login" />
+            <label for="username-login">Usuario:</label>
+            <input type="text" id="username-login" name="username-login"  class="input input-login" />
 
             <!-- Contraseña -->
             <label for="password-login">Contraseña:</label>
@@ -61,16 +61,16 @@
         <div class="register-container">
           <form action="" method="post" class="register-form">
             <!-- Razon Social -->
-            <label for="razonSocial">Razon Social:</label>
-            <input type="text" id="razonSocial" name="razonSocial" class="input input-login" />
+            <label for="razon-social">Razon Social:</label>
+            <input type="text" id="razon-social" name="razon-social" class="input input-login" />
 
             <!-- CUIT -->
             <label for="cuit">Cuit:</label>
             <input type="text" id="cuit" name="cuit" class="input input-login" />
 
             <!-- Usuario -->
-            <label for="usuario">Nombre de usuario</label>
-            <input type="usuario" id="usuario" name="usuario" class="input input-login" />
+            <label for="username-register">Nombre de usuario</label>
+            <input type="username-register" id="username-register" name="username-register" class="input input-login" />
 
             <!-- Contraseña -->
             <label for="password-register">Contraseña:</label>
@@ -81,22 +81,24 @@
               class="input input-login"
             />
             <!-- Confirmar contraseña -->
-            <label for="confirm_password">Confirmar Contraseña:</label>
+            <label for="confirm-password">Confirmar Contraseña:</label>
             <input
               type="password"
-              id="confirm_password"
-              name="confirm_password"
+              id="confirm-password"
+              name="confirm-password"
               class="input input-login"
             />
+            <!-- Datos de la tarjeta -->
             <input type="button" onclick="mostrarPago()" value="Ingresar pago" class="button">
             <div class="pago_container">
-                <label for="tarjeta">Numero de tarjeta</label>
-                <input type="text" name="tarjeta"  value="tarjeta" class="input input-pay">
-                <label for="codigoSeguridad">Codigo de seguridad</label>
-                <input type="text" name="codigoSeguridad"value="codigoSeguridad" class="input input-pay">
+              <label for="tarjeta">Numero de tarjeta</label>
+              <input type="text" name="tarjeta"  value="tarjeta" class="input input-pay">
+              <label for="codigoSeguridad">Codigo de seguridad</label>
+              <input type="text" name="codigoSeguridad"value="codigoSeguridad" class="input input-pay">
             </div>
-         
-            <input type="submit" value="Registrar" class="button"/>
+            <!-- Boton sumbit -->
+            <span id="errorRegister"></span>
+            <input  type="button" id="btn-register" value="Registrar" class="button"/>
           </form>
 
         </div>

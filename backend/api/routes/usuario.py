@@ -26,3 +26,23 @@ def login():
                         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=100)
                         }, app.config['SECRET_KEY']) 
     return jsonify({'token': token, 'username': auth.username, 'id': row[0]})
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.get_json()['username']
+    password = request.get_json()['password']
+    razonSocial = request.get_json()['razon_social']
+    cuit = request.get_json()['cuit_cuil']
+    estado = request.get_json()['estado']
+
+    """Control: si existe el usuario en la BD"""
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
+    row = cur.fetchone()
+    print(row)
+    if row:
+        return jsonify({'message': 'El usuario existe en la base de datos'}), 401 
+    cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
+    mysql.connection.commit()
+    return jsonify({'message': 'Usuario creado correctamente'}), 201
