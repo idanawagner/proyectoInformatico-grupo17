@@ -14,8 +14,16 @@ def get_all_facturas(id_user):
     data = cur.fetchall()
     facturaList = []
     for row in data:
+        detalleList = []
+        cur.execute('SELECT * FROM detalle_factura WHERE id_factura = {0}'.format(row[0]))
+        detalles = cur.fetchall()
+        for detalle in detalles:
+            objDetalle = DetalleFactura(detalle)
+            detalleList.append(objDetalle.to_json())
         objFactura = Factura(row)
-        facturaList.append(objFactura.to_json())
+        objFactura = objFactura.to_json()
+        objFactura["detalle_factura"] = detalleList
+        facturaList.append(objFactura)
     return jsonify( facturaList )
 
 @app.route('/user/<int:id_user>/factura/<int:id_factura>', methods=['GET'])
