@@ -8,7 +8,6 @@ CORS(app)
 app.config['SECRET_KEY'] = 'app_123'
 
 import api.routes.cliente
-import api.routes.detalle
 import api.routes.factura
 import api.routes.producto_servicio
 import api.routes.usuario

@@ -9,7 +9,7 @@ class Factura():
             self._total = row[4]
         # TODO: borrar al finalizar la depuracion
         except IndexError as e:
-            print(f"Error al inicializar Cliente con row: {row}")
+            print(f"Error al inicializar Factura con row: {row}")
             print(f"Detalles del error: {e}")
             raise
     
