@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página principal - Grupo 17</title>
+    <title>Perfil</title>
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
+
     <script
       src="https://kit.fontawesome.com/9adda98406.js"
       crossorigin="anonymous"
@@ -84,7 +88,46 @@
 
       <!-- Contenido de la pagina -->
       <div class="content">
-        CONTENIDO DE BIENVENIDA
+
+        <article>
+          <span> Nombre de usuario: </span>
+          <span id="user-name"> pepito flores </span>
+        </article>
+
+        <section id="info_usuario">
+          <form id="usuario_info_form">
+
+            <div class="inline1">
+              <h3> Razon social</h3>
+              <input type="text" id="razon-social" name="user-razon-social" class="input razon-social">
+            </div>
+
+            <div class="inline1">
+              <h3> CUIT </h3>
+              <input type="number" id="CUIT" name="user-CUIT" class="input CUIT">
+            </div>
+
+            <h2> Editar contraseña </h2>
+
+            <div class="inline2"> 
+              <h3> Contraseña actual </h3>
+              <input type="text" id="current-pass" name="user-current-pass" class="input current-pass">
+            </div>
+
+            <div class="inline2">
+              <h3> Nueva Contraseña </h3>
+              <input type="text" id="new-pass" name="user-new-pass" class="input new-pass">
+            </div>
+
+            <div class="inline2">
+              <h3> Confirmar Contraseña</h3>
+              <input type="text" id="pass-confirm" name="user-pass-confirm" class="input pass-confirm">
+            </div>
+
+            <input type="button" id="btn-change-user-data" class="button" value="Guardar cambios">
+          </form>
+        </section>
+
       </div>
     </div>
 

@@ -5,6 +5,7 @@
     padding: 1rem 2rem;
     color: var(--blanco);
     font-family: var(--fuente-principal);
+    transition: 0.2s;
 }
 .button:hover{
     background-color: var(--verde-hover);

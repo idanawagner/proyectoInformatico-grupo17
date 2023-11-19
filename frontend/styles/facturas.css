@@ -1,2 +1,111 @@
 @import './home.css';
 @import './variables.css';
+
+.button {
+    max-width: 300px;
+    font-size: 1.5rem;
+    display: inline-block;
+    border: 0.1px solid black;
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+}
+
+.content{
+    background-color: #dbd6d6;
+    position: relative;
+}
+
+#btn-agregar-producto {
+    display: block;
+    max-width: 2800px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+#windows {
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    padding: 20px;
+    font-size: 1.3rem;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: block;
+    text-align: justify;
+}
+
+table {
+width: 100%;
+padding: 5px;
+margin: 20px 0px 10px 0px;
+align-content: space-evenly;
+}
+
+.table-row>td {
+    background-color: var(--verde-secundario);
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: var(--gris-claro);
+    border: 1px solid black;
+}
+.body-row:nth-child(odd) {
+    background-color: var(--celeste-principal);
+}
+.selectEstilizado {
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background-color: #f2f2f2;
+border: 1px solid #ccc;
+padding: 8px;
+font-size: 14px;
+width: 30%;
+border-radius: 4px;
+outline: none; /* Elimina el contorno predeterminado en algunos navegadores */
+cursor: pointer;
+display: inline-block;
+}
+
+.selectEstilizado:hover {
+border-color: #999;
+}
+
+.selectEstilizado:focus {
+border-color: #555;
+}
+
+.container-bill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+input{
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+#total {
+    position: absolute;
+    max-width: 300px;
+    right: 120px;
+    bottom: 90px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    text-decoration: underline;
+
+}
+
+#btn-generate-bill {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
