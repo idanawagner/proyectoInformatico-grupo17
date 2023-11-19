@@ -12,3 +12,5 @@ function protectedRoutes(){
         }
     }
 }
+
+export default protectedRoutes;

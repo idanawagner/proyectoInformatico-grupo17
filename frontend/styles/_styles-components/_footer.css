@@ -1,6 +1,6 @@
 .footer{
     background-color: var(--verde-secundario);
-    color: #ffffff;
+    color: var(--blanco);
     padding: 2rem;
     text-align: center;
     font-size: .8rem;
