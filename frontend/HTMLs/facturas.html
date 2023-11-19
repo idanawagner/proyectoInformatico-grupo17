@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de facturas generadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
+
+    <script
+    src="https://kit.fontawesome.com/9adda98406.js"
+    crossorigin="anonymous"
+  ></script>
+
+    <link rel="stylesheet" href="../styles/facturas.css">
+</head>
+<body id="body">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo_container">
+        <img class="logo" src="../assets/logotipo.png" alt="Logotipo" />
+      </div>
+    </header>
+    <div class="container">
+
+      <!-- Navbar -->
+      <nav class="navbar_container" id="menu_nav">
+        <ul class="navbar_list">
+          <li  id="home" >
+            <a href="home.html">
+              <span>
+                <i class="fa-solid fa-user" title="Perfil"></i>
+              </span>
+              <span class="nav__text"> Perfil </span>
+            </a>
+          </li>
+          <!-- Factuacion -->
+          <li class="itemSelect" id="facturas" >
+            <a href="facturas.html">
+              <span>
+                <i class="fa-solid fa-barcode" title="Facturacion"></i>
+              </span>
+              <span class="nav__text">Facturacion</span>
+            </a>
+          </li>
+          <!-- Clientes -->
+          <li class="" id="clientes" >
+            <a href="clientes.html">
+              <span>
+                <i class="fa-solid fa-address-book" title="Clientes"></i>
+              </span>
+              <span class="nav__text"> Clientes </span>
+            </a>
+          </li>
+          <!-- Productos y Servicios -->
+          <li class="" id="productosSevicios" >
+            <a href="productosSevicios.html">
+              <span>
+                <i class="fa-solid fa-truck" title="Stock"></i>
+              </span>
+              <span class="nav__text"> Productos/Servicios</span>
+            </a>
+          </li>
+          <!-- Dashboard -->
+          <li class="" id="metricas" >
+            <a href="metricas.html">
+              <span>
+                <i
+                  class="fa-solid fa-square-poll-vertical"
+                  title="Métricas"
+                ></i>
+              </span>
+              <span class="nav__text"> Métricas </span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html">
+                <span>
+                <i class="fa-solid fa-sign-out" title="Cerrar sesión"></i>
+              </span>
+              <span class="nav__text"> Cerrar sesión </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Contenido de la pagina -->
+      <div class="content">
+
+        <section id="windows">
+          <input type="button" class="button" value="Generar nueva factura">
+          <input type="button" class="button" value="Buscar facturas">
+          <input type="button" class="button" value="Historial de Facturacion">
+        </section>
+
+        <!-- generar nueva factura -->
+        <section id="sec-generate-bill">
+          <form id="form-gen-bill">
+
+            <label for="current-day">
+              Introduzca la fecha actual
+              <input type="date" id="current-day" class="input current-day">
+            </label>
+
+            <input type="button" id="btn-agregar-producto" class="button" value="Agregar un nuevo producto">
+
+            <table>
+              <th>
+                <tr>
+                  <td> Seleccione su producto </td>
+                  <td> Producto seleccionado </td>
+                  <td> Cantidad </td>
+                </tr>
+              </th>
+            </table>
+            <div class="container-bill">
+              <select id="bill-select" class="selectEstilizado">
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+                <option value="opcion3">Opción 3</option>
+              </select>
+  
+              <input type="text" id="no-se">
+              <input type="number" id="cuantity">
+            </div>
+
+
+            <span id="total">Valor Total: $100.00</span>
+
+            <input type="button" id="btn-generate-bill" class="button" value="Generar">
+
+          </form>
+        </section>
+
+        <!-- Historial de Facturacion -->
+        <section>
+          <table id="historic-billing-table">
+            <thead class="table-header">
+              <tr class="table-row">
+                <td> Fecha </td>
+                <td> Cliente </td>
+                <td> Productos/Servicios </td>
+                <td> Cantidad </td>
+                <td> Total </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Buscar facturas -->
+        <section>
+          <label for="bill-search-selector"> 
+            Selecciona un filtro:
+            <select id="bill-search-selector">
+              <option value="numero-factura">Número de Factura</option>
+              <option value="cliente">Cliente</option>
+              <option value="fecha">Fecha</option>
+            </select>
+          </label>
+
+
+          <table id="bill-searching-table">
+            <thead class="table-header">
+              <tr class="table-row">
+                <td> Fecha </td>
+                <td> Cliente </td>
+                <td> Productos/Servicios </td>
+                <td> Cantidad </td>
+                <td> Total </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+              <tr class="body-row">
+                <td>900900</td>
+                <td>Pepe Duckerman</td>
+                <td> mercatril300</td>
+                <td> una banda</td>
+                <td> un monton de guita</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>
+        "Copyright © 2023 Fernandez Achilli Franco, López Julieta, Wagner
+        Cabrera Idana.";
+      </span>
+    </footer>
+  </body>
+</html>
