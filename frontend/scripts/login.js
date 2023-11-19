@@ -2,11 +2,11 @@ function mostrarFormulario(tipo) {
     const loginContainer = document.querySelector('.login-container');
     const registerContainer = document.querySelector('.register-container');
     if (tipo === 'login') {
-        loginContainer.style.display = 'block';
+        loginContainer.style.display = 'flex';
         registerContainer.style.display = 'none';
     } else if (tipo === 'registro') {
         loginContainer.style.display = 'none';
-        registerContainer.style.display = 'block';
+        registerContainer.style.display = 'flex';
     }
 }
 
