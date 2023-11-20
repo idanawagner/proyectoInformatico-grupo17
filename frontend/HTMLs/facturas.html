@@ -8,12 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
 
+    
+    <link rel="stylesheet" href="../styles/facturas.css">
     <script
     src="https://kit.fontawesome.com/9adda98406.js"
     crossorigin="anonymous"
   ></script>
-
-    <link rel="stylesheet" href="../styles/facturas.css">
+    <script defer src="../scripts/facturas.js"></script>
 </head>
 <body id="body">
     <!-- Header -->
@@ -89,9 +90,9 @@
       <div class="content">
 
         <section id="windows">
-          <input type="button" id="newBill" class="button" value="Generar nueva factura">
-          <input type="button" id="searchBills" class="button" value="Buscar facturas">
-          <input type="button" id="billsList" class="button" value="Historial de Facturacion">
+          <input type="button" id="newBill" onclick="showSection('newBill')"  class="button" value="Generar nueva factura">
+          <input type="button" id="searchBills" onclick="showSection('searchBill')"  class="button" value="Buscar facturas">
+          <input type="button" id="billsList" onclick="showSection('billsList')"  class="button" value="Historial de Facturacion">
         </section>
 
         <!-- generar nueva factura -->
@@ -173,7 +174,7 @@
         </section>
 
         <!-- Buscar facturas -->
-        <section>
+        <section id="sec-search-bill">
           <div class="container-bill-srch">
             <label for="bill-search-selector" id="lbl-bill-srch"> 
               Selecciona un filtro:

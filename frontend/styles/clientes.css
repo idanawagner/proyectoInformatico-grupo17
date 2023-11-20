@@ -5,11 +5,11 @@ body {
     font-weight: 400;
 }
 
-section {
+/* section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
+} */
 
 #windows {
     display: flex;
@@ -50,7 +50,12 @@ label {
 
 #sec-load-cli {
     margin-top: 100px;
+    display: block;
 }
+#sec-search-client {
+    display: none;
+}
+
 
 #btn-add-nw-cli {
     margin-left: 35px;

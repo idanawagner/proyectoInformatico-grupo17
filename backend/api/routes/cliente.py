@@ -4,7 +4,7 @@ from api.utils import token_required, client_resource, user_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
 
-@app.route('/user/<int:id_user>/cliente', methods=['GET'])
+@app.route('/user/<int:id_user>/clientes', methods=['GET'])
 @token_required
 @user_resource
 def get_all_clientes(id_user):
@@ -29,6 +29,20 @@ def get_cliente(id_user, id_cliente):
         objClient = Cliente(data)
         return jsonify(objClient.to_json())
     return jsonify({'message': 'No se encontro el cliente'})
+
+
+# @app.route('/user/<int:id_user>/cliente/<int:cuit_cuil>', methods=['GET'])
+# @token_required
+# @user_resource
+# @client_resource
+# def get_cliente_by_cuit_cuil(id_user, cuit_cuil):
+#     cur = mysql.connection.cursor()
+#     cur.execute('SELECT * FROM cliente WHERE id_usuario = {0} AND cuit_cuil = {1} AND estado = 1'.format(id_user, cuit_cuil))
+#     data = cur.fetchone()
+#     if data:
+#         objClient = Cliente(data)
+#         return jsonify(objClient.to_json())
+#     return jsonify({'message': 'No se encontro el cliente'})
 
 @app.route('/user/<int:id_user>/cliente', methods=['POST'])
 @token_required
