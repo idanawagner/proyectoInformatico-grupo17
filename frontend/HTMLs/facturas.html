@@ -114,6 +114,7 @@
                 </tr>
               </th>
             </table>
+
             <div class="container-bill">
               <select id="bill-select" class="selectEstilizado">
                 <option value="opcion1">Opción 1</option>
@@ -121,7 +122,7 @@
                 <option value="opcion3">Opción 3</option>
               </select>
   
-              <input type="text" id="no-se">
+              <input type="text" id="txt-prod-selected">
               <input type="number" id="cuantity">
             </div>
 
@@ -134,7 +135,7 @@
         </section>
 
         <!-- Historial de Facturacion -->
-        <section id="sec-">
+        <section id="sec-billing-history">
           <table id="historic-billing-table">
             <thead class="table-header">
               <tr class="table-row">
@@ -173,14 +174,20 @@
 
         <!-- Buscar facturas -->
         <section>
-          <label for="bill-search-selector"> 
-            Selecciona un filtro:
-            <select id="bill-search-selector">
-              <option value="numero-factura">Número de Factura</option>
-              <option value="cliente">Cliente</option>
-              <option value="fecha">Fecha</option>
-            </select>
-          </label>
+          <div class="container-bill-srch">
+            <label for="bill-search-selector" id="lbl-bill-srch"> 
+              Selecciona un filtro:
+              <select id="bill-search-selector" class="selectEstilizado">
+                <option value="numero-factura">Número de Factura</option>
+                <option value="cliente">Cliente</option>
+                <option value="fecha">Fecha</option>
+              </select>
+            </label>
+
+            <input type="text" id="bill-srch-bar" value="Buscar...">
+  
+            <input type="button" id="btn-bill-srch" class="button" value="Buscar">
+          </div>
 
 
           <table id="bill-searching-table">

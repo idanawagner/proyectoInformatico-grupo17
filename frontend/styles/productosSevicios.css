@@ -1,1 +1,159 @@
 @import './variables.css';
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#windows {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.button {
+    max-width: 300px;
+    font-size: 1.5rem;
+    display: inline-block;
+    border: 0.1px solid black;
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+}
+
+form {
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+label {
+    width: 40%; /* Ancho de cada columna */
+    margin: 50px 35px 50px 35px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.input-estilizado {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: 30px;
+    margin-top: 10px;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+#btn-add-prod-serv {
+    display: inline-block;
+    max-width: 2800px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    height: 63px;
+    width: 200px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-right: 180px;
+    margin-top: 70px;
+}
+
+#btn-prod-serv-srch {
+    display: block;
+    max-width: 2800px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+table{
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0px 10px 0px;
+    align-content: space-evenly;
+
+}
+
+.table-row>td {
+    background-color: var(--verde-secundario);
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: var(--gris-claro);
+    border: 1px solid black;
+}
+
+.body-row:nth-child(odd) {
+    background-color: var(--celeste-principal);
+}
+
+.body-row:hover {
+    background-color: #999;
+}
+
+td.editable {
+    cursor: pointer;
+}
+
+input.editing {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.selectEstilizado {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 4px;
+    outline: none; /* Elimina el contorno predeterminado en algunos navegadores */
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+    
+.selectEstilizado:hover {
+border-color: #999;
+}
+
+.selectEstilizado:focus {
+border-color: #555;
+}
+
+.container-prod-serv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#btn-prod-serv-srch {
+    box-sizing: border-box;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+
+#prod-serv-srch-bar {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: 30px;
+    margin-top: 20px;
+}
