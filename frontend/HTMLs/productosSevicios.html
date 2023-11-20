@@ -85,7 +85,105 @@
 
       <!-- Contenido de la pagina -->
       <div class="content">
-        CONTENIDO DE BIENVENIDA
+
+        <section id="windows">
+          <input type="button" id="nw-prod-serv" class="button" value="Agregar">
+          <input type="button" id="srch-prod-serv" class="button" value="Buscar">
+          <input type="button" id="li-pro-serv" class="button" value="Ver Stock">
+        </section>
+
+        <!-- Agregar nuevo producto o servicio -->
+
+        <section>
+          <div id="prod-serv-form-container">
+            <form id="prod-serv-form">
+
+              <label for="prod-serv-cat-selector"> 
+                Categoria 
+                <select id="prod-serv-cat-selector" class="selectEstilizado">
+                  <option value="Producto"> Producto </option>
+                  <option value="Servicio"> Servicio </option>
+                </select>
+              </label>
+
+              <label for="input-cantidad"> 
+                Cantidad
+                <input type="number" id="input-cantidad" value="0" class="input-estilizado">
+              </label>
+
+              <label for="input-nombre">
+                Nombre
+                <input type="text" id="input-nombre" value="fentanilo" class="input-estilizado">
+              </label>
+
+              <label for="input-precio"> 
+                Precio Unitario
+                <input type="number" id="input-precio" value="0" class="input-estilizado">
+              </label>
+              <label for="input-descripcion">
+                Descripción
+                <input type="text" id="input-descripcion" value="choclo x2" class="input-estilizado">
+              </label>
+
+              <input type="button" id="btn-add-prod-serv" class="button" value="Agregar al Stock">
+            </form>
+          </div>
+        </section>
+
+        <!-- buscar-prod-servicios / ver productos y servicios -->
+        <section>
+
+          <div class="container-prod-serv">
+            <label for="prod-serv-srch-selector"> 
+              Selecciona un filtro:
+              <select id="prod-serv-srch-selector" class="selectEstilizado">
+                <option value="Nombre">Nombre</option>
+                <option value="Categoria">Categoria</option>
+                <option value="Stock">Stock</option>
+                <option value="Precio">Precio</option>
+              </select>
+            </label>
+
+            <input type="text" id="prod-serv-srch-bar" value="Buscar...">
+  
+            <input type="button" id="btn-prod-serv-srch" class="button" value="Buscar">
+          </div>
+
+          <table id="prod-serv-srch-table">
+            <thead class="table-header">
+              <tr class="table-row">
+                <td> Categoria </td>
+                <td> Nombre </td>
+                <td> Stock </td>
+                <td> Precio </td>
+                <td> Descripcion </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Producto </td>
+                <td class="editable"> Fentanilo </td>
+                <td class="editable"> Una banda </td>
+                <td class="editable"> Re caro </td>
+                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
+              </tr>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Producto </td>
+                <td class="editable"> Fentanilo </td>
+                <td class="editable"> Una banda </td>
+                <td class="editable"> Re caro </td>
+                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
+              </tr>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Producto </td>
+                <td class="editable"> Fentanilo </td>
+                <td class="editable"> Una banda </td>
+                <td class="editable"> Re caro </td>
+                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </div>
     </div>
 

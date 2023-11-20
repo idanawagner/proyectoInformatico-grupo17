@@ -85,7 +85,108 @@
 
       <!-- Contenido de la pagina -->
       <div class="content">
-        CONTENIDO DE BIENVENIDA
+
+        <section id="windows">
+          <input type="button" id="nw-client" class="button" value="Cargar cliente">
+          <input type="button" id="srch-client" class="button" value="Buscar clientes">
+          <input type="button" id="li-client" class="button" value="Lista de clientes">
+        </section>
+
+        <!-- cargar clientes -->
+        <section id="sec-load-cli">
+          <form id="form-nw-cli">
+
+            <label for="nw-cli-name">
+              Nombre
+              <input type="text" id="nw-cli-name" name="nombre-nuevo-cliente" class="input nw-cli-name">
+            </label>
+  
+            <label for="nw-cli-lastname">
+              Apellido
+              <input type="text" id="nw-cli-lastname" name="apellido-nuevo-cliente" class="input nw-cli-lastname">
+            </label>
+  
+            <label for="nw-CUIT">
+              CUIL/CUIT
+              <input type="number" id="nw-cli-CUIT" name="CUIT-nuevo-cliente" class="input nw-cli-CUIT">
+            </label>
+  
+            <label for="nw-cli-email">
+              Email
+              <input type="email" id="nw-cli-email" name="Email-nuevo-cliente" class="input nw-cli-email">
+            </label>
+  
+            <label for="nw-cli-address">
+              Dirección
+              <input type="text" id="nw-cli-address" name="direccion-nuevo-cliente" class="input nw-cli-address">
+            </label>
+  
+            <label for="nw-cli-phone">
+              Teléfono
+              <input type="number" id="nw-cli-phone" name="telefono-nuevo-cliente" class="input nw-cli-phone">
+            </label>
+
+            <input type="button" class="button" id="btn-add-nw-cli" value="Agregar nuevo cliente">
+          </form>
+        </section>
+
+        <!-- buscar clientes -->
+        <section>
+
+          <div class="container-clientes">
+            <label for="cli-srch-selector"> 
+              Selecciona un filtro:
+              <select id="cli-srch-selector" class="selectEstilizado">
+                <option value="Nombre">Nombre</option>
+                <option value="CUIL/CUIT">CUIL/CUIT</option>
+              </select>
+            </label>
+
+            <input type="text" id="cli-srch-bar" value="Buscar...">
+  
+            <input type="button" id="btn-cli-srch" class="button" value="Buscar">
+          </div>
+
+          <table id="cli-srch-table">
+            <thead class="table-header">
+              <tr class="table-row">
+                <td> Nombre </td>
+                <td> Apellido </td>
+                <td> CUIL/CUIT </td>
+                <td> Direccion </td>
+                <td> Email </td>
+                <td> Teléfono </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Pedro </td>
+                <td class="editable"> Patroli </td>
+                <td class="editable"> 20958595883</td>
+                <td class="editable"> Bananasio 345</td>
+                <td class="editable"> Pedroli@gmail.com </td>
+                <td class="editable"> 2932898989</td>
+              </tr>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Pedro </td>
+                <td class="editable"> Patroli </td>
+                <td class="editable"> 20958595883</td>
+                <td class="editable"> Bananasio 345</td>
+                <td class="editable"> Pedroli@gmail.com </td>
+                <td class="editable"> 2932898989</td>
+              </tr>
+              <tr class="body-row" class="erasable">
+                <td class="editable"> Pedro </td>
+                <td class="editable"> Patroli </td>
+                <td class="editable"> 20958595883</td>
+                <td class="editable"> Bananasio 345</td>
+                <td class="editable"> Pedroli@gmail.com </td>
+                <td class="editable"> 2932898989</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
       </div>
     </div>
 
