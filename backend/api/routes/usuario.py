@@ -50,6 +50,7 @@ def register():
 
 @app.route('/security', methods=['POST'])
 def updatePass():
+    cur = None  # Declarar la variable cur fuera del bloque try
     try:
         cuit = request.get_json()['cuit_cuil']
         newPassword = request.get_json()['newPassword']
@@ -69,6 +70,3 @@ def updatePass():
     except Exception as e:
         print(e)
         return jsonify({'message': 'Error en la base de datos'}), 500
-    
-    finally:
-        cur.close()

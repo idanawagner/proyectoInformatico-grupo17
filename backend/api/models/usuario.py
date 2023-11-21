@@ -13,5 +13,4 @@ class Usuario():
             'razon_social': self._razon_social,
             'cuit': self._cuit,
             'estado': self._estado,
-
         }
