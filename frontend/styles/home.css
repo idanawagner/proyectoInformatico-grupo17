@@ -78,3 +78,7 @@ h2 {
 #btn-change-user-data {
     margin-top: 100px;
 }
+
+i {
+    display: inline;
+}

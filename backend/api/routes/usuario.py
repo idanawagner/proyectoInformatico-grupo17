@@ -46,3 +46,29 @@ def register():
     cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
     mysql.connection.commit()
     return jsonify({'message': 'Usuario creado correctamente'}), 201
+
+
+@app.route('/security', methods=['POST'])
+def updatePass():
+    try:
+        cuit = request.get_json()['cuit_cuil']
+        newPassword = request.get_json()['newPassword']
+
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
+        row = cur.fetchone()
+
+        if row:
+            cur.execute('UPDATE usuario SET password = %s WHERE cuit_cuil = %s', (newPassword, cuit))
+            mysql.connection.commit()
+            return jsonify({'message': 'Contraseña modificada correctamente'}), 200
+        
+        else:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+        
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error en la base de datos'}), 500
+    
+    finally:
+        cur.close()
