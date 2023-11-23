@@ -7,94 +7,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
-
-    <script
-    src="https://kit.fontawesome.com/9adda98406.js"
-    crossorigin="anonymous"
-  ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/clientes.css">
-</head>
+   
+  </head>
 <body id="body">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo_container">
-        <img class="logo" src="../assets/logotipo.png" alt="Logotipo" />
-      </div>
-    </header>
-    <div class="container">
-      <!-- Navbar -->
-      <nav class="navbar_container" id="menu_nav">
-        <ul class="navbar_list">
-          <li  id="home" >
-            <a href="home.html">
-              <span>
-                <i class="fa-solid fa-user" title="Perfil"></i>
-              </span>
-              <span class="nav__text"> Perfil </span>
-            </a>
-          </li>
-          <!-- Factuacion -->
-          <li  id="facturas" >
-            <a href="facturas.html">
-              <span>
-                <i class="fa-solid fa-barcode" title="Facturacion"></i>
-              </span>
-              <span class="nav__text">Facturacion</span>
-            </a>
-          </li>
-          <!-- Clientes -->
-          <li class="itemSelect"  id="clientes" >
-            <a href="clientes.html">
-              <span>
-                <i class="fa-solid fa-address-book" title="Clientes"></i>
-              </span>
-              <span class="nav__text"> Clientes </span>
-            </a>
-          </li>
-          <!-- Productos y Servicios -->
-          <li class="" id="productosSevicios" >
-            <a href="productosSevicios.html">
-              <span>
-                <i class="fa-solid fa-truck" title="Stock"></i>
-              </span>
-              <span class="nav__text"> Productos/Servicios</span>
-            </a>
-          </li>
-          <!-- Dashboard -->
-          <li class="" id="metricas" >
-            <a href="metricas.html">
-              <span>
-                <i
-                  class="fa-solid fa-square-poll-vertical"
-                  title="Métricas"
-                ></i>
-              </span>
-              <span class="nav__text"> Métricas </span>
-            </a>
-          </li>
-          <li>
-            <a href="index.html">
-                <span>
-                <i class="fa-solid fa-sign-out" title="Cerrar sesión"></i>
-              </span>
-              <span class="nav__text"> Cerrar sesión </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+  <div id="header">
+    <!-- Header desde javascript -->
+  </div>
+  <div class="container">
+    <div id="navbar">
+      <!-- Navbar desde javascript-->
 
+    </div>
       <!-- Contenido de la pagina -->
       <div class="content">
 
         <section id="windows">
-          <input type="button" id="nw-client" class="button" value="Cargar cliente">
-          <input type="button" id="srch-client" class="button" value="Buscar clientes">
-          <input type="button" id="li-client" class="button" value="Lista de clientes">
+          <input type="button" id="nw-client" onclick="showSection('uploadClient')" class="button" value="Cargar cliente">
+          <input type="button" id="srch-client" onclick="showSection('searchClient')" class="button" value="Buscar clientes">
         </section>
 
         <!-- cargar clientes -->
         <section id="sec-load-cli">
-          <form id="form-nw-cli">
+          <form id="form-nw-cli" class="form-new-client">
 
             <label for="nw-cli-name">
               Nombre
@@ -131,64 +67,82 @@
         </section>
 
         <!-- buscar clientes -->
-        <section>
+        <section id="sec-search-client">
 
           <div class="container-clientes">
             <label for="cli-srch-selector"> 
               Selecciona un filtro:
               <select id="cli-srch-selector" class="selectEstilizado">
                 <option value="Nombre">Nombre</option>
-                <option value="CUIL/CUIT">CUIL/CUIT</option>
+                <option value="Cuit/Cuil">Cuit/Cuil</option>
               </select>
             </label>
 
-            <input type="text" id="cli-srch-bar" value="Buscar...">
+            <input type="text" id="cli-srch-bar" placeholder="Nombre / Cuit - Cuil">
   
             <input type="button" id="btn-cli-srch" class="button" value="Buscar">
           </div>
 
-          <table id="cli-srch-table">
-            <thead class="table-header">
-              <tr class="table-row">
-                <td> Nombre </td>
-                <td> Apellido </td>
-                <td> CUIL/CUIT </td>
-                <td> Direccion </td>
-                <td> Email </td>
-                <td> Teléfono </td>
+          <table id="" class="table">
+            <thead class="">
+              <tr class="">
+                <th scope="col"> Nombre </th>
+                <th scope="col"> Apellido </th>
+                <th scope="col"> CUIL/CUIT </th>
+                <th scope="col"> Direccion </th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Teléfono </th>
+                <th scope="col">  </th>
+                <th scope="col">  </th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Pedro </td>
-                <td class="editable"> Patroli </td>
-                <td class="editable"> 20958595883</td>
-                <td class="editable"> Bananasio 345</td>
-                <td class="editable"> Pedroli@gmail.com </td>
-                <td class="editable"> 2932898989</td>
-              </tr>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Pedro </td>
-                <td class="editable"> Patroli </td>
-                <td class="editable"> 20958595883</td>
-                <td class="editable"> Bananasio 345</td>
-                <td class="editable"> Pedroli@gmail.com </td>
-                <td class="editable"> 2932898989</td>
-              </tr>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Pedro </td>
-                <td class="editable"> Patroli </td>
-                <td class="editable"> 20958595883</td>
-                <td class="editable"> Bananasio 345</td>
-                <td class="editable"> Pedroli@gmail.com </td>
-                <td class="editable"> 2932898989</td>
-              </tr>
+            <tbody id="tbody-clients">
+             <!-- se agrega el contenido de la tabla desde javascript -->
             </tbody>
           </table>
+
+         <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <form id="form-editar">
+                            <label for="editar-nombre">
+                              <input type="text" id="editar-nombre" name="editar-nombre" class="input" placeholder="Nombre">
+                            </label>
+                            <label for="editar-apellido">
+                              <input type="text" id="editar-apellido" name="editar-apellido" class="input " placeholder="Apellido">
+                            </label>
+                            <label for="editar-cuit">
+                              <input type="number" id="editar-cuit" name="editar-cuit" class="input" placeholder="Cuit-Cuil" >
+                            </label>
+                            <label for="editar-email">
+                              <input type="email" id="editar-email" name="editar-email" class="input" placeholder="Email">
+                            </label>
+                            <label for="editar-direccion">
+                              <input type="text" id="editar-direccion" name="editar-direccion" class="input" placeholder="Direccion">
+                            </label>
+                            <label for="editar-telefono">
+                              <input type="number" id="editar-telefono" name="editar-telefono" class="input" placeholder="Telefono">
+                            </label>
+                        </form>
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="submit-editar" class="btn btn-primary">Guardar cambios</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+              
         </section>
 
       </div>
-    </div>
+  </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -197,5 +151,11 @@
         Cabrera Idana.";
       </span>
     </footer>
+    <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script  src="../scripts/navbar.js"></script>
+    <script  src="../scripts/clientes.js"></script>
   </body>
 </html>
