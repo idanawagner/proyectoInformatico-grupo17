@@ -1,5 +1,5 @@
 
-export default function protectedRoutes() {
+const ProtectedRoutes = () => {
     window.onload = function(){
         const token = localStorage.getItem('token');
         if (token){
@@ -14,3 +14,5 @@ export default function protectedRoutes() {
 
 
 }
+
+export default ProtectedRoutes;

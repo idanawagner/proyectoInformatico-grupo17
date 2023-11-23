@@ -15,7 +15,7 @@ def get_all_clientes(id_user):
     for row in data:
         objClient = Cliente(row)
         clientList.append(objClient.to_json())
-    return jsonify( clientList )
+    return jsonify(clientList )
 
 @app.route('/user/<int:id_user>/cliente/<int:id_cliente>', methods=['GET'])
 @token_required

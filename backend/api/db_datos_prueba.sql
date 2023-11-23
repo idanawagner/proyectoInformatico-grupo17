@@ -27,6 +27,6 @@ INSERT INTO `factura` (`fecha`, `id_cliente`, `id_usuario`, `total`) VALUES
 
 -- Insertar datos de prueba en la tabla 'detalle_factura'
 INSERT INTO `detalle_factura` (`id_factura`, `id_producto_servicio`, `cantidad`, `subtotal`) VALUES
-(1, 4, 2, 2400),
-(2, 5, 3, 150),
-(3, 6, 1, 50);
+(1, 1, 2, 2400),
+(2, 2, 3, 150),
+(3, 3, 1, 50);
