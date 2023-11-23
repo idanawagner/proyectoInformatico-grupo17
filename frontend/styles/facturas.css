@@ -146,3 +146,10 @@ input{
     border-radius: 10px;
     height: 30px;
 }
+
+#sec-generate-bill{
+    display: block;
+}
+#sec-billing-history, #sec-search-bill {
+    display: none;
+}
