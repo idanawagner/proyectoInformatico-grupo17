@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Proyecto_Informatico",
-    "dateExported": "2023-11-19T17:36:47.617Z",
+    "dateExported": "2023-11-27T21:19:30.546Z",
     "version": "1.1",
     "folders": [
         {
@@ -24,6 +24,13 @@
             "containerId": "",
             "created": "2023-11-16T11:22:37.608Z",
             "sortNum": 30000
+        },
+        {
+            "_id": "051bf144-0a52-4aa3-9626-4cd077beca9d",
+            "name": "Usuario",
+            "containerId": "",
+            "created": "2023-11-27T20:47:58.194Z",
+            "sortNum": 40000
         }
     ],
     "requests": [
@@ -94,27 +101,6 @@
                 }
             ],
             "params": [],
-            "tests": []
-        },
-        {
-            "_id": "cf931b59-6fb3-4018-948a-2dab892fbf16",
-            "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
-            "containerId": "",
-            "name": "POST Login",
-            "url": "/login",
-            "method": "POST",
-            "sortNum": 20000,
-            "created": "2023-11-14T20:36:30.805Z",
-            "modified": "2023-11-15T01:15:22.744Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "basic",
-                "basic": {
-                    "username": "usuario1",
-                    "password": "clave_segura1"
-                }
-            },
             "tests": []
         },
         {
@@ -379,11 +365,11 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2023-11-16T11:34:45.025Z",
-            "modified": "2023-11-19T17:32:56.838Z",
+            "modified": "2023-11-27T14:24:48.181Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAwNDIxMDY5fQ.qZT5jGPE3QKWM7bck5JeB7fHkYVsWs1wgwNsvvJEXN4"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMTAwODY0fQ.JxHL_9kk03nc08wpzyxj11YnWw81Kki0T6sTbE5zdVg"
                 },
                 {
                     "name": "user-id",
@@ -393,7 +379,7 @@
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"detalle_factura\": [\n    {\n      \"cantidad\": 2,\n      \"id\": 4,\n      \"id_factura\": 3,\n      \"id_producto_servicio\": 7,\n      \"subtotal\": 25698\n    },\n    {\n      \"cantidad\": 2,\n      \"id\": 7,\n      \"id_factura\": 1,\n      \"id_producto_servicio\": 4,\n      \"subtotal\": 145236\n    }\n  ],\n  \"fecha\": \"2022-12-08\",\n  \"id\": 1,\n  \"id_cliente\": 1,\n  \"id_usuario\": 1,\n  \"total\": 958633\n}",
+                "raw": "{\n  \"detalle_factura\": [\n    {\n      \"cantidad\": 2,\n      \"id\": 4,\n      \"id_factura\": 3,\n      \"id_producto_servicio\": 7,\n      \"subtotal\": 25698\n    },\n    {\n      \"cantidad\": 17,\n      \"id\": 7,\n      \"id_factura\": 1,\n      \"id_producto_servicio\": 6,\n      \"subtotal\": 145236\n    }\n  ],\n  \"fecha\": \"2022-12-08\",\n  \"id\": 1,\n  \"id_cliente\": 1,\n  \"id_usuario\": 1,\n  \"total\": 958633\n}",
                 "form": []
             },
             "tests": []
@@ -428,6 +414,82 @@
                 "raw": "  {\n    \"fecha\": \"2019-12-30\",\n    \"id\": 12,\n    \"id_cliente\": 1,\n    \"id_usuario\": 1,\n    \"total\": 1200\n  }",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "8b8551e4-1184-47ef-b6f8-069bf160b05e",
+            "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
+            "containerId": "051bf144-0a52-4aa3-9626-4cd077beca9d",
+            "name": "PATCH update password",
+            "url": "/user/1/updatePassword",
+            "method": "PATCH",
+            "sortNum": 180000,
+            "created": "2023-11-27T20:48:27.191Z",
+            "modified": "2023-11-27T21:02:10.534Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMTI0ODczfQ.gMYW98A0ut2j4gfN_4iU2MIOHlB-dWE_o7EUnz34jX8"
+                },
+                {
+                    "name": "user-id",
+                    "value": "1"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\": \"nueva_clave_segura1\",\n  \"new_password\": \"nueva_clave_segura2\",\n  \"confirm_password\": \"nueva_clave_segura2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cf931b59-6fb3-4018-948a-2dab892fbf16",
+            "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
+            "containerId": "051bf144-0a52-4aa3-9626-4cd077beca9d",
+            "name": "POST Login",
+            "url": "/login",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2023-11-14T20:36:30.805Z",
+            "modified": "2023-11-27T21:01:13.508Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "basic",
+                "basic": {
+                    "username": "usuario1",
+                    "password": "nueva_clave_segura1"
+                }
+            },
+            "tests": []
+        },
+        {
+            "_id": "e8893aa9-5013-4dc3-8b23-767494df54de",
+            "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
+            "containerId": "051bf144-0a52-4aa3-9626-4cd077beca9d",
+            "name": "GET usuario",
+            "url": "/user/1",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-11-27T21:17:23.777Z",
+            "modified": "2023-11-27T21:19:02.433Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMTI0ODczfQ.gMYW98A0ut2j4gfN_4iU2MIOHlB-dWE_o7EUnz34jX8"
+                },
+                {
+                    "name": "user-id",
+                    "value": "1"
+                }
+            ],
+            "params": [],
             "tests": []
         }
     ],
