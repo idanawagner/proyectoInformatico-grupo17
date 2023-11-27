@@ -3,6 +3,7 @@ from flask import request, jsonify
 from api.db.db_config import mysql
 import jwt
 import datetime
+from api.utils import token_required, user_resource
 
 
 
@@ -46,3 +47,26 @@ def register():
     cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
     mysql.connection.commit()
     return jsonify({'message': 'Usuario creado correctamente'}), 201
+
+"""Actualizar contraseña"""
+@app.route('/user/<int:id_user>/updatePassword', methods=['PATCH'])
+@token_required
+@user_resource
+def updatePassword(id_user):
+    password = request.get_json()['password']
+    """Control: si existe el usuario en la BD"""
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT password FROM usuario WHERE id = %s', (id_user,))
+    row = cur.fetchone()
+    if not row:
+        return jsonify({'message': 'El usuario no existe en la base de datos'}), 401
+    
+    """Actualizar contraseña"""
+    new_password = request.get_json()['new_password']
+    confirm_password = request.get_json()['confirm_password']
+    if new_password != confirm_password:
+        return jsonify({'message': 'Las contraseñas no coinciden'}), 401
+    cur = mysql.connection.cursor()
+    cur.execute('UPDATE usuario SET password = %s WHERE id = %s', (new_password, id_user))
+    mysql.connection.commit()
+    return jsonify({'message': 'Contraseña actualizada correctamente'}), 201
