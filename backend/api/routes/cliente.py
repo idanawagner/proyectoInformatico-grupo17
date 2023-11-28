@@ -4,7 +4,7 @@ from api.utils import token_required, client_resource, user_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
 
-@app.route('/user/<int:id_user>/cliente', methods=['GET'])
+@app.route('/user/<int:id_user>/clientes', methods=['GET'])
 @token_required
 @user_resource
 def get_all_clientes(id_user):
@@ -15,7 +15,7 @@ def get_all_clientes(id_user):
     for row in data:
         objClient = Cliente(row)
         clientList.append(objClient.to_json())
-    return jsonify( clientList )
+    return jsonify(clientList )
 
 @app.route('/user/<int:id_user>/cliente/<int:id_cliente>', methods=['GET'])
 @token_required
