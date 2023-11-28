@@ -17,11 +17,12 @@
     --gris-claro: #f4f4f4;
     --gris-texto: #555555;
     --negro: #000000;
-    --borde: 1px solid var(--nivel-oscuro-0);
-    --sombra: 0 0 7px var(--nivel-oscuro-1);
+    --borde: 1px solid var(--negro);
+    --sombra: 0 0 7px var(--gris-texto);
     --nav-width: 200px;
     --background-gris:#f0f0f0
     --fuente-principal: 'Lato', sans-serif;;
+
 }
 .container{
     display: grid;

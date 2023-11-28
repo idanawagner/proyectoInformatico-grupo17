@@ -78,9 +78,28 @@ def create_factura(id_user):
             id_producto_servicio = item['id_producto_servicio']
             cantidad = item['cantidad']
             subtotal = item['subtotal']
-            """acceso a BD --> INSERT INTO"""
-            cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
-            mysql.connection.commit()
+
+            """Checkear si es un producto o un servicio"""
+            cur.execute('SELECT categoria FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio))
+            categoria = cur.fetchone()
+            if categoria[0] == 'Producto':
+                """Checkear el stock del producto vendido"""
+                cur.execute('SELECT stock FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio))
+                stock = cur.fetchone()
+                if stock[0] < cantidad:
+                    return jsonify({'message': 'No hay stock suficiente para realizar la venta', "stock": stock[0]})
+            
+                """acceso a BD --> INSERT INTO"""
+                cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
+                mysql.connection.commit()
+
+                cur.execute('UPDATE producto_servicio SET stock = stock - {0} WHERE id = {1}'.format(cantidad, id_producto_servicio))
+                mysql.connection.commit()
+
+            if categoria[0] == 'Servicio':
+                """acceso a BD --> INSERT INTO"""
+                cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
+                mysql.connection.commit()
     else:
         return jsonify({'message': 'No se puede crear una factura sin detalle'})
 
