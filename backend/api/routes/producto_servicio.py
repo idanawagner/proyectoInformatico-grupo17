@@ -4,7 +4,7 @@ from api.utils import token_required, user_resource, producto_servicio_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
 
-@app.route('/user/<int:id_user>/producto_servicio', methods=['GET'])
+@app.route('/user/<int:id_user>/productos_servicios', methods=['GET'])
 @token_required
 @user_resource
 def get_all_productos_servicios(id_user):

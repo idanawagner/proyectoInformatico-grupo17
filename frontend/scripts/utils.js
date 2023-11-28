@@ -1,5 +1,6 @@
 
-function protectedRoutes(){
+const protectedRoutes = () => {
+
     window.onload = function(){
         const token = localStorage.getItem('token');
         if (token){
@@ -13,4 +14,35 @@ function protectedRoutes(){
     }
 }
 
-export default protectedRoutes;
+
+
+// async function showSection( page, section){
+//     let upload_container = document.getElementById('sec-load');
+//     let search_container = document.getElementById('sec-search');
+//     switch (page ) {
+//         case 'clients' :
+//             switch (section ) {
+//                 case 'uploadClient':
+//                     upload_container.style.display = 'block';
+//                     search_container.style.display = 'none';
+//                     break;
+//                 case 'searchClient':
+//                     upload_container.style.display = 'none';
+//                     search_container.style.display = 'block';
+//                     await searchAllClients(); 
+//                     buscado.push(...clientsList)
+//                     renderTable();
+                    
+//                     break;
+//                 default:
+//                     uploadClient_container.style.display = 'block';
+//             }
+//         case 'products&services':
+//         case 'metrics':
+//         case 'bills':
+//     }
+
+
+// }
+
+export default {protectedRoutes};

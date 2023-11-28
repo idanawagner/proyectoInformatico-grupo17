@@ -1,30 +1,16 @@
 @import './variables.css';
 
-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-}
 
-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
+#section-upload{
+    display: none;
 }
 
 #windows {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
 }
 
-.button {
-    max-width: 300px;
-    font-size: 1.5rem;
-    display: inline-block;
-    border: 0.1px solid black;
-    border-radius: 10px;
-    box-shadow: var(--sombra);
-}
 
 form {
     background-color: var(--gris-claro);
@@ -144,16 +130,33 @@ border-color: #555;
     justify-content: space-between;
 }
 
-#btn-prod-serv-srch {
-    box-sizing: border-box;
-    margin-right: 100px;
-    margin-top: 20px;
-}
 
-#prod-serv-srch-bar {
+
+#input-prod-search {
     border: 1px solid black;
     border-radius: 10px;
     width: 400px;
     height: 30px;
     margin-top: 20px;
+}
+
+.button-search{
+    border-radius: 2rem;
+    background-color: var(--celeste-principal);
+    padding: 1rem;
+
+}
+.button-search:hover{
+    background-color: var(--celeste-hover);
+}
+
+.button-upload{
+    position: fixed;
+    bottom: 10%;
+    right: 3%;
+    font-size: 3rem;
+    padding: 0;
+    border-radius: 3rem;
+    height: 5rem;
+    width: 5rem;
 }

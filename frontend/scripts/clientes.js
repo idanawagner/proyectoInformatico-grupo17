@@ -56,11 +56,14 @@ function createClient(cliente){
     fetch(URL + `/user/${id}/cliente`, requestOptions)
     .then(response => response.json())
     .then(data => {
-        Swal.fire({
-            title: data.message,
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-        })
+        if (data.id) {
+
+            Swal.fire({
+                title: data.message,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
+        }
         // Vacia los inputs
         document.getElementById('nw-cli-name').value = '';
         document.getElementById('nw-cli-lastname').value = '';

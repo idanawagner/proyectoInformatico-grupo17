@@ -1,6 +1,3 @@
-import protectedRoutes from './protectedRoutes';
-
-protectedRoutes();
 
 function updatePassword(new_password, cuit_cuil) {
     return {
