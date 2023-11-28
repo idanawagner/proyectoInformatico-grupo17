@@ -11,3 +11,4 @@ import api.routes.cliente
 import api.routes.factura
 import api.routes.producto_servicio
 import api.routes.usuario
+import api.routes.dashboard
