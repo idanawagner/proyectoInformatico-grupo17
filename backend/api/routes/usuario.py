@@ -3,7 +3,26 @@ from flask import request, jsonify
 from api.db.db_config import mysql
 import jwt
 import datetime
+from api.utils import token_required, user_resource
 
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.get_json()['username']
+    password = request.get_json()['password']
+    razonSocial = request.get_json()['razon_social']
+    cuit = request.get_json()['cuit_cuil']
+    estado = request.get_json()['estado']
+
+    """Control: si existe el usuario en la BD"""
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
+    row = cur.fetchone()
+    print(row)
+    if row:
+        return jsonify({'message': 'El usuario existe en la base de datos'}), 401 
+    cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
+    mysql.connection.commit()
+    return jsonify({'message': 'Usuario creado correctamente'}), 201
 
 
 @app.route('/login', methods=['POST'])
@@ -27,46 +46,36 @@ def login():
                         }, app.config['SECRET_KEY']) 
     return jsonify({'token': token, 'username': auth.username, 'id': row[0]})
 
+@app.route('/user/<int:id_user>', methods=['GET'])
+@token_required
+@user_resource
+def get_user(id_user):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM usuario WHERE id = {0}'.format(id_user))
+    data = cur.fetchone()
+    if data:
+        return jsonify({'id': data[0], 'username': data[1], 'razon_social': data[3], 'cuit_cuil': data[4], 'estado': data[5]})
+    return jsonify({'message': 'No se encontro el usuario'})
 
-@app.route('/register', methods=['POST'])
-def register():
-    username = request.get_json()['username']
+"""Actualizar contraseña"""
+@app.route('/user/<int:id_user>/updatePassword', methods=['PATCH'])
+@token_required
+@user_resource
+def updatePassword(id_user):
     password = request.get_json()['password']
-    razonSocial = request.get_json()['razon_social']
-    cuit = request.get_json()['cuit_cuil']
-    estado = request.get_json()['estado']
-
     """Control: si existe el usuario en la BD"""
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
+    cur.execute('SELECT password FROM usuario WHERE id = %s', (id_user,))
     row = cur.fetchone()
-    print(row)
-    if row:
-        return jsonify({'message': 'El usuario existe en la base de datos'}), 401 
-    cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
+    if not row:
+        return jsonify({'message': 'El usuario no existe en la base de datos'}), 401
+    
+    """Actualizar contraseña"""
+    new_password = request.get_json()['new_password']
+    confirm_password = request.get_json()['confirm_password']
+    if new_password != confirm_password:
+        return jsonify({'message': 'Las contraseñas no coinciden'}), 401
+    cur = mysql.connection.cursor()
+    cur.execute('UPDATE usuario SET password = %s WHERE id = %s', (new_password, id_user))
     mysql.connection.commit()
-    return jsonify({'message': 'Usuario creado correctamente'}), 201
-
-
-@app.route('/security', methods=['POST'])
-def updatePass():
-    cur = None  # Declarar la variable cur fuera del bloque try
-    try:
-        cuit = request.get_json()['cuit_cuil']
-        newPassword = request.get_json()['newPassword']
-
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
-        row = cur.fetchone()
-
-        if row:
-            cur.execute('UPDATE usuario SET password = %s WHERE cuit_cuil = %s', (newPassword, cuit))
-            mysql.connection.commit()
-            return jsonify({'message': 'Contraseña modificada correctamente'}), 200
-        
-        else:
-            return jsonify({'message': 'Usuario no encontrado'}), 404
-        
-    except Exception as e:
-        print(e)
-        return jsonify({'message': 'Error en la base de datos'}), 500
+    return jsonify({'message': 'Contraseña actualizada correctamente'}), 201
