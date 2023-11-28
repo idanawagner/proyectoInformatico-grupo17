@@ -15,9 +15,17 @@ INSERT INTO `cliente` (`nombre`, `apellido`, `email`, `cuit_cuil`, `telefono`, `
 
 -- Insertar datos de prueba en la tabla 'producto_servicio'
 INSERT INTO `producto_servicio` (`nombre`, `descripcion`, `precio`, `stock`, `categoria`, `estado`, `id_usuario`) VALUES
+('Tablet', 'Electronica', 107990, 1, 'Producto', 1, 1),
+('Iphone', 'Electronica', 188880, 1, 'Producto', 1, 1),
+('Mouse', 'Electronica', 5000, 1, 'Producto', 1, 1),
+
 ('Laptop HP EliteBook', 'Portátil con procesador Intel i7 y 16GB RAM', 1200, 30, 'Producto', 1, 1),
+('Desarrollo de UX', 'Consultoría para desarrollo de sitios web', 100, 1, 'Servicio', 0, 1),
+('Desarrollo de Frontend', 'Consultoría para desarrollo de sitios web', 100, 1, 'Servicio', 1, 1),
+('Desarrollo de Backend', 'Consultoría para desarrollo de sitios web', 100, 1, 'Servicio', 1, 1),
 ('Camisa de Algodón', 'Camisa color azul marino', 50, 100, 'Producto', 1, 2),
 ('Consultoría en Desarrollo Web', 'Consultoría para desarrollo de sitios web', 100, 1, 'Servicio', 0, 3);
+
 
 -- Insertar datos de prueba en la tabla 'factura'
 INSERT INTO `factura` (`fecha`, `id_cliente`, `id_usuario`, `total`) VALUES

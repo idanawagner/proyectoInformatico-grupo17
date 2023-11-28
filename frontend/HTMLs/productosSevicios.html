@@ -8,16 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
-  
-
-    <script
-    src="https://kit.fontawesome.com/9adda98406.js"
-    crossorigin="anonymous"
-  ></script>
     <link rel="stylesheet" href="../styles/productosSevicios.css">
-    <script defer src="../scripts/navbar.js"></script>
-    <script defer src="../scripts/productosSevicios.js"></script>
+
 </head>
 <body id="body">
   <div id="header">
@@ -33,20 +25,65 @@
       <div class="content">
 
         <section id="windows">
-          <input type="button" id="nw-prod-serv" class="button" value="Agregar">
-          <input type="button" id="srch-prod-serv" class="button" value="Buscar">
-          <input type="button" id="li-pro-serv" class="button" value="Ver Stock">
+          <input type="button" id="srch-prod-serv" onclick="showSection('search')" class="button" value="Buscar productos/Servicios">
+          <input type="button" id="nw-prod-serv" onclick="showSection('upload')" class="button button-upload" value="+">
+        </section>
+
+  
+
+        <!-- Search productos / servicios -->
+        <section id="section-search">
+          
+          <label for="prod-serv-srch-selector"> 
+            Buscar por:
+            <select id="search-select-prod" class="selectEstilizado">
+              <option value="Nombre">Nombre</option>
+              <option value="Stock">Stock</option>
+            </select>
+          </label>
+          <input type="text" id="input-prod-search" >
+          <input type="button" id="btn-prod-search" class="button button-search" value="🔎">
+
+          <div class="container-prod-serv" id="filtros">
+            <div class="btn-group" role="group" aria-label="radio toggle button group">
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" >
+                <label class="btn btn-outline-primary" for="vbtn-radio1">Todos</label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="vbtn-radio2">Productos</label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="vbtn-radio3">Servicios</label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+                <label class="btn btn-outline-primary" for="vbtn-radio4">Borrar Filtro</label>
+            </div>
+              <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+            
+          </div>
+
+          <table class="table">
+            <thead class="">
+              <tr class="">
+                <th scope="col"> Categoria </th>
+                <th scope="col"> Nombre </th>
+                <th scope="col"> Stock </th>
+                <th scope="col"> Precio </th>
+                <th scope="col"> Descripcion </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-productos-servicios">  
+              <!-- tabla desde  -->
+            </tbody>
+          </table>
         </section>
 
         <!-- Agregar nuevo producto o servicio -->
 
-        <section>
+        <section id="section-upload">
           <div id="prod-serv-form-container">
             <form id="prod-serv-form">
 
               <label for="prod-serv-cat-selector"> 
                 Categoria 
-                <select id="prod-serv-cat-selector" class="selectEstilizado">
+                <select id="select-categoria" class="selectEstilizado">
                   <option value="Producto"> Producto </option>
                   <option value="Servicio"> Servicio </option>
                 </select>
@@ -54,81 +91,26 @@
 
               <label for="input-cantidad"> 
                 Cantidad
-                <input type="number" id="input-cantidad" value="0" class="input-estilizado">
+                <input type="number" id="input-cantidad" class="input-estilizado">
               </label>
 
               <label for="input-nombre">
                 Nombre
-                <input type="text" id="input-nombre" value="fentanilo" class="input-estilizado">
+                <input type="text" id="input-nombre"  class="input-estilizado">
               </label>
 
               <label for="input-precio"> 
                 Precio Unitario
-                <input type="number" id="input-precio" value="0" class="input-estilizado">
+                <input type="number" id="input-precio" class="input-estilizado">
               </label>
               <label for="input-descripcion">
                 Descripción
-                <input type="text" id="input-descripcion" value="choclo x2" class="input-estilizado">
+                <input type="text" id="input-descripcion"  class="input-estilizado">
               </label>
 
-              <input type="button" id="btn-add-prod-serv" class="button" value="Agregar al Stock">
+              <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock">
             </form>
           </div>
-        </section>
-
-        <!-- buscar-prod-servicios / ver productos y servicios -->
-        <section>
-
-          <div class="container-prod-serv">
-            <label for="prod-serv-srch-selector"> 
-              Selecciona un filtro:
-              <select id="prod-serv-srch-selector" class="selectEstilizado">
-                <option value="Nombre">Nombre</option>
-                <option value="Categoria">Categoria</option>
-                <option value="Stock">Stock</option>
-                <option value="Precio">Precio</option>
-              </select>
-            </label>
-
-            <input type="text" id="prod-serv-srch-bar" value="Buscar...">
-  
-            <input type="button" id="btn-prod-serv-srch" class="button" value="Buscar">
-          </div>
-
-          <table id="prod-serv-srch-table">
-            <thead class="table-header">
-              <tr class="table-row">
-                <td> Categoria </td>
-                <td> Nombre </td>
-                <td> Stock </td>
-                <td> Precio </td>
-                <td> Descripcion </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Producto </td>
-                <td class="editable"> Fentanilo </td>
-                <td class="editable"> Una banda </td>
-                <td class="editable"> Re caro </td>
-                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
-              </tr>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Producto </td>
-                <td class="editable"> Fentanilo </td>
-                <td class="editable"> Una banda </td>
-                <td class="editable"> Re caro </td>
-                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
-              </tr>
-              <tr class="body-row" class="erasable">
-                <td class="editable"> Producto </td>
-                <td class="editable"> Fentanilo </td>
-                <td class="editable"> Una banda </td>
-                <td class="editable"> Re caro </td>
-                <td class="editable"> Una bolsa de fentanilo, viene con un tigre de regalo </td>
-              </tr>
-            </tbody>
-          </table>
         </section>
       </div>
     </div>
@@ -140,5 +122,11 @@
         Cabrera Idana.";
       </span>
     </footer>
+    <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="../scripts/navbar.js"></script>
+    <script src="../scripts/productosServicios.js"></script>
   </body>
 </html>

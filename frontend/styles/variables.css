@@ -7,7 +7,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    --celeste-principal:#50bbc9 ;
+    /* font-family: 'Lato', sans-serif; */
+    font-weight: 400;
+    --celeste-principal:#00758b ;
     --verde-secundario: #175350;
     --celeste-hover: #3fb1be;
     --verde-hover: #204443;
@@ -19,7 +21,6 @@
     --sombra: 0 0 7px var(--nivel-oscuro-1);
     --nav-width: 200px;
     --background-gris:#f0f0f0
-
     --fuente-principal: 'Lato', sans-serif;;
 }
 .container{
@@ -33,7 +34,7 @@
     margin: 0rem 0rem;
     background-color: var(--background-gris);
     border-radius: 3rem 2rem 2rem 0rem;
-    margin: 2rem 0rem 2rem 1rem;
+    margin: 0rem 0rem 2rem 1rem;
     padding: 2rem;
 
 }
