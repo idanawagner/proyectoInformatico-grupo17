@@ -14,11 +14,13 @@ def get_stock(id_user):
     cur = mysql.connection.cursor()
     cur.execute('SELECT descripcion, stock FROM producto_servicio WHERE id_usuario = {0} and estado = 1 and categoria = "Producto"'.format(id_user))
     data = cur.fetchall()
-    print(data)
-    # Formatear los resultados como una lista de listas
-    result = [['descripcion','stock']]
-    result.extend(data)
-    return (jsonify({'data': result}))
+    productList = []
+    stockList = []
+    for item in data:
+        productList.append(item[0])
+        stockList.append(item[1])
+    return jsonify({'productos': productList, 'stock': stockList})
+
 
 
 """ Dashboard de movimiento de stock """
