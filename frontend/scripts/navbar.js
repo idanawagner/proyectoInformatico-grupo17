@@ -3,6 +3,7 @@ let navbar = document.getElementById("navbar");
 let btnNav = document.getElementById("btn-hs-nav");
 let container = document.getElementById("container");
 
+
 const armarHeader = ()=> {
        let HTMLHeader = ""
              HTMLHeader += ` <!-- Header -->
@@ -105,6 +106,10 @@ switch (window.location.pathname) {
               break;
 }
 
+
+
+
+
 btnNav.addEventListener("click", function() {
   if (navbar.style.display === 'none'){
     navbar.style.display = 'flex'
@@ -120,3 +125,36 @@ btnNav.addEventListener("click", function() {
     btnNav.value = "Mostrar Navegador"
   }
 });
+
+// const redimensionarNav = ()=>{
+//   if (dimensiones.ancho < 1400){
+//     navbar.style.display = 'none'
+//     container.classList.remove("container")
+//     container.classList.add("navbar-hidden")
+//   }
+
+//   else{
+//     navbar.style.display = 'flex'
+//     container.classList.remove("navbar-hidden")
+//     container.classList.add("container")
+//   }
+// };
+
+
+// const obtenerDimensionesPantalla = ()=>{
+//   let ancho = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+//   return { ancho: ancho };
+// };
+
+// let dimensiones = obtenerDimensionesPantalla();
+// console.log('Ancho de la pantalla: ' + dimensiones.ancho);
+
+// const mostrarAlertaDimensiones = ()=>{
+//   let dimensiones = obtenerDimensionesPantalla();
+//   alert('Ancho de la pantalla: ' + dimensiones.ancho);
+// };
+
+// window.addEventListener('resize', mostrarAlertaDimensiones);
+
+
+// mostrarAlertaDimensiones();

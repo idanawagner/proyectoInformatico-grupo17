@@ -1,61 +1,100 @@
 
-function updatePassword(new_password, cuit_cuil) {
-    return {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            password: new_password,
-            cuit_cuil: cuit_cuil
-        })
-    };
-}
 
 const URL = 'http://127.0.0.1:5200';
 
-// Obtenemos los datos desde la ruta /user
-fetch(URL + '/usuario')
+
+
+function datosUsuario(){
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+    }
+
+    // Se hace el fetch con la url y el requestOptions
+   return fetch(URL + `/user/${id}`, requestOptions)
     .then(response => response.json())
     .then(userData => {
-        const username = userData.username;
-        const razon_social = userData.razon_social;
-        const cuit_cuil = userData.cuit_cuil;
+        let username = userData.username;
+        let razon_social = userData.razon_social;
+        let cuit_cuil = userData.cuit_cuil;
+        })
 
-        document.getElementById("user-name").textContent = username;
-        document.getElementById("razon-social").value = razon_social;
-        document.getElementById("CUIT").value = cuit_cuil;
+}
 
-        // Agregar un evento al botón después de obtener el cuit_cuil
-        document.getElementById("btn-change-user-data").addEventListener("click", function() {
-            // Obtener datos del formulario
-            var currentPass = document.getElementById("current-pass").value;
-            var newPass = document.getElementById("new-pass").value;
-            var passConfirm = document.getElementById("pass-confirm").value;
 
-            if ((currentPass !== newPass) && (newPass === passConfirm)) {
-                // Realizar solicitud POST a la ruta /update
-                fetch(URL + '/security', updatePassword(newPass, cuit_cuil))
-                    .then(response => response.text())
-                    .then(data => {
-                        alert(data);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                var errorMessage = "Error en la validación de datos. ";
 
-                if (currentPass === newPass) {
-                    errorMessage += "La nueva contraseña debe ser diferente a la contraseña actual. ";
-                }
-            
-                if (newPass !== passConfirm) {
-                    errorMessage += "La nueva contraseña y la confirmación de la contraseña no coinciden. ";
-                }
-            
-                alert(errorMessage);
-            }
-        });
+
+
+
+
+console.log(datosUsuario());
+
+
+
+
+// Obtenemos los datos desde la ruta /user
+
+function updatePassword(new_password) {
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+
+    const requestOptions = {
+        method : 'PATCH',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            },
+
+        body: JSON.stringify({ 
+            password: new_password
+        })
+    }
+        
+    fetch(URL + `/user/${id}/updatePassword`, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        Swal.fire({
+            title: data.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+            })
+        document.getElementById('current-pass').value = '';
+        document.getElementById('new-pass').value = '';
+        document.getElementById('pass-confirm').value = '';
     })
-    .catch(error => {
-        console.error('Error al intentar obtener datos: ', error);
-    });
+
+};
+
+
+// Agregar un evento al botón después de obtener el cuit_cuil
+document.getElementById("btn-change-user-data").addEventListener("click", function() {
+    // Obtener datos del formulario
+    let currentPass = document.getElementById("current-pass").value;
+    let newPass = document.getElementById("new-pass").value;
+    let passConfirm = document.getElementById("pass-confirm").value;
+
+    if ((currentPass !== newPass) && (newPass === passConfirm)) {
+        // Realizar solicitud POST a la ruta /update
+        updatePassword(newPass)
+    } else {
+        var errorMessage = "Error en la validación de datos. ";
+
+        if (currentPass === newPass) {
+            errorMessage += "La nueva contraseña debe ser diferente a la contraseña actual. ";
+        }
+    
+        if (newPass !== passConfirm) {
+            errorMessage += "La nueva contraseña y la confirmación de la contraseña no coinciden. ";
+        }
+    
+        alert(errorMessage);
+    }
+});
