@@ -19,7 +19,7 @@ function showSection( section){
         case 'billsList':
             newBill_container.style.display = 'none';
             searchBills_container.style.display = 'none';
-            return billsList_container.style.display = 'block';
+            billsList_container.style.display = 'block';
             break;
         default:
             newBill_container.style.display = 'block';
