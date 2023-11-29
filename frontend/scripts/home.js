@@ -59,10 +59,17 @@ function updatePassword(new_password, confirm_password, current_password) {
                 title: data.message,
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
-                })
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'index.html';
+                    localStorage.clear();
+                }
+            })
             document.getElementById('current-pass').value = '';
             document.getElementById('new-pass').value = '';
-            document.getElementById('pass-confirm').value = '';
+            document.getElementById('pass-confirm').value ='';
+            
         }
     })
 
