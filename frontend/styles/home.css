@@ -1,27 +1,6 @@
 @import './variables.css';
 
 
-body {
-    font-family: var(--fuente-principal);
-    background-color: var(--background-gris);
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    min-width: 250px;
-    max-width: 100%;
-}
-
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 article {
     display: flex;
     flex-wrap: wrap;
@@ -94,7 +73,7 @@ form {
     margin: 5px;
 }
 
-h2 {
+/* h2 {
     background-color: var(--verde-secundario);
     border: 1px solid black;
     border-radius: 10px;
@@ -105,7 +84,7 @@ h2 {
     font-size: 1.4rem;
     text-decoration: none;
     width: 60%;
-}
+} */
 
 #btn-change-user-data {
     margin: 20px auto;

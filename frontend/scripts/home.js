@@ -3,7 +3,6 @@
 const URL = 'http://127.0.0.1:5200';
 
 
-
 function datosUsuario(){
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
@@ -25,24 +24,16 @@ function datosUsuario(){
         let username = userData.username;
         let razon_social = userData.razon_social;
         let cuit_cuil = userData.cuit_cuil;
+
+        document.getElementById('username').innerHTML = username;
+        document.getElementById('razon_social').innerHTML = razon_social;
+        document.getElementById('cuit_cuil').innerHTML = cuit_cuil;
         })
+
 
 }
 
-
-
-
-
-
-
-console.log(datosUsuario());
-
-
-
-
-// Obtenemos los datos desde la ruta /user
-
-function updatePassword(new_password) {
+function updatePassword(new_password, confirm_password, current_password) {
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
 
@@ -53,22 +44,26 @@ function updatePassword(new_password) {
                 'user-id': id
             },
 
-        body: JSON.stringify({ 
-            password: new_password
-        })
+        body: JSON.stringify({
+            "password": current_password,
+            "new_password": new_password,
+            "confirm_password": confirm_password
+          })
     }
         
     fetch(URL + `/user/${id}/updatePassword`, requestOptions)
     .then(response => response.json())
     .then(data => {
-        Swal.fire({
-            title: data.message,
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-            })
-        document.getElementById('current-pass').value = '';
-        document.getElementById('new-pass').value = '';
-        document.getElementById('pass-confirm').value = '';
+        if (data){
+            Swal.fire({
+                title: data.message,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                })
+            document.getElementById('current-pass').value = '';
+            document.getElementById('new-pass').value = '';
+            document.getElementById('pass-confirm').value = '';
+        }
     })
 
 };
@@ -83,7 +78,7 @@ document.getElementById("btn-change-user-data").addEventListener("click", functi
 
     if ((currentPass !== newPass) && (newPass === passConfirm)) {
         // Realizar solicitud POST a la ruta /update
-        updatePassword(newPass)
+        updatePassword(newPass, passConfirm, currentPass)
     } else {
         var errorMessage = "Error en la validación de datos. ";
 
@@ -97,4 +92,12 @@ document.getElementById("btn-change-user-data").addEventListener("click", functi
     
         alert(errorMessage);
     }
+});
+
+
+
+// Al cargar la pagina se ejecuta la funcion datosUsuario para mostrar los datos del usuario
+window.addEventListener('load', () => {
+    datosUsuario()
+    
 });
