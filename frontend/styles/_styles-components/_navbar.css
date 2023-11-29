@@ -1,3 +1,13 @@
+#navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ededed;
+    padding: 10px;
+    min-width: 100px;
+    margin: 25px;
+    border-radius: 20px;
+}
 
 .header{
     height: auto;
@@ -12,6 +22,7 @@
     padding-left: 2rem;
     justify-content: flex-start;
 }
+
 .logo_container>img{
     width: 50%;
 }
@@ -20,17 +31,24 @@
     display: flex;
     background-color: var(--blanco);
     height: 100vh;
+    border-radius: 20px;
 }
+
 .navbar_list{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 1rem;
-    padding-bottom: 4rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .navbar_list>li{
+    flex: 1;
     display: flex;
+    flex-wrap: wrap;
+    text-align: center;
     align-items: center;
     list-style: none;
     text-decoration: none;
@@ -38,15 +56,20 @@
 }
 
 .navbar_list>li>a{
+    flex-wrap: wrap;
     text-decoration: none;
     color: var(--verde-secundario);
     font-size: 1.2rem;
-    padding: 0rem;
+    padding: 1rem;
     transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
 }
 
 .navbar_list>li>a:hover{
-    color: var(--celeste-principal);
+    color: #fff;
+    background-color: var(--verde-secundario);
+    border-radius: 10px;
 }
 
 .itemSelect{

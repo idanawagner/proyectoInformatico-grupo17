@@ -1,16 +1,9 @@
 @import './variables.css';
 
+
 body {
     font-family: var(--fuente-principal);
     background-color: var(--background-gris);
-}
-
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
 .content {
@@ -21,15 +14,20 @@ body {
     max-width: 100%;
 }
 
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 article {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
-article>span {
-    margin: 20px;
 }
 
 section {
@@ -44,12 +42,13 @@ section {
     font-size: 1.3rem;
     width: 100%;
 }
+
 article>span {
     background-color: #fff;
     display: inline-block;
     padding: 10px;
     border-radius: 10px;
-    margin-left: 20px;
+    margin: 20px;
     font-size: 1.6rem;
     text-decoration: none;
     text-align: center;
@@ -117,85 +116,3 @@ h2 {
 i {
     display: inline;
 }
-
-
-
-
-
-
-
-
-
-#navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #ededed;
-    padding: 10px;
-    min-width: 100px;
-    margin: 25px;
-    border-radius: 20px;
-}
-
-.nav-icon {
-    margin-bottom: 5px;
-}
-
-.header{
-    height: auto;
-    background-color: var(--verde-secundario);
-
-}
-
-.logo_container{
-    display: flex;
-    align-items: center;
-    width: 12%;
-    padding-left: 2rem;
-    justify-content: flex-start;
-}
-.logo_container>img{
-    width: 50%;
-}
-
-.navbar_container{
-    display: flex;
-    background-color: var(--blanco);
-    height: 100vh;
-    border-radius: 20px;
-}
-
-.navbar_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.navbar_list > li {
-    flex: 1;
-    flex-wrap: wrap;
-    text-align: center;
-    padding: 1rem;
-}
-
-.navbar_list>li>a{
-    flex-wrap: wrap;
-    text-decoration: none;
-    color: var(--verde-secundario);
-    font-size: 1.2rem;
-    padding: 1rem;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-}
-
-.navbar_list>li>a:hover{
-    color: #fff;
-    background-color: var(--verde-secundario);
-    border-radius: 10px;
-}
-
-

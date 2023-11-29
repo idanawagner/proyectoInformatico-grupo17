@@ -1,5 +1,7 @@
 let header = document.getElementById("header");
 let navbar = document.getElementById("navbar");
+let btnNav = document.getElementById("btn-hs-nav");
+let container = document.getElementById("container");
 
 const armarHeader = ()=> {
        let HTMLHeader = ""
@@ -12,6 +14,7 @@ const armarHeader = ()=> {
            `
        return HTMLHeader
 }
+
 const armarNavbar = ()=> {
        let HTMLNavbar = ""
             HTMLNavbar += `
@@ -101,3 +104,19 @@ switch (window.location.pathname) {
        default:
               break;
 }
+
+btnNav.addEventListener("click", function() {
+  if (navbar.style.display === 'none'){
+    navbar.style.display = 'flex'
+    container.classList.remove("navbar-hidden")
+    container.classList.add("container")
+    btnNav.value = "Ocultar Navegador"
+  }
+
+  else{
+    navbar.style.display = 'none'
+    container.classList.remove("container")
+    container.classList.add("navbar-hidden")
+    btnNav.value = "Mostrar Navegador"
+  }
+});
