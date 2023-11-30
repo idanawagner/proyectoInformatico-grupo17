@@ -149,8 +149,7 @@ function filtros(){
 function renderTable(){
     let tbody = document.getElementById('tbody-productos-servicios');
     tbody.innerHTML = '';
-    // buscado.forEach((element) => {
-    productos.forEach((element) => {
+    buscado.forEach((element) => {
         tbody.innerHTML += `
         <tr class="body-row">
             <td> ${element.categoria} </td>
@@ -174,15 +173,6 @@ function renderTable(){
 
 
 }
-
-let productos = new Array(5);
-productos[0] = {categoria: 'Jeronima', nombre:'Martinaz', stock:2040745089, precio:'Chacabuco 431', descripcion:'jeromar31@hotmail.com'};
-productos[1] = {categoria: 'Jeronime', nombre:'Martinez', stock:2040745089, precio:'Chacabuco 432', descripcion:'jeromar32@hotmail.com'};
-productos[2] = {categoria: 'Jeronimi', nombre:'Martiniz', stock:2040745089, precio:'Chacabuco 433', descripcion:'jeromar33@hotmail.com'};
-productos[3] = {categoria: 'Jeronimo', nombre:'Martinoz', stock:2040745089, precio:'Chacabuco 434', descripcion:'jeromar34@hotmail.com'};
-productos[4] = {categoria: 'Jeronimu', nombre:'Martinuz', stock:2040745089, precio:'Chacabuco 435', descripcion:'jeromar35@hotmail.com'};
-
-renderTable();
 
 // CARGAR PRODUCTO O SERVICIO
 

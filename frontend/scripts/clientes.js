@@ -179,41 +179,10 @@ function searchClientbyInput(){
     document.getElementById('cli-srch-bar').value = '';
 }
 
-// function renderTable(){
-//     let tbody = document.getElementById('tbody-clients');
-//     tbody.innerHTML = '';
-//     buscado.forEach((element, index) => {
-//         tbody.innerHTML += `
-//         <tr class="body-row" scope="row">
-//             <td class=""> ${element.nombre} </td>
-//             <td class=""> ${element.apellido} </td>
-//             <td class=""> ${element.cuit_cuil}</td>
-//             <td class=""> ${element.direccion}</td>
-//             <td class=""> ${element.email} </td>
-//             <td class=""> ${element.telefono}</td>
-//             <td class=""> 
-//             <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
-//                 <i class="fa-solid fa-pencil"></i>
-//                 </button>
-//                 </td>
-//             <td class=""> 
-//                 <button class="btn" onclick="cambiarEstado(${element.id})">
-//                     <i class="fa-solid fa-trash"></i>
-//                 </button>
-//             </td>
-//         </tr>
-//         `
-//     });
-//     buscado = [];
-
-
-// }
-
 function renderTable(){
     let cuerpoTabla = document.getElementById('tbody-clients');
     cuerpoTabla.innerHTML = '';
-    // buscado.forEach((element, index) => {           <<<<<<<<<<<<<    IMPORTANTE, DESCOMENTAR ESTA LINEA Y BORRAR LA LINEA DE ABAJO
-    clientes.forEach((element, index) =>{
+    buscado.forEach((element, index) => {
         cuerpoTabla.innerHTML += `
         <tr class="body-row">
             <td> ${element.nombre} </td>
@@ -237,17 +206,6 @@ function renderTable(){
     buscado = [];
 
 }
-
-let clientes = new Array(5);
-clientes[0] = {nombre: 'Jeronima', apellido:'Martinaz', cuit_cuil:2040745089, direccion:'Chacabuco 431', email:'jeromar31@hotmail.com', telefono:2932989891};
-clientes[1] = {nombre: 'Jeronime', apellido:'Martinez', cuit_cuil:2040745089, direccion:'Chacabuco 432', email:'jeromar32@hotmail.com', telefono:2932989892};
-clientes[2] = {nombre: 'Jeronimi', apellido:'Martiniz', cuit_cuil:2040745089, direccion:'Chacabuco 433', email:'jeromar33@hotmail.com', telefono:2932989893};
-clientes[3] = {nombre: 'Jeronimo', apellido:'Martinoz', cuit_cuil:2040745089, direccion:'Chacabuco 434', email:'jeromar34@hotmail.com', telefono:2932989894};
-clientes[4] = {nombre: 'Jeronimu', apellido:'Martinuz', cuit_cuil:2040745089, direccion:'Chacabuco 435', email:'jeromar35@hotmail.com', telefono:2932989895};
-
-renderTable();
-
-
 
 // CAMBIAR ESTADO
 

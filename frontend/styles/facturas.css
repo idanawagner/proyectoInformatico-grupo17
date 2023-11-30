@@ -68,7 +68,7 @@
     display: none;
 }
 
-.label-body {
+#form-gen-bill>.label-body {
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
@@ -79,6 +79,15 @@
     min-width: 250px;
     margin: 100px auto;
     font-size: 1.3rem;
+}
+
+.label-body{
+    width: 40%;
+    min-width: 250px;
+    margin: 50px 35px 50px 35px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
 .label-body > #text {
@@ -185,23 +194,11 @@ border-color: #555;
 
 .container-bill-srch {
     width: 100%;
-    margin-top: 90px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-}
-
-.container-bill-srch > .label-body,
-.container-bill-srch > .input-billify{
-    flex: 1 0 10rem;
-
-}
-
-.container-bill-srch > .button {
-    flex: 1 0;
 }
 
 @media (max-width: 650px) {

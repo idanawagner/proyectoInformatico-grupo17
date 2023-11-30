@@ -51,17 +51,3 @@ class Detalle{
         this._subtotal = subtotal
     }
 }
-
-// {
-//     "detalle_factura": [
-//       {
-//         "cantidad": 1,
-//         "id_producto_servicio": 1,
-//         "subtotal": 1200
-//       }
-//     ],
-//     "fecha": "2022-12-08",
-//     "id_cliente": 1,
-//     "id_usuario": 1,
-//     "total": 958633
-//   }
