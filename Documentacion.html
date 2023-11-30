@@ -4,21 +4,26 @@
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel='stylesheet' href='css/styles.css'>
-        <title>Document</title>
+        <title>Documentacion - Billify</title>
     </head>
     <body>
-        <h1>Proyecto Informatico - Grupo 17</h1>
+    <main>
+        <header>
+            <h1>Proyecto Informatico - Grupo 17</h1>
+        </header>
+
+
         <h2>Indice de la documentacion</h2>
 
         <nav>
             <ul>
-                <li><a href=>Introduccion</a></li>
-                <li><a href=>Requisitos y autenticacion</a></li>
-                <li><a href=>Recursos</a></li>
+                <li><a href='#introduccion'>Introduccion</a></li>
+                <li><a href='#requisitos'>Requisitos y autenticacion</a></li>
+                <li><a href='#recursos'>Recursos</a></li>
             </ul>
         </nav>
 
-        <section class="introduccion">
+        <section id='introduccion' class="introduccion">
             <h3>Introduccion</h3>
             <p>El presente documento tiene como objetivo describir el modulo dedicado al gestor de facturación.</p>
              
@@ -29,13 +34,11 @@
                     <li>Utilización de la extension Thunder Client del IDE Visual Studio Code</li>
                     <li>Desarrollado en HTML, CSS y Javascript</li>
                 </ul>
-            <p>Disclaimer: Existen métodos que han sido desarrollados en el backend sólo con fines academicos. Los mismos no se describiran en esta documentacion, ni se implementaron en el frontend</p>
+            <p>Disclaimer: Existen métodos que han sido desarrollados en el backend sólo con fines academicos. Los mismos no se describiran en esta documentacion, ni se implementaron en el frontend.</p>
             <p>Version: 1.0.0</p>            
         </section>
 
-
-
-        <section class="requisitos-y-autenticacion">
+        <section id='requisitos' class="requisitos-y-autenticacion">
             <h3>Requisitos y autenticacion</h3>
             <p>Para poder utilizar el sistema, es necesario contar con una cuenta de usuario. Para ello, se debe realizar el siguiente procedimiento:</p>
             <ol>
@@ -45,38 +48,39 @@
                 <li>Seleccionar la opcion "Registrarse"</li>
             </ol>
             <p>Una vez que se haya ingresado al sistema, se podra acceder a las distintas funcionalidades del mismo.</p>
-            <p>Para poder acceder a las funcionalidades del sistema, es necesario autenticarse. Para ello, se debe realizar el siguiente procedimiento:</p>
+            <p>Para ello, se debe realizar el siguiente procedimiento:</p>
             <ol>
                 <li>Acceder a la pagina de inicio de sesion</li>
-                <li>Ingresar el correo usuario y la contraseña</li>
+                <li>Ingresar el usuario y la contraseña</li>
                 <li>Seleccionar la opcion "Iniciar sesion"</li>
             </ol>
-            <p>Una vez autenticado, se podra acceder a las funcionalidades del sistema.</p>
+            <p>Una vez autenticado, se podra acceder a las funcionalidades del sistema. Cabe destacar que el sistema posee una autenticacion mediante token que le permitira al usario sólo acceder a los recursos que son de su propiedad.</p>
             <p>Para poder cerrar la sesion, Seleccionar la opcion "Cerrar sesion"
             <ol>
         </section>
 
-        <section class="recursos">
-            <h3>Recursos</h3>
+        <section id='recursos' class="recursos">
+            <h3 >Recursos</h3>
             <p>El sistema cuenta con las siguientes funcionalidades:</p>
             <nav>
                 <ul>
-                    <li><a href=>Gestor de facturacion</a></li>
-                    <li><a href=>Gestor de clientes</a></li>
-                    <li><a href=>Gestor de productos y servicios</a></li>
-                    <li><a href=>Gestor de metricas</a></li>
-                    <li><a href=>Gestor de usuarios</a></li>
+                    <li><a href='#facturacion'>Gestor de facturacion</a></li>
+                    <li><a href='#clientes'>Gestor de clientes</a></li>
+                    <li><a href='#productos-y-servicios'>Gestor de productos y servicios</a></li>
+                    <li><a href='#metricas'>Gestor de metricas</a></li>
+                    <li><a href='#usuarios'>Gestor de usuarios</a></li>
                 </ul>
             </nav>
+        
 
 
-            <section class="gestor-de-facturacion">
+            <section id ='facturacion' class="gestor-de-facturacion">
                 <h4>Gestor de facturacion</h4>
                 <p>El gestor de facturacion permite realizar las siguientes acciones:</p>
                 <ul>
-                    <li><a href="">Generar una nueva factura</a></li>
-                    <li><a href="">Buscar una factura existente</a></li>
-                    <li><a href="">Consultar el historial de facturas</a></li>
+                    <li>Generar una nueva factura</li>
+                    <li>Buscar factura/s existente/s</li>
+                    <li>Consultar el historial de facturas</li>
                 </ul>
 
                 <h5>Consultas HTTP</h5>
@@ -84,8 +88,9 @@
                 <ul>
                     <li>GET
                         <ul>
-                            <li><a href="">user/{id_user}/facturas</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/facturas
                                 <ul>
+                                    <li>Funcionalidad: Traer todas las facturas</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -99,8 +104,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">user/{id_user}/facturas/{id}</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/facturas/{id}
                                 <ul>
+                                    <li>Funcionalidad: Traer todas las facturas</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -119,8 +125,9 @@
                     </li>
                     <li>POST
                         <ul>
-                            <li><a href="">user/{id_user}/facturas</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/facturas
                                 <ul>
+                                    <li>Funcionalidad: Crear una nueva factura</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -138,13 +145,16 @@
                     </li>
                 </ul>
             </section>
-            <section class="gestor-de-clientes">
+
+            <section  id='clientes' class="gestor-de-clientes">
                 <h4>Gestor de clientes</h4>
                 <p>El gestor de clientes permite realizar las siguientes acciones:</p>
                 <ul>
-                    <li><a href="">Agregar un nuevo cliente</a></li>
-                    <li><a href="">Buscar un cliente existente</a></li>
-                    <li><a href="">Consultar el historial de clientes</a></li>
+                    <li>Agregar un nuevo cliente</li>
+                    <li>Buscar un cliente existente</li>
+                    <li>Consultar el historial de clientes</li>
+                    <li>Actualizar clientes</li>
+                    <li>Eliminar clientes</li>
                 </ul>
 
                 <h5>Consultas HTTP</h5>
@@ -152,8 +162,9 @@
                 <ul>
                     <li>GET
                         <ul>
-                            <li><a href="">user/{id_user}/clientes</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/clientes
                                 <ul>
+                                    <li>Funcionalidad: Traer todos los clientes</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -167,8 +178,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">user/{id_user}/clientes/{id}</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/clientes/{id}
                                 <ul>
+                                    <li>Funcionalidad: Traer un cliente</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -187,8 +199,9 @@
                     </li>
                     <li>POST
                         <ul>
-                            <li><a href="">user/{id_user}/clientes</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/clientes
                                 <ul>
+                                    <li>Funcionalidad: Crear un nuevo cliente</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -204,28 +217,69 @@
                             </li>
                         </ul>
                     </li>
+                    <li>PUT
+                        <ul>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/cliente/{id}
+                                <ul>
+                                    <li>Funcionalidad: Actualizar un cliente</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del cliente</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>PATCH
+                        <ul>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/cliente/{id_cliente}
+                                <ul>
+                                    <li>Funcionalidad: Borrado logico de un cliente</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id_cliente: identificador del cliente</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
 
-            <section class="gestor-de-productos-y-servicios">
+            <section id='productos-y-servicios' class="gestor-de-productos-y-servicios">
                 <h4>Gestor de productos y servicios</h4>
                 <p>El gestor de productos y servicios permite realizar las siguientes acciones:</p>
                 <ul>
-                    <li><a href="">Agregar un nuevo producto</a></li>
-                    <li><a href="">Agregar un nuevo servicio</a></li>
-                    <li><a href="">Buscar un producto existente</a></li>
-                    <li><a href="">Buscar un servicio existente</a></li>
-                    <li><a href="">Consultar el historial de productos</a></li>
-                    <li><a href="">Consultar el historial de servicios</a></li>
+                    <li>Agregar un nuevo producto</li>
+                    <li>Buscar un producto o servicio existente</li>
+                    <li>Consultar el historial de productos o servicios</li>
+                    <li>Actualizar productos o servicios</li>
+                    <li>Eliminar productos o servicios</li>
                 </ul>
-
                 <h5>Consultas HTTP</h5>
                 <p>El gestor de productos y servicios permite realizar las siguientes consultas HTTP:</p>
                 <ul>
                     <li>GET
                         <ul>
-                            <li><a href="">user/{id_user}/productos</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio
                                 <ul>
+                                    <li>Funcionalidad: Traer todos los productos y servicios</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -239,12 +293,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">user/{id_user}/productos/{id}</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio/{id}
                                 <ul>
+                                    <li>Funcionalidad: Traer un producto o servicio</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
-                                            <li>id: identificador del producto</li>
+                                            <li>id: identificador del producto o servicio</li>
                                         </ul>    
                                     </li>
                                     <li>Respuesta:
@@ -255,37 +310,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">user/{id_user}/servicios</a>
-                                <ul>
-                                    <li>Parametros: 
-                                        <ul>
-                                            <li>id_user: identificador del usuario</li>
-                                        </ul>    
-                                    </li>
-                                    <li>Respuesta:
-                                        <ul>
-                                            <li>200: OK</li>
-                                            <li>404: Not found</li>
-            </section>
-            <section class="gestor-de-metricas">
-                <h4>Gestor de metricas</h4>
-                <p>El gestor de metricas permite realizar las siguientes acciones:</p>
-                <ul>
-                    <li><a href="">Consultar el control de stock</a></li>
-                    <li><a href="">Consultar el informe de movimiento del stock</a></li>
-                    <li><a href="">Consultar el ranking de ventas por producto</a></li>
-                    <li><a href="">Consultar el ranking de ventas por servicio</a></li>
-                    <li><a href="">Consultar el ranking de ventas por cliente</a></li>
-                    <li><a href="">Consultar el historial de ventas</a></li>
-                </ul>
-
-                <h5>Consultas HTTP</h5>
-                <p>El gestor de metricas permite realizar las siguientes consultas HTTP:</p>
-                <ul>
-                    <li>GET
+                        </ul>
+                    </li>
+                    <li>POST
                         <ul>
-                            <li><a href="">user/{id_user}/productos</a>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio
                                 <ul>
+                                    <li>Funcionalidad: Crear un nuevo producto o servicio</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
@@ -295,27 +326,48 @@
                                         <ul>
                                             <li>200: OK</li>
                                             <li>404: Not found</li>
-
-                                            <li>id_user: identificador del usuario</li>
-                                            <li>id: identificador del servicio</li>
                                         </ul>    
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="">user/{id_user}/servicios/{id}</a>
+                        </ul>
+                    </li>
+                    <li>PUT
+                        <ul>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio/{id}
                                 <ul>
+                                    <li>Funcionalidad: Actualizar un producto o servicio</li>
                                     <li>Parametros: 
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
-                                            <li>id: identificador del servicio</li>
+                                            <li>id: identificador del producto o servicio</li>
                                         </ul>    
                                     </li>
                                     <li>Respuesta:
                                         <ul>
                                             <li>200: OK</li>
-
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>PATCH
+                        <ul>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio/{id}
+                                <ul>
+                                    <li>Funcionalidad: Borrado logico de un producto o servicio</li>
+                                    <li>Parametros: 
+                                        <ul>
                                             <li>id_user: identificador del usuario</li>
-                                            <li>id: identificador del servicio</li>
+                                            <li>id: identificador del producto o servicio</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
                                         </ul>    
                                     </li>
                                 </ul>
@@ -323,20 +375,137 @@
                         </ul>
                     </li>
                 </ul>
+
+                    
+                
             </section>
 
-            <section class="gestor-de-usuarios">
-                <h4>Gestor de usuarios</h4>
-                <p>El gestor de usuarios permite realizar la siguiente accione:</p>
+            <section id='metricas' class="gestor-de-metricas">
+                <h4>Gestor de metricas</h4>
+                <p>El gestor de metricas permite realizar las siguientes acciones:</p>
                 <ul>
-                    <li><a href="">Actualizar contraseña </a></li>
+                    <li>Consultar el stock de productos</li>
+                    <li>Consultar el movimento de stock</li>
+                    <li>Consultar el ranking de ventas por productos</li>
+                    <li>Consultar el ranking de ventas por servicio</li>
+                    <li>Consultar el ranking de ventas por clientes</li>
+                    <li>Consultar el historial de ventas</li>
+                </ul>
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de metricas permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>GET
+                        <ul>
+                            <li>Endpoint: http://127.0.0.1:5200/{id_user}/stock
+                                <ul>
+                                    <li>Funcionalidad: Traer el stock de productos</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Endpoint: http://127.0.0.1:5200/{id_user}/movimiento_stock
+                                <ul>
+                                    <li>Funcionalidad: Traer los movimientos de stock de productos</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Endpoint: http://127.0.0.1:5200/{id_user}/ranking_ventas_servicio
+                                <ul>
+                                    <li>Funcionalidad: Traer el ranking de ventas por servicio</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Endpoint: http://127.0.0.1:5200/{id_user}/ranking_ventas_producto
+                                <ul>
+                                    <li>Funcionalidad: Traer el ranking de ventas por producto</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Endpoint: http://127.0.0.1:5200/{id_user}/ranking_ventas_cliente
+                                <ul>
+                                    <li>Funcionalidad: Traer el ranking de ventas por cliente</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Endpoint: http://127.0.0.1:5200/{id_user}/historial_ventas
+                                <ul>
+                                    <li>Funcionalidad: Traer el historial de ventas</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+            </section>
+
+            <section id='usuarios' class="gestor-de-usuarios">
+                <h4>Gestor de usuarios</h4>
+                <p>El gestor de usuarios permite realizar la siguiente accion:</p>
+                <ul>
+                    <li>Actualizar contraseña</li>
                 </ul>
                 <h5>Consultas HTTP</h5>
                 <p>El gestor de usuarios permite realizar las siguientes consultas HTTP:</p>
                 <ul>
                     <li>PUT
                         <ul>
-                            <li><a href="">user/{id_user}/password</a>
+                            <li>user/{id_user}/updatePassword
                                 <ul>
                                     <li>Parametros: 
                                         <ul>
@@ -357,10 +526,15 @@
 
                 
             </section>
-            
+        </section>
 
-
-
+    </main>
+    <footer class="footer">
+        <span>
+            "Copyright © 2023 Fernandez Achilli Franco, López Julieta, Wagner
+            Cabrera Idana.";
+        </span>
+    </footer>
 
 
     </body>
