@@ -130,17 +130,35 @@ border-color: #555;
 }
 
 @media (max-width: 650px) {
-    .container-clientes{
+
+    #windows{
         justify-content: center;
+        margin-top: 20px;
     }
     
+    #container{
+        width: 100%;
+        margin: 0 auto;
+        padding: 0%;
+    }
+
+    #sec-search-client{
+        box-sizing: border-box;
+        width: 100%;
+    }
+
     #btn-cli-srch{
         margin: 20px 0;
         align-items: center;
     }
 
-    #windows{
+    .container-clientes{
         justify-content: center;
+    }
+
+    .content{
+        margin: 0 auto;
+        padding: 0%;
     }
 
     .form-new-client{
@@ -150,6 +168,10 @@ border-color: #555;
     .body-row>td{
     display: grid;
     grid-template-columns: 15ch auto;
+    }
+
+    .table-container{
+        justify-content: center;
     }
 
     .table-header{

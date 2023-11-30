@@ -149,31 +149,40 @@ function filtros(){
 function renderTable(){
     let tbody = document.getElementById('tbody-productos-servicios');
     tbody.innerHTML = '';
-    buscado.forEach((element) => {
+    // buscado.forEach((element) => {
+    productos.forEach((element) => {
         tbody.innerHTML += `
-        <tr class="body-row" scope="row">
-            <td class=""> ${element.categoria} </td>
-            <td class=""> ${element.nombre} </td>
-            <td class=""> ${element.stock}</td>
-            <td class=""> ${element.precio}</td>
-            <td class=""> ${element.descripcion} </td>
-            <td class=""> 
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
-                <i class="fa-solid fa-pencil"></i>
+        <tr class="body-row">
+            <td> ${element.categoria} </td>
+            <td> ${element.nombre} </td>
+            <td> ${element.stock} </td>
+            <td> ${element.precio} </td>
+            <td> ${element.descripcion} </td>
+            <td>
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
+                    <i class="fa-solid fa-pencil"></i>
                 </button>
-                </td>
-            <td class=""> 
-                <button class="btn" onclick="cambiarEstado(${element.id})">
+            </td>
+            <td>
+                <button class"btn" onclick="cambiarEstado(${element.id})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </td>
-        </tr>
-        `
+        </tr>`
     });
     buscado = [];
 
 
 }
+
+let productos = new Array(5);
+productos[0] = {categoria: 'Jeronima', nombre:'Martinaz', stock:2040745089, precio:'Chacabuco 431', descripcion:'jeromar31@hotmail.com'};
+productos[1] = {categoria: 'Jeronime', nombre:'Martinez', stock:2040745089, precio:'Chacabuco 432', descripcion:'jeromar32@hotmail.com'};
+productos[2] = {categoria: 'Jeronimi', nombre:'Martiniz', stock:2040745089, precio:'Chacabuco 433', descripcion:'jeromar33@hotmail.com'};
+productos[3] = {categoria: 'Jeronimo', nombre:'Martinoz', stock:2040745089, precio:'Chacabuco 434', descripcion:'jeromar34@hotmail.com'};
+productos[4] = {categoria: 'Jeronimu', nombre:'Martinuz', stock:2040745089, precio:'Chacabuco 435', descripcion:'jeromar35@hotmail.com'};
+
+renderTable();
 
 // CARGAR PRODUCTO O SERVICIO
 

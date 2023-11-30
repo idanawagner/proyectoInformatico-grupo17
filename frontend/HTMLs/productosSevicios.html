@@ -43,6 +43,7 @@
                 <option value="Stock">Stock</option>
               </select>
             </label>
+
             <input type="text" id="input-prod-search" class="input-billify">
             <button id="btn-prod-search" class="button button-search" >
               <i class="fas fa-search"></i>
@@ -64,20 +65,22 @@
             
           </div>
 
-          <table class="table">
-            <thead class="">
-              <tr class="">
-                <th scope="col"> Categoria </th>
-                <th scope="col"> Nombre </th>
-                <th scope="col"> Stock </th>
-                <th scope="col"> Precio </th>
-                <th scope="col"> Descripcion </th>
-              </tr>
-            </thead>
-            <tbody id="tbody-productos-servicios">  
-              <!-- tabla desde  -->
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table id="tabla-buscar-productos-servicios" class="table-body">
+              <thead class="table-header">
+                <tr class="table-row">
+                  <td> Categoría </td>
+                  <td> Nombre </td>
+                  <td> Stock </td>
+                  <td> Precio </td>
+                  <td> Descripción </td>
+                </tr>
+              </thead>
+              <tbody id="tbody-productos-servicios">
+                <!-- tabla desde  -->
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <!-- Agregar nuevo producto o servicio -->
