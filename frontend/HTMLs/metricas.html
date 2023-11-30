@@ -30,7 +30,7 @@
             Selecciona área de interes:
             <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
               <option value="Control de Stock" onclick="cargarDatosStock()"> Control de Stock </option>
-              <option value="Informe de movimiento del Stock" onclick="cargarMovimientosStock()"> Informe de movimiento del Stock </option>
+              <option value="Informe de movimiento del Stock" onclick="cargarDatosMovimientoStock()"> Informe de movimiento del Stock </option>
               <option value="Ranking de ventas por Producto"> Ranking de ventas por Producto </option>
               <option value="Ranking de ventas por Servicio"> Ranking de ventas por Servicio </option>
               <option value="Ranking de ventas por cliente"> Ranking de ventas por cliente </option>
@@ -45,7 +45,9 @@
 
     </div>
 
-    <div id="chart-container" style="width: 600px;height:400px;"></div>
+    <div id="chart-container-stock" style="width: 600px;height:400px;"></div>
+    <div id="chart-container-stock-movement" style="width: 600px;height:400px;"></div>
+    <div id="chart-container-ranking-ventas-productos" style="width: 600px;height:400px;"></div>
 
 
 
@@ -62,6 +64,7 @@
 
     <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous" ></script>
     <script defer src="../scripts/navbar.js"></script>
     <script defer src="../scripts/metricas.js"></script>
