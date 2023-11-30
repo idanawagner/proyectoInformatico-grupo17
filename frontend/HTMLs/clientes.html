@@ -84,23 +84,23 @@
             <input type="button" id="btn-cli-srch" class="button" value="Buscar">
           </div>
 
-          <table id="" class="table">
-            <thead class="">
-              <tr class="">
-                <th scope="col"> Nombre </th>
-                <th scope="col"> Apellido </th>
-                <th scope="col"> CUIL/CUIT </th>
-                <th scope="col"> Direccion </th>
-                <th scope="col"> Email </th>
-                <th scope="col"> Teléfono </th>
-                <th scope="col">  </th>
-                <th scope="col">  </th>
-              </tr>
-            </thead>
-            <tbody id="tbody-clients">
-             <!-- se agrega el contenido de la tabla desde javascript -->
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table id="tabla-buscar-clientes" class="table-body">
+              <thead class="table-header">
+                <tr class="table-row">
+                  <td> Nombre </td>
+                  <td> Apellido </td>
+                  <td> CUIL/CUIT </td>
+                  <td> Dirección </td>
+                  <td> Email </td>
+                  <td> Teléfono </td>
+                </tr>
+              </thead>
+              <tbody id="tbody-clients">
+
+              </tbody>
+            </table>
+          </div>
 
          <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
