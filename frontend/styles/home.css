@@ -76,7 +76,7 @@ form {
 
 .h2-body {
     background-color: var(--verde-secundario);
-    border: 1px solid black;
+    border: var(--borde);
     border-radius: 10px;
     color: var(--gris-claro);
     text-align: center;
