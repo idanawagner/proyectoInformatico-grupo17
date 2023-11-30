@@ -1,27 +1,14 @@
 @import './variables.css';
 
-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-}
-
 
 #windows {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.button {
-    max-width: 300px;
-    font-size: 1.5rem;
-    display: inline-block;
-    border: 0.1px solid black;
-    border-radius: 10px;
-    box-shadow: var(--sombra);
-}
-
 .form-new-client {
-    background-color: var(--gris-claro);
+    background-color: var(--blanco);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -36,13 +23,6 @@ label {
     font-weight: 400;
 }
 
-/* #nw-cli-name, #nw-cli-lastname, #nw-cli-CUIT, #nw-cli-email, #nw-cli-address, #nw-cli-phone {
-    border: 1px solid black;
-    width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-} */
-
 #sec-load-cli {
     margin-top: 100px;
     display: block;
@@ -53,8 +33,7 @@ label {
 
 
 #btn-add-nw-cli {
-    margin-left: 35px;
-    margin-top: 40px;
+    margin: 20px auto;
 }
 
 #btn-cli-srch {
@@ -63,41 +42,6 @@ label {
     font-size: 1.2rem;
     border-radius: 10px;
 }
-
-/* table{
-    width: 100%;
-    padding: 5px;
-    margin: 20px 0px 10px 0px;
-    align-content: space-evenly;
-} */
-
-/* .table-row>td {
-    background-color: var(--verde-secundario);
-    padding: 5px;
-    font-size: 1rem;
-    font-weight: 400;
-    text-align: center;
-    color: var(--gris-claro);
-    border: 1px solid black;
-} */
-
-/* .body-row:nth-child(odd) {
-    background-color: var(--celeste-principal);
-} */
-
-/* .body-row:hover {
-    background-color: #999;
-} */
-
-/* td.editable {
-    cursor: pointer;
-}
-
-input.editing {
-    border: 1px solid #000;
-    border-radius: 10px;
-    padding: 5px;
-} */
 
 .selectEstilizado {
     appearance: none;
