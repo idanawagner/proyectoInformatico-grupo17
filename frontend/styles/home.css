@@ -23,7 +23,8 @@ section {
 }
 
 article>span {
-    background-color: #fff;
+    background-color: var(--verde-secundario);
+    color: var(--blanco);
     display: inline-block;
     padding: 10px;
     border-radius: 10px;
@@ -34,7 +35,6 @@ article>span {
 }
 
 form {
-    background-color: #fff;
     width: 100%;
     border-radius: 10px;
     justify-content: space-between;
@@ -63,17 +63,18 @@ form {
     margin: 10px 0;
 }
 
-.input{
+.password-input{
     width: 33.3%;
     box-sizing: border-box;
-    border: 0.1em solid black;
+    border: var(--borde);
     border-radius: 5px;
+    box-shadow: var(--sombra);
     padding: 10px;
     max-width: 200px;
     margin: 5px;
 }
 
-/* h2 {
+.h2-body {
     background-color: var(--verde-secundario);
     border: 1px solid black;
     border-radius: 10px;
@@ -84,7 +85,7 @@ form {
     font-size: 1.4rem;
     text-decoration: none;
     width: 60%;
-} */
+}
 
 #btn-change-user-data {
     margin: 20px auto;
