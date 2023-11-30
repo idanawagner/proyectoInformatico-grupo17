@@ -172,4 +172,204 @@ cargarDatosMovimientoStock = () => {
 cargarDatosMovimientoStock();
 
 
-//
+//Funcion para graficar el ranking de ventas por producto
+graficarMetricasRankingVentas = (data) => {
+    console.log("graficarMetricasRankingVentas");
+    console.log(data);
+    console.log(data.productos);
+    console.log(data.ventas)
+        // Initialize the echarts instance based on the prepared dom
+        var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-productos'));
+
+        // Specify the configuration items and data for the chart
+        var option = {
+              title: {
+                  text: 'Ranking de ventas por producto'
+              },
+              tooltip: {},
+              legend: {
+                  data: ['ventas']
+              },
+              xAxis: {
+                  data: data.productos
+              },
+              yAxis: {},
+              series: [
+              {
+                  name: 'ventas',
+                  type: 'bar',
+                  data: data.ventas
+              }
+              ]
+          };
+
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option);
+}
+
+// Funcion para cargar los datos de ranking de ventas por producto
+cargarDatosRankingVentasProducto = () => { 
+    console.log("cargarDatosRankingVentasProducto");
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+
+    }
+
+    // Se hace el fetch con la url y el requestOptions
+    fetch(URL + `/user/${id}/ranking_ventas_producto`, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      
+        console.log(data);
+        graficarMetricasRankingVentas(data);
+                 
+    })
+
+}
+
+cargarDatosRankingVentasProducto();
+
+//Funcion para graficar el ranking de ventas por servicio
+graficarMetricasRankingVentasServicio = (data) => {
+    console.log("graficarMetricasRankingVentasServicio");
+    console.log(data);
+    console.log(data.servicios);
+    console.log(data.ventas)
+        // Initialize the echarts instance based on the prepared dom
+        var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-servicios'));
+
+        // Specify the configuration items and data for the chart
+        var option = {
+              title: {
+                  text: 'Ranking de ventas por servicio'
+              },
+              tooltip: {},
+              legend: {
+                  data: ['ventas']
+              },
+              xAxis: {
+                  data: data.servicios
+              },
+              yAxis: {},
+              series: [
+              {
+                  name: 'ventas',
+                  type: 'bar',
+                  data: data.ventas
+              }
+              ]
+          };
+
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option);
+}
+
+// Funcion para cargar los datos de ranking de ventas por servicio
+cargarDatosRankingVentasServicio = () => { 
+    console.log("cargarDatosRankingVentasServicio");
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+
+    }
+
+    // Se hace el fetch con la url y el requestOptions
+    fetch(URL + `/user/${id}/ranking_ventas_servicio`, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      
+        console.log(data);
+        graficarMetricasRankingVentasServicio(data);
+                 
+    })
+
+}
+
+cargarDatosRankingVentasServicio();
+
+
+//Funcion para graficar el ranking de ventas por cliente
+graficarMetricasRankingVentasCliente = (data) => {
+    console.log("graficarMetricasRankingVentasCliente");
+    console.log(data);
+    console.log(data.clientes);
+    console.log(data.ventas)
+        // Initialize the echarts instance based on the prepared dom
+        var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-clientes'));
+
+        // Specify the configuration items and data for the chart
+        var option = {
+              title: {
+                  text: 'Ranking de ventas por cliente'
+              },
+              tooltip: {},
+              legend: {
+                  data: ['ventas']
+              },
+              xAxis: {
+                  data: data.clientes
+              },
+              yAxis: {},
+              series: [
+              {
+                  name: 'ventas',
+                  type: 'bar',
+                  data: data.ventas
+              }
+              ]
+          };
+
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option);
+}
+
+// Funcion para cargar los datos de ranking de ventas por cliente
+cargarDatosRankingVentasCliente = () => { 
+    console.log("cargarDatosRankingVentasCliente");
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+
+    }
+
+    // Se hace el fetch con la url y el requestOptions
+    fetch(URL + `/user/${id}/ranking_ventas_cliente`, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      
+        console.log(data);
+        graficarMetricasRankingVentasCliente(data);
+                 
+    })
+
+}
+
+cargarDatosRankingVentasCliente();
+
+
+//Funcion para graficar el historial de ventas

@@ -90,8 +90,12 @@ def get_ranking_ventas_producto(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listProductos = []
+    listVentas = []
+    for item in data:
+        listProductos.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'productos': listProductos, 'ventas': listVentas}))
 
 """ Dashboard de ranking de ventas por servicio """
 @app.route('/user/<int:id_user>/ranking_ventas_servicio', methods=['GET'])
@@ -115,8 +119,12 @@ def get_ranking_ventas_servicio(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listProductos = []
+    listVentas = []
+    for item in data:
+        listProductos.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'servicios': listProductos, 'ventas': listVentas}))
 
 
 """ Dashboard de ranking de ventas por cliente """
@@ -142,8 +150,12 @@ def get_ranking_ventas_cliente(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listClientes = []
+    listVentas = []
+    for item in data:
+        listClientes.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'clientes': listClientes, 'ventas': listVentas}))
 
 
 """ Dashboard de historial de ventas"""

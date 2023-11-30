@@ -31,9 +31,9 @@
             <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
               <option value="Control de Stock" onclick="cargarDatosStock()"> Control de Stock </option>
               <option value="Informe de movimiento del Stock" onclick="cargarDatosMovimientoStock()"> Informe de movimiento del Stock </option>
-              <option value="Ranking de ventas por Producto"> Ranking de ventas por Producto </option>
-              <option value="Ranking de ventas por Servicio"> Ranking de ventas por Servicio </option>
-              <option value="Ranking de ventas por cliente"> Ranking de ventas por cliente </option>
+              <option value="Ranking de ventas por Producto" onclick="cargarDatosRankingVentasProducto()"> Ranking de ventas por Producto </option>
+              <option value="Ranking de ventas por Servicio" onclick="cargarDatosRankingVentasServicio()"> Ranking de ventas por Servicio </option>
+              <option value="Ranking de ventas por cliente" onclick="cargarDatosRankingVentasCliente()"> Ranking de ventas por cliente </option>
               <option value="Historial de ventas"> Historial de ventas </option>
             </select>
           </label>
@@ -48,6 +48,8 @@
     <div id="chart-container-stock" style="width: 600px;height:400px;"></div>
     <div id="chart-container-stock-movement" style="width: 600px;height:400px;"></div>
     <div id="chart-container-ranking-ventas-productos" style="width: 600px;height:400px;"></div>
+    <div id="chart-container-ranking-ventas-servicios" style="width: 600px;height:400px;"></div>
+    <div id="chart-container-ranking-ventas-clientes" style="width: 600px;height:400px;"></div>
 
 
 
