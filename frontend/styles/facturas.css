@@ -4,6 +4,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 0.5rem;
+}
+
+#windows > .button {
+    min-width: 270px;
 }
 
 #btn-agregar-producto {
@@ -51,6 +56,10 @@
     height: 30px;
 }
 
+#sec-billing-history{
+    margin-top: 90px;
+}
+
 #sec-generate-bill{
     display: block;
 }
@@ -67,13 +76,25 @@
     box-sizing: border-box;
     max-width: 100%;
     width: 30%;
+    min-width: 250px;
     margin: 100px auto;
     font-size: 1.3rem;
 }
 
+.label-body > #text {
+    justify-content: center;
+}
+
+.container-bill {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 190px;
+}
+
 .container-bill> .label-body {
-    margin-top: 20px;
-    margin-bottom: 200px;
+    flex: 2;
+    flex-wrap: wrap;
+    margin: 20px 10px 10px 10px;
 }
 
 .label-body>input{
@@ -95,12 +116,20 @@
 
 }
 
+/* ARREGLAR EL TEXTO PORQUE CUANDO SE ACHICA LA PANTALLA SE VE HORRIBLE */
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 .table-body {
-    flex-wrap: wrap;
     width: 100%;
-    padding: 5px;
+    flex-wrap: wrap;
+    table-layout: fixed;
     margin: 15px auto;
-    align-content: space-between;
+    border-collapse: collapse;
+    font-size: 1rem;
 }
 
 .table-row>td {
@@ -108,13 +137,18 @@
     padding: 10px;
     font-size: 1rem;
     font-weight: 400;
-    text-align: center;
-    color: var(--gris-claro);
-    border: var(--borde);
+    color: var(--blanco);
 }
 
 .body-row:nth-child(odd) {
+    color: var(--blanco);
     background-color: var(--celeste-principal);
+}
+
+.table-header,
+.table-row>td,
+.body-row>td{
+    padding: 1rem;
 }
 
 .selectEstilizado {
@@ -157,8 +191,51 @@ border-color: #555;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 0.5rem;
 }
 
-#sec-billing-history{
-    margin-top: 90px;
+.container-bill-srch > .label-body,
+.container-bill-srch > .input-billify{
+    flex: 1 0 10rem;
+
+}
+
+.container-bill-srch > .button {
+    flex: 1 0;
+}
+
+@media (max-width: 650px) {
+    .body-row>td{
+    display: grid;
+    grid-template-columns: 15ch auto;
+    }
+
+    .table-header{
+        display: none;
+    }
+
+    .body-row>td::before{
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .body-row>td:nth-of-type(1)::before{
+        content: "fecha: ";
+    }
+
+    .body-row>td:nth-of-type(2)::before{
+        content: "cliente: ";
+    }
+
+    .body-row>td:nth-of-type(3)::before{
+        content: "producto: ";
+    }
+
+    .body-row>td:nth-of-type(4)::before{
+        content: "cantidad: ";
+    }
+
+    .body-row>td:nth-of-type(5)::before{
+        content: "total: ";
+    }
 }

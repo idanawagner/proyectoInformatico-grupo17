@@ -1,15 +1,6 @@
 @import './variables.css';
 
-
-article {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-section {
+#info-usuario{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,9 +8,23 @@ section {
     box-sizing: border-box;
 }
 
-.button {
-    font-size: 1.3rem;
-    width: 100%;
+#btn-change-user-data {
+    margin: 20px auto;
+    display: block;
+    width: 60%;
+    min-width: 250px;
+}
+
+#btn-change-user-data > #text{
+    align-items: center;
+}
+
+.article-body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 article>span {
@@ -41,56 +46,61 @@ form {
     padding: 20px;
 }
 
+.container-datos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.container-passwords {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+}
+
 .inline1 {
     flex: 1;
-    text-align: center;
-    font-size: 1.1rem;
-    width: 100%;
-    max-width: 100%;
+    width: 50%;
+    min-width: 250px;
     box-sizing: border-box;
     margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.1rem;
 }
 
 .inline2 {
-    flex: 2;
+    display: flex;
+    flex: 1 0 10rem;
     flex-wrap: wrap;
+    flex-direction: row;
     text-align: center;
     font-size: 1.1rem;
     padding: 10px;
-    width: 100%;
-    max-width: 100%;
+    min-width: 250px;
+    max-width: 30%;
     box-sizing: border-box;
-    margin: 10px 0;
-}
-
-.password-input{
-    width: 33.3%;
-    box-sizing: border-box;
-    border: var(--borde);
-    border-radius: 5px;
-    box-shadow: var(--sombra);
-    padding: 10px;
-    max-width: 200px;
-    margin: 5px;
+    margin: 10px auto;
 }
 
 .h2-body {
+    width: 60%;
+    min-width: 250px;
     background-color: var(--verde-secundario);
-    border: 1px solid black;
-    border-radius: 10px;
     color: var(--gris-claro);
-    text-align: center;
+    border: var(--borde);
+    border-radius: 10px;
     margin: 20px auto;
     padding: 10px;
+    text-align: center;
     font-size: 1.4rem;
     text-decoration: none;
-    width: 60%;
-}
-
-#btn-change-user-data {
-    margin: 20px auto;
-    display: block;
-    width: 60%;
 }
 
 i {
