@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href='css/styles.css'>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Proyecto Informatico - Grupo 17</h1>
+        <h2>Indice de la documentacion</h2>
+
+        <nav>
+            <ul>
+                <li><a href=>Introduccion</a></li>
+                <li><a href=>Requisitos y autenticacion</a></li>
+                <li><a href=>Recursos</a></li>
+            </ul>
+        </nav>
+
+        <section class="introduccion">
+            <h3>Introduccion</h3>
+            <p>El presente documento tiene como objetivo describir el modulo dedicado al gestor de facturación.</p>
+             
+                <ul>El sistema se desarrollo de acuerdo a las siguientes características generales:
+                    <li>Arquitecura APIRest Ful</li>
+                    <li>Base de datos relacional desarrollada en MySQL</li>
+                    <li>Desarrollado en Python, utilizando Flask</li>
+                    <li>Utilización de la extension Thunder Client del IDE Visual Studio Code</li>
+                    <li>Desarrollado en HTML, CSS y Javascript</li>
+                </ul>
+            <p>Disclaimer: Existen métodos que han sido desarrollados en el backend sólo con fines academicos. Los mismos no se describiran en esta documentacion, ni se implementaron en el frontend</p>
+            <p>Version: 1.0.0</p>            
+        </section>
+
+
+
+        <section class="requisitos-y-autenticacion">
+            <h3>Requisitos y autenticacion</h3>
+            <p>Para poder utilizar el sistema, es necesario contar con una cuenta de usuario. Para ello, se debe realizar el siguiente procedimiento:</p>
+            <ol>
+                <li>Acceder a la pagina de inicio de sesion</li>
+                <li>Seleccionar la opcion "Registrarse"</li>
+                <li>Completar el formulario con los datos solicitados</li>
+                <li>Seleccionar la opcion "Registrarse"</li>
+            </ol>
+            <p>Una vez que se haya ingresado al sistema, se podra acceder a las distintas funcionalidades del mismo.</p>
+            <p>Para poder acceder a las funcionalidades del sistema, es necesario autenticarse. Para ello, se debe realizar el siguiente procedimiento:</p>
+            <ol>
+                <li>Acceder a la pagina de inicio de sesion</li>
+                <li>Ingresar el correo usuario y la contraseña</li>
+                <li>Seleccionar la opcion "Iniciar sesion"</li>
+            </ol>
+            <p>Una vez autenticado, se podra acceder a las funcionalidades del sistema.</p>
+            <p>Para poder cerrar la sesion, Seleccionar la opcion "Cerrar sesion"
+            <ol>
+        </section>
+
+        <section class="recursos">
+            <h3>Recursos</h3>
+            <p>El sistema cuenta con las siguientes funcionalidades:</p>
+            <nav>
+                <ul>
+                    <li><a href=>Gestor de facturacion</a></li>
+                    <li><a href=>Gestor de clientes</a></li>
+                    <li><a href=>Gestor de productos y servicios</a></li>
+                    <li><a href=>Gestor de metricas</a></li>
+                    <li><a href=>Gestor de usuarios</a></li>
+                </ul>
+            </nav>
+
+
+            <section class="gestor-de-facturacion">
+                <h4>Gestor de facturacion</h4>
+                <p>El gestor de facturacion permite realizar las siguientes acciones:</p>
+                <ul>
+                    <li><a href="">Generar una nueva factura</a></li>
+                    <li><a href="">Buscar una factura existente</a></li>
+                    <li><a href="">Consultar el historial de facturas</a></li>
+                </ul>
+
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de facturacion permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>GET
+                        <ul>
+                            <li><a href="">user/{id_user}/facturas</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">user/{id_user}/facturas/{id}</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador de la factura</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>POST
+                        <ul>
+                            <li><a href="">user/{id_user}/facturas</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="gestor-de-clientes">
+                <h4>Gestor de clientes</h4>
+                <p>El gestor de clientes permite realizar las siguientes acciones:</p>
+                <ul>
+                    <li><a href="">Agregar un nuevo cliente</a></li>
+                    <li><a href="">Buscar un cliente existente</a></li>
+                    <li><a href="">Consultar el historial de clientes</a></li>
+                </ul>
+
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de clientes permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>GET
+                        <ul>
+                            <li><a href="">user/{id_user}/clientes</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">user/{id_user}/clientes/{id}</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del cliente</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>POST
+                        <ul>
+                            <li><a href="">user/{id_user}/clientes</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="gestor-de-productos-y-servicios">
+                <h4>Gestor de productos y servicios</h4>
+                <p>El gestor de productos y servicios permite realizar las siguientes acciones:</p>
+                <ul>
+                    <li><a href="">Agregar un nuevo producto</a></li>
+                    <li><a href="">Agregar un nuevo servicio</a></li>
+                    <li><a href="">Buscar un producto existente</a></li>
+                    <li><a href="">Buscar un servicio existente</a></li>
+                    <li><a href="">Consultar el historial de productos</a></li>
+                    <li><a href="">Consultar el historial de servicios</a></li>
+                </ul>
+
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de productos y servicios permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>GET
+                        <ul>
+                            <li><a href="">user/{id_user}/productos</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">user/{id_user}/productos/{id}</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del producto</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">user/{id_user}/servicios</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+            </section>
+            <section class="gestor-de-metricas">
+                <h4>Gestor de metricas</h4>
+                <p>El gestor de metricas permite realizar las siguientes acciones:</p>
+                <ul>
+                    <li><a href="">Consultar el control de stock</a></li>
+                    <li><a href="">Consultar el informe de movimiento del stock</a></li>
+                    <li><a href="">Consultar el ranking de ventas por producto</a></li>
+                    <li><a href="">Consultar el ranking de ventas por servicio</a></li>
+                    <li><a href="">Consultar el ranking de ventas por cliente</a></li>
+                    <li><a href="">Consultar el historial de ventas</a></li>
+                </ul>
+
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de metricas permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>GET
+                        <ul>
+                            <li><a href="">user/{id_user}/productos</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del servicio</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="">user/{id_user}/servicios/{id}</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del servicio</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+
+                                            <li>id_user: identificador del usuario</li>
+                                            <li>id: identificador del servicio</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="gestor-de-usuarios">
+                <h4>Gestor de usuarios</h4>
+                <p>El gestor de usuarios permite realizar la siguiente accione:</p>
+                <ul>
+                    <li><a href="">Actualizar contraseña </a></li>
+                </ul>
+                <h5>Consultas HTTP</h5>
+                <p>El gestor de usuarios permite realizar las siguientes consultas HTTP:</p>
+                <ul>
+                    <li>PUT
+                        <ul>
+                            <li><a href="">user/{id_user}/password</a>
+                                <ul>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                
+            </section>
+            
+
+
+
+
+
+    </body>
+</html>
