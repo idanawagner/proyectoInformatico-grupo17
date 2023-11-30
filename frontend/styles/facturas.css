@@ -76,6 +76,7 @@
     box-sizing: border-box;
     max-width: 100%;
     width: 30%;
+    min-width: 250px;
     margin: 100px auto;
     font-size: 1.3rem;
 }
@@ -201,4 +202,40 @@ border-color: #555;
 
 .container-bill-srch > .button {
     flex: 1 0;
+}
+
+@media (max-width: 650px) {
+    .body-row>td{
+    display: grid;
+    grid-template-columns: 15ch auto;
+    }
+
+    .table-header{
+        display: none;
+    }
+
+    .body-row>td::before{
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .body-row>td:nth-of-type(1)::before{
+        content: "fecha: ";
+    }
+
+    .body-row>td:nth-of-type(2)::before{
+        content: "cliente: ";
+    }
+
+    .body-row>td:nth-of-type(3)::before{
+        content: "producto: ";
+    }
+
+    .body-row>td:nth-of-type(4)::before{
+        content: "cantidad: ";
+    }
+
+    .body-row>td:nth-of-type(5)::before{
+        content: "total: ";
+    }
 }

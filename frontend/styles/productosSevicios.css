@@ -7,20 +7,21 @@
 
 #windows:first-child{
     align-self: center;
-    min-width: 270px;
+    min-width: 200px;
 }
 
 #section-upload{
     display: none;
 }
 
-/* #input-prod-search {
+#input-prod-search {
     border: var(--borde);
     border-radius: 10px;
     width: 30%;
+    min-width: 250px;
     height: 30px;
     margin: 20px auto;
-} */
+}
 
 #btn-add-prod-serv {
     display: inline-block;
@@ -70,6 +71,7 @@
     align-items: center;
     max-width: 100%;
     width: 40%;
+    min-width: 200px;
     margin: 50px 35px 50px 35px;
     box-sizing: border-box;
     font-size: 1.2rem;
@@ -100,10 +102,12 @@
 .container-search-productos > .input-billify{
     flex: 1 0 10rem;
     max-width: 30%;
+    min-width: 250px;
 }
 
 .container-search-productos > .button button-search{
     flex: 1 0;
+    min-width: 250px;
 }
 
 .input-estilizado {

@@ -46,7 +46,8 @@
 }
 
 .label-body {
-    width: 40%; /* Ancho de cada columna */
+    width: 40%;
+    min-width: 250px;
     margin: 50px 35px 50px 35px;
     box-sizing: border-box;
     font-size: 1.2rem;
@@ -71,7 +72,7 @@
     font-size: 14px;
     width: 100%;
     border-radius: 4px;
-    outline: none; /* Elimina el contorno predeterminado en algunos navegadores */
+    outline: none;
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
