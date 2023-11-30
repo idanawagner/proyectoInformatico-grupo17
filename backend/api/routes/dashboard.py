@@ -44,7 +44,9 @@ def get_movimiento_stock(id_user):
                     JOIN
                         producto_servicio ON detalle_factura.id_producto_servicio = producto_servicio.id
                     WHERE
-                        factura.id_usuario = {0};""".format(id_user))
+                        factura.id_usuario = {0}
+                    ORDER BY
+                        factura.fecha DESC;""".format(id_user))
     data = cur.fetchall()
     fechasList = []
     productosList = []
