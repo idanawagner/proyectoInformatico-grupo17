@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+    --celeste-principal: #00758b;
+    --verde-secundario: #175350;
+    --celeste-hover: #3fb1be;
+    --verde-hover: #204443;
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f4;
+    --gris-texto: #555555;
+    --negro: #000000;
+    --borde: 1px solid var(--negro);
+    --sombra: 0 0 7px var(--gris-texto);
+    --nav-width: 200px;
+    --background-gris: #f0f0f0;
+    --fuente-principal: 'Lato', sans-serif;
+
+}
+
