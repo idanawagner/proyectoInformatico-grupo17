@@ -1,13 +1,82 @@
 const URL='http://127.0.0.1:5200';
 
-console.log("metricas.js loaded");
+let select = document.getElementById('dashboard-filter-select');
+
+select.addEventListener('change', (event) => {
+    showSection(event.target.value);
+}
+)
+
+async function showSection(section) {
+    console.log("showSection");
+    let stockContainer = document.getElementById('chart-container-stock');
+    let movimientoStockContainer = document.getElementById('chart-container-stock-movement');
+    let rankingVentasProductosContainer = document.getElementById('chart-container-ranking-ventas-productos');
+    let rankingVentasServiciosContainer = document.getElementById('chart-container-ranking-ventas-servicios');
+    let rankingVentasClientesContainer = document.getElementById('chart-container-ranking-ventas-clientes');
+    // let historialVentasContainer = document.getElementById('chart-container-historial-ventas');
+
+    switch (section) {
+        case 'Control de Stock':
+            stockContainer.style.display = 'block';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'none';
+            await cargarDatosStock();
+            break;
+        case 'Informe de movimiento del Stock':
+            stockContainer.style.display = 'none';
+            movimientoStockContainer.style.display = 'block';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'none';
+            await cargarDatosMovimientoStock();
+            break;
+        case 'Ranking de ventas por Producto':
+            stockContainer.style.display = 'none';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'block';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'none';
+            await cargarDatosRankingVentasProducto();
+            break;
+        case 'Ranking de ventas por Servicio':
+            stockContainer.style.display = 'none';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'block';
+            rankingVentasClientesContainer.style.display = 'none';
+            await cargarDatosRankingVentasServicio();
+            break;
+        case 'Ranking de ventas por cliente':
+            stockContainer.style.display = 'none';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'block';
+            await cargarDatosRankingVentasCliente();
+            break;
+        // case 'chart-container-historial-ventas':
+        //     stockContainer.style.display = 'none';
+        //     movimientoStockContainer.style.display = 'none';
+        //     rankingVentasProductosContainer.style.display = 'none';
+        //     rankingVentasServiciosContainer.style.display = 'none';
+        //     rankingVentasClientesContainer.style.display = 'none';
+        //     historialVentasContainer.style.display = 'block';
+        //     break;
+        default:
+            stockContainer.style.display = 'block';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'none';
+    }
+
+}
  
 // Función para graficar el stock de productos
 graficarMetricasStock = (data) => {
-    console.log("graficarMetricasStock");
-    console.log(data);
-    console.log(data.productos);
-    console.log(data.stock)
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-stock'));
 
@@ -38,7 +107,6 @@ graficarMetricasStock = (data) => {
 }
 // Función para cargar los datos de stock
 cargarDatosStock = () => { 
-    console.log("cargarDatosStock");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -54,31 +122,23 @@ cargarDatosStock = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    fetch(URL + `/user/${id}/stock`, requestOptions)
+    return fetch(URL + `/user/${id}/stock`, requestOptions)
     .then(response => response.json())
     .then(data => {
       
-        console.log(data);
         graficarMetricasStock(data);
                  
     })
 
 }
 
-cargarDatosStock();
+// cargarDatosStock();
 
 //Funcion para graficar el movimiento de stock
 graficarMetricasMovimientoStock = (data) => {
-    console.log("graficarMetricasMovimientoStock");
-    console.log(data);
-    console.log(data.fechas);
-    // console.log(data.productos);
-    // console.log(data.stock)
     // Initialize the echarts instance based on the prepared dom
 
 
-    console.log("Fechas modificadas");
-    console.log(data.fechas);
 
 
     var myChart = echarts.init(document.getElementById('chart-container-stock-movement'));
@@ -132,7 +192,6 @@ graficarMetricasMovimientoStock = (data) => {
         };
         option.series.push(seriesItem);
     }
-    console.log(option.series)
 
     // Mostrar el gráfico con las opciones y datos configurados
     myChart.setOption(option);
@@ -142,7 +201,6 @@ graficarMetricasMovimientoStock = (data) => {
 
 // Funcion para cargas los datos de movimiento de stock
 cargarDatosMovimientoStock = () => { 
-    console.log("cargarDatosMovimientoStock");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -158,26 +216,21 @@ cargarDatosMovimientoStock = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    fetch(URL + `/user/${id}/movimiento_stock`, requestOptions)
+    return fetch(URL + `/user/${id}/movimiento_stock`, requestOptions)
     .then(response => response.json())
     .then(data => {
       
-        console.log(data);
         graficarMetricasMovimientoStock(data);
                  
     })
 
 }
 
-cargarDatosMovimientoStock();
+// cargarDatosMovimientoStock();
 
 
 //Funcion para graficar el ranking de ventas por producto
 graficarMetricasRankingVentas = (data) => {
-    console.log("graficarMetricasRankingVentas");
-    console.log(data);
-    console.log(data.productos);
-    console.log(data.ventas)
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-productos'));
 
@@ -209,7 +262,6 @@ graficarMetricasRankingVentas = (data) => {
 
 // Funcion para cargar los datos de ranking de ventas por producto
 cargarDatosRankingVentasProducto = () => { 
-    console.log("cargarDatosRankingVentasProducto");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -225,25 +277,20 @@ cargarDatosRankingVentasProducto = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    fetch(URL + `/user/${id}/ranking_ventas_producto`, requestOptions)
+    return fetch(URL + `/user/${id}/ranking_ventas_producto`, requestOptions)
     .then(response => response.json())
     .then(data => {
       
-        console.log(data);
         graficarMetricasRankingVentas(data);
                  
     })
 
 }
 
-cargarDatosRankingVentasProducto();
+// cargarDatosRankingVentasProducto();
 
 //Funcion para graficar el ranking de ventas por servicio
 graficarMetricasRankingVentasServicio = (data) => {
-    console.log("graficarMetricasRankingVentasServicio");
-    console.log(data);
-    console.log(data.servicios);
-    console.log(data.ventas)
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-servicios'));
 
@@ -275,7 +322,7 @@ graficarMetricasRankingVentasServicio = (data) => {
 
 // Funcion para cargar los datos de ranking de ventas por servicio
 cargarDatosRankingVentasServicio = () => { 
-    console.log("cargarDatosRankingVentasServicio");
+    // console.log("cargarDatosRankingVentasServicio");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -291,26 +338,21 @@ cargarDatosRankingVentasServicio = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    fetch(URL + `/user/${id}/ranking_ventas_servicio`, requestOptions)
+    return fetch(URL + `/user/${id}/ranking_ventas_servicio`, requestOptions)
     .then(response => response.json())
     .then(data => {
       
-        console.log(data);
         graficarMetricasRankingVentasServicio(data);
                  
     })
 
 }
 
-cargarDatosRankingVentasServicio();
+// cargarDatosRankingVentasServicio();
 
 
 //Funcion para graficar el ranking de ventas por cliente
 graficarMetricasRankingVentasCliente = (data) => {
-    console.log("graficarMetricasRankingVentasCliente");
-    console.log(data);
-    console.log(data.clientes);
-    console.log(data.ventas)
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-clientes'));
 
@@ -342,7 +384,6 @@ graficarMetricasRankingVentasCliente = (data) => {
 
 // Funcion para cargar los datos de ranking de ventas por cliente
 cargarDatosRankingVentasCliente = () => { 
-    console.log("cargarDatosRankingVentasCliente");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -358,18 +399,25 @@ cargarDatosRankingVentasCliente = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    fetch(URL + `/user/${id}/ranking_ventas_cliente`, requestOptions)
+    return fetch(URL + `/user/${id}/ranking_ventas_cliente`, requestOptions)
     .then(response => response.json())
     .then(data => {
       
-        console.log(data);
         graficarMetricasRankingVentasCliente(data);
                  
     })
 
 }
 
-cargarDatosRankingVentasCliente();
+// cargarDatosRankingVentasCliente();
 
 
 //Funcion para graficar el historial de ventas
+
+
+
+// Al cargar la pagina se ejecuta la funcion searchAllClients para traer todos los productos y servicios de la base de datos
+window.addEventListener('load',async () => {
+    
+    showSection('Control de Stock');
+});

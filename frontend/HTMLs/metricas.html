@@ -28,17 +28,29 @@
 
           <label for="dashboard-filter-select">
             Selecciona área de interes:
-            <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
-              <option value="Control de Stock" onclick="cargarDatosStock()"> Control de Stock </option>
-              <option value="Informe de movimiento del Stock" onclick="cargarDatosMovimientoStock()"> Informe de movimiento del Stock </option>
-              <option value="Ranking de ventas por Producto" onclick="cargarDatosRankingVentasProducto()"> Ranking de ventas por Producto </option>
-              <option value="Ranking de ventas por Servicio" onclick="cargarDatosRankingVentasServicio()"> Ranking de ventas por Servicio </option>
-              <option value="Ranking de ventas por cliente" onclick="cargarDatosRankingVentasCliente()"> Ranking de ventas por cliente </option>
+              <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
+              <option value="Control de Stock" > Control de Stock </option>
+              <option value="Informe de movimiento del Stock" > Informe de movimiento del Stock </option>
+              <option value="Ranking de ventas por Producto" > Ranking de ventas por Producto </option>
+              <option value="Ranking de ventas por Servicio" > Ranking de ventas por Servicio </option>
+              <option value="Ranking de ventas por cliente" > Ranking de ventas por cliente </option>
               <option value="Historial de ventas"> Historial de ventas </option>
             </select>
           </label>
 
-          <!-- <button onclick="cargarMetricas()">Visualizar</button> -->
+
+          <!--=====================================
+          VER SI LLEGO A AGFREGAR EL FILTRO DE FECHA PARA LOS GRAFICOS
+          ======================================-->
+          <!-- <div id="dashboard-filter-date">
+            <label for="dashboard-filter-date-start">
+              Desde:
+              <input type="date" id="dashboard-filter-date-start" name="dashboard-filter-date-start" class="selectEstilizado">
+            </label>
+            <label for="dashboard-filter-date-end">
+              Hasta:
+              <input type="date" id="dashboard-filter-date-end" name="dashboard-filter-date-end" class="selectEstilizado">
+            </label> -->
 
         </div>
       </div>

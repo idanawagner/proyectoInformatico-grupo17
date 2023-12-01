@@ -24,3 +24,11 @@ border-color: #999;
 .selectEstilizado:focus {
 border-color: #555;
 }
+
+[id^="chart-container-"]{
+    display: none;
+}
+
+#chart-container-stock{
+    display: block;
+}
