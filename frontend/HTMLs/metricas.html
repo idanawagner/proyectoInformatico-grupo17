@@ -58,10 +58,48 @@
     </div>
 
     <div id="chart-container-stock" style="width: 600px;height:400px;"></div>
-    <div id="chart-container-stock-movement" style="width: 600px;height:400px;"></div>
+
+
+
+    <div id= "stock-movement">
+        <!-- Menú desplegable para seleccionar el producto -->
+        <label for="select-productos">Seleccionar Producto:</label>
+        <select id="select-productos" onchange="cambiarProducto()">
+            <!-- Opciones del menú desplegable se generan dinámicamente con JavaScript -->
+        </select>
+        <div id="chart-container-stock-movement" style="width: 800px; height: 400px;"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+  
     <div id="chart-container-ranking-ventas-productos" style="width: 600px;height:400px;"></div>
     <div id="chart-container-ranking-ventas-servicios" style="width: 600px;height:400px;"></div>
     <div id="chart-container-ranking-ventas-clientes" style="width: 600px;height:400px;"></div>
+
+    <div id="table-container-historial-ventas">
+      <table class="table">
+            <thead class="">
+              <tr class="">
+                <th scope="col"> Factura </th>
+                <th scope="col"> Fecha </th>
+                <th scope="col"> Total </th>
+                <th scope="col"> Descripcion </th>
+                <th scope="col"> Cantidad </th>
+                <th scope="col"> Subtotal </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-historial-ventas">  
+              <!-- tabla desde  -->
+            </tbody>
+          </table>
+    </div>
 
 
 

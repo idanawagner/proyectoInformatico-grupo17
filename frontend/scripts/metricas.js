@@ -10,7 +10,7 @@ select.addEventListener('change', (event) => {
 async function showSection(section) {
     console.log("showSection");
     let stockContainer = document.getElementById('chart-container-stock');
-    let movimientoStockContainer = document.getElementById('chart-container-stock-movement');
+    let movimientoStockContainer = document.getElementById('stock-movement');
     let rankingVentasProductosContainer = document.getElementById('chart-container-ranking-ventas-productos');
     let rankingVentasServiciosContainer = document.getElementById('chart-container-ranking-ventas-servicios');
     let rankingVentasClientesContainer = document.getElementById('chart-container-ranking-ventas-clientes');
@@ -31,7 +31,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'none';
-            await cargarDatosMovimientoStock();
+            await traerProductos();
             break;
         case 'Ranking de ventas por Producto':
             stockContainer.style.display = 'none';
@@ -97,7 +97,8 @@ graficarMetricasStock = (data) => {
               {
                   name: 'stock',
                   type: 'bar',
-                  data: data.stock
+                  data: data.stock,
+                  itemStyle: {color: '#175350'}
               }
               ]
           };
@@ -134,73 +135,8 @@ cargarDatosStock = () => {
 
 // cargarDatosStock();
 
-//Funcion para graficar el movimiento de stock
-graficarMetricasMovimientoStock = (data) => {
-    // Initialize the echarts instance based on the prepared dom
-
-
-
-
-    var myChart = echarts.init(document.getElementById('chart-container-stock-movement'));
-
-    // Especificar las opciones de configuración y datos para el gráfico
-    var option = {
-        title: {
-            text: 'Movimiento de stock'
-
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: data.productos
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        toolbox: {
-            feature: {
-                saveAsImage: {}
-            }
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: data.fechas,
-            axisLabel: {
-                formatter: function (value, index) {
-                    return value.substring(0, 10);
-                }
-            }
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: []
-    };
-
-    // Agregar series dinámicamente
-    for (var i = 0; i < data.productos.length; i++) {
-        var seriesItem = {
-            name: data.productos[i],
-            type: 'line',
-            stack: 'Total',
-            data: data.cantidades[i]
-        };
-        option.series.push(seriesItem);
-    }
-
-    // Mostrar el gráfico con las opciones y datos configurados
-    myChart.setOption(option);
-
-}
-
-
-// Funcion para cargas los datos de movimiento de stock
-cargarDatosMovimientoStock = () => { 
+// traer productos para el select
+traerProductos = () => { 
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -216,14 +152,98 @@ cargarDatosMovimientoStock = () => {
     }
 
     // Se hace el fetch con la url y el requestOptions
-    return fetch(URL + `/user/${id}/movimiento_stock`, requestOptions)
+    return fetch(URL + `/user/${id}/productos_servicios`, requestOptions)
     .then(response => response.json())
     .then(data => {
-      
-        graficarMetricasMovimientoStock(data);
+    console.log(data);
+    let select = document.getElementById('select-productos');
+        data.forEach(element => {
+            if (element.categoria == 'Producto'){
+                select.innerHTML += `<option value="${element.id}">${element.nombre}</option>`
+             } 
+    });
+    })
+}
+
+cambiarProducto = () => { 
+    let select = document.getElementById('select-productos');
+    let id = select.value;
+    console.log(id);
+    cargarDatosMovimientoStock(id);
+
+
+}
+
+//Funcion para graficar el movimiento de stock
+graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
+    console.log("graficarMetricasMovimientoStock");
+    console.log(producto);
+    console.log(fechas);
+    console.log(cantidades);
+    let chartContainer = document.getElementById('chart-container-stock-movement');
+    chartContainer.style.display = 'block';
+
+
+    // Initialize the echarts instance based on the prepared dom
+    var myChart = echarts.init(chartContainer);
+
+    // Specify the configuration items and data for the chart
+    var option = {
+            title: {
+                text: 'Movimiento de stock'
+            },
+            tooltip: {},
+            legend: {
+                data: ['cantidades']
+            },
+            xAxis: {
+                data: fechas
+            },
+            yAxis: {},
+            series: [
+            {
+                name: 'cantidades',
+                type: 'line',
+                data: cantidades,
+                itemStyle: {color: '#175350'}
+            }
+            ]
+        };
+
+    // Display the chart using the configuration items and data just specified.
+    myChart.setOption(option);
+    
+
+}
+cargarDatosMovimientoStock = (id_producto) => { 
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
+    console.log(id);
+    console.log(id_producto);
+
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+
+    }
+    console.log(requestOptions);
+    // Se hace el fetch con la url y el requestOptions
+    return fetch(URL + `/user/${id}/movimiento_stock/${id_producto}`, requestOptions)
+    .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let producto = data.data[0].producto;
+            let fechas = data.data[0].fechas;
+            let cantidades = data.data[0].cantidades;
+
+        graficarMetricasMovimientoStock(producto, fechas, cantidades);
                  
     })
-
 }
 
 // cargarDatosMovimientoStock();
@@ -251,7 +271,8 @@ graficarMetricasRankingVentas = (data) => {
               {
                   name: 'ventas',
                   type: 'bar',
-                  data: data.ventas
+                  data: data.ventas,
+                  itemStyle: {color: '#175350'}
               }
               ]
           };
@@ -304,14 +325,19 @@ graficarMetricasRankingVentasServicio = (data) => {
                   data: ['ventas']
               },
               xAxis: {
-                  data: data.servicios
+                  data: data.servicios,
+                  axisLabel: {
+                            interval: 'auto',
+                            rotate: -45
+                        }
               },
               yAxis: {},
               series: [
               {
                   name: 'ventas',
                   type: 'bar',
-                  data: data.ventas
+                  data: data.ventas,
+                  itemStyle: {color: '#175350'}
               }
               ]
           };
@@ -373,7 +399,8 @@ graficarMetricasRankingVentasCliente = (data) => {
               {
                   name: 'ventas',
                   type: 'bar',
-                  data: data.ventas
+                  data: data.ventas,
+                  itemStyle: {color: '#175350'}
               }
               ]
           };
@@ -412,7 +439,60 @@ cargarDatosRankingVentasCliente = () => {
 // cargarDatosRankingVentasCliente();
 
 
-//Funcion para graficar el historial de ventas
+//Funcion para mostrar la table del historial de ventas
+
+
+
+
+// function renderTable(){
+//     let tbody = document.getElementById('tbody-historial-ventas');
+//     tbody.innerHTML = '';
+//     buscado.forEach((element) => {
+//         tbody.innerHTML += `
+//         <tr class="body-row" scope="row">
+//             <td class=""> ${element.categoria} </td>
+//             <td class=""> ${element.nombre} </td>
+//             <td class=""> ${element.stock}</td>
+//             <td class=""> ${element.precio}</td>
+//             <td class=""> ${element.descripcion} </td>
+//             <td class=""> 
+//             <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
+//                 <i class="fa-solid fa-pencil"></i>
+//                 </button>
+//                 </td>
+//             <td class=""> 
+//                 <button class="btn" onclick="cambiarEstado(${element.id})">
+//                     <i class="fa-solid fa-trash"></i>
+//                 </button>
+//             </td>
+//         </tr>
+//         `
+//     });
+//     buscado = [];
+
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

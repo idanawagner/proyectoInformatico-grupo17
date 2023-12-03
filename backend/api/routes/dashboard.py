@@ -5,6 +5,24 @@ from api.utils import token_required, user_resource, producto_servicio_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
 from datetime import datetime
+from collections import defaultdict
+
+def reorganizar_datos(data):
+    # Estructura de datos para almacenar la información reorganizada
+    reorganizado = defaultdict(lambda: {"fechas": [], "cantidades": []})
+
+    # Iterar sobre los datos originales y organizarlos
+    for _, fecha, producto, cantidad in data:
+        reorganizado[producto]["fechas"].append(str(fecha))
+        reorganizado[producto]["cantidades"].append(cantidad)
+
+    # Convertir la estructura de datos a una lista de diccionarios
+    resultado = [{"producto": producto, "fechas": info["fechas"], "cantidades": info["cantidades"]} for producto, info in reorganizado.items()]
+
+    return resultado
+
+
+
 
 
 """dashboard de stock"""
@@ -13,7 +31,7 @@ from datetime import datetime
 @user_resource
 def get_stock(id_user):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT descripcion, stock FROM producto_servicio WHERE id_usuario = {0} and estado = 1 and categoria = "Producto"'.format(id_user))
+    cur.execute('SELECT nombre, stock FROM producto_servicio WHERE id_usuario = {0} and estado = 1 and categoria = "Producto"'.format(id_user))
     data = cur.fetchall()
     productList = []
     stockList = []
@@ -25,17 +43,17 @@ def get_stock(id_user):
 
 
 """ Dashboard de movimiento de stock """
-@app.route('/user/<int:id_user>/movimiento_stock', methods=['GET'])
+@app.route('/user/<int:id_user>/movimiento_stock/<int:id_producto>', methods=['GET'])
 @token_required
 @user_resource
-def get_movimiento_stock(id_user):
+def get_movimiento_stock(id_user, id_producto):
 
     """ traer los movimientos de stock desde detalle_factura """
     cur = mysql.connection.cursor()
     cur.execute("""SELECT
                         detalle_factura.id_factura,
                         factura.fecha,
-                        producto_servicio.descripcion AS nombre_producto,
+                        producto_servicio.nombre,
                         detalle_factura.cantidad
                     FROM
                         detalle_factura
@@ -44,30 +62,66 @@ def get_movimiento_stock(id_user):
                     JOIN
                         producto_servicio ON detalle_factura.id_producto_servicio = producto_servicio.id
                     WHERE
-                        factura.id_usuario = {0}
+                        factura.id_usuario = {0} AND
+                        detalle_factura.id_producto_servicio = {1}
                     ORDER BY
-                        factura.fecha DESC;""".format(id_user))
+                        factura.fecha ASC;""".format(id_user, id_producto))
     data = cur.fetchall()
-    fechasList = []
-    productosList = []
-    cantidadesList = []
-    for item in data:
-        if item[2] not in productosList:
-            productosList.append(item[2])
+    
 
-    for producto in productosList:
-        cantidadesList.append([])
-        fechasList.append([])
-        for item in data:
-            if item[2] == producto:
-                cantidadesList[productosList.index(producto)].append(item[3])
-                fecha = item[1]
-                if fecha is not None:
-                    fecha = fecha.strftime("%d-%m-%Y")
-                    fechasList[productosList.index(producto)].append(fecha)
-                else:
-                    fechasList[productosList.index(producto)].append('12-12-2099')
-    return jsonify({'productos': productosList, 'cantidades': cantidadesList, 'fechas': fechasList})
+    # Llamar a la función con tu variable 'data'
+    datos_reorganizados = reorganizar_datos(data)
+
+    print('Datos reorganizados:')
+    # Imprimir o devolver el resultado
+    print(datos_reorganizados)
+    print('')
+
+    
+    return jsonify({"data": datos_reorganizados})
+    # productosList = []
+    # for item in data:
+    #     if item[2] not in productosList:
+    #         productosList.append(item[2])
+
+    # cantidadesList = []
+    # fechasList = []
+
+
+    # for producto in productosList:
+    #     for item in data:
+    #         if item[2] == producto:
+    #             cantidadesList.append(item[3])
+    #             fecha = item[1]
+    #             if fecha is not None:
+    #                 fecha = fecha.strftime("%d-%m-%Y")
+    #                 fechasList.append(fecha)
+    #             else:
+    #                 fechasList.append('12-12-2099')
+
+    # fechasList = []
+    # cantidadesList = []
+    # for item in data:
+    #     fechasList.append(item[1].strftime("%d-%m-%Y"))
+    #     productosList.append(item[2])
+    #     cantidadesList.append(item[3])
+        #     if item[2] not in productosList:
+        #         productosList.append(item[2])
+
+        # for producto in productosList:
+        #     cantidadesList.append([])
+        #     fechasList.append([])
+        #     for item in data:
+        #         if item[2] == producto:
+        #             cantidadesList[productosList.index(producto)].append(item[3])
+        #             fecha = item[1]
+        #             if fecha is not None:
+        #                 fecha = fecha.strftime("%d-%m-%Y")
+        #                 fechasList[productosList.index(producto)].append(fecha)
+        #             else:
+        #                 fechasList[productosList.index(producto)].append('12-12-2099')
+    # return jsonify({'productos': productosList, 'cantidades': cantidadesList, 'fechas': fechasList})
+    # return jsonify({'data': data})
 
 
 """ Dashboard de ranking de ventas por producto """
@@ -78,7 +132,7 @@ def get_ranking_ventas_producto(id_user):
     """ traer los movimientos de stock desde detalle_factura """
     cur = mysql.connection.cursor()
     cur.execute("""SELECT
-                        producto_servicio.descripcion AS nombre_producto,
+                        producto_servicio.nombre,
                         SUM(detalle_factura.subtotal) AS total_ventas
                     FROM
                         detalle_factura
@@ -107,7 +161,7 @@ def get_ranking_ventas_servicio(id_user):
     """ traer los movimientos de stock desde detalle_factura """
     cur = mysql.connection.cursor()
     cur.execute("""SELECT
-                        producto_servicio.descripcion AS nombre_servicio,
+                        producto_servicio.nombre,
                         SUM(detalle_factura.subtotal) AS total_ventas
                     FROM
                         detalle_factura
