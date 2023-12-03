@@ -19,3 +19,101 @@
 
 }
 
+/* Estilos generales */
+body {
+  font-family: var(--fuente-principal);
+  line-height: 1.6;
+  background-color: var(--gris-claro);
+  color: var(--negro);
+  padding: 20px;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Estilos del encabezado */
+header {
+  background-color: var(--celeste-principal);
+  color: var(--blanco);
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+/* Estilos del índice */
+h2 {
+  color: var(--celeste-principal);
+  border-bottom: var(--borde);
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  margin-bottom: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--celeste-principal);
+}
+
+/* Estilos de las secciones */
+section {
+  margin-top: 20px;
+}
+
+h3, h4, h5 {
+  color: var(--verde-secundario);
+}
+
+/* Estilos de párrafos */
+p {
+  margin-bottom: 10px;
+}
+
+/* Estilos de listas */
+ul, ol {
+  margin-bottom: 10px;
+}
+
+/* Estilos del pie de página */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: var(--gris-claro);
+  border-top: var(--borde);
+}
+
+/* Enlaces */
+a {
+  color: var(--celeste-principal);
+}
+
+a:hover {
+  color: var(--celeste-hover);
+}
+
+/* Estilos de las secciones específicas */
+.gestor-de-facturacion,
+.gestor-de-clientes,
+.gestor-de-productos-y-servicios,
+.gestor-de-metricas,
+.gestor-de-usuarios {
+  background-color: var(--blanco);
+  padding: 20px;
+  border: var(--borde);
+  box-shadow: var(--sombra);
+  margin-top: 20px;
+}
