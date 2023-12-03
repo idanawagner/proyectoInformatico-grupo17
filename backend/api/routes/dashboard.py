@@ -223,9 +223,10 @@ def get_ranking_ventas(id_user):
     cur = mysql.connection.cursor()
     cur.execute("""SELECT
                         factura.id AS id_factura,
-                        factura.fecha,
-                        factura.total,
-                        producto_servicio.descripcion AS nombre_producto,
+                        factura.fecha AS fecha_factura,
+                        factura.total AS total_factura,
+                        cliente.nombre AS nombre_cliente,
+                        producto_servicio.nombre AS nombre_producto,
                         detalle_factura.cantidad,
                         detalle_factura.subtotal    
                     FROM
@@ -234,9 +235,15 @@ def get_ranking_ventas(id_user):
                         factura ON detalle_factura.id_factura = factura.id
                     JOIN
                         producto_servicio ON detalle_factura.id_producto_servicio = producto_servicio.id
+                    JOIN
+                        cliente ON factura.id_cliente = cliente.id
                     WHERE
                         factura.id_usuario = {0};""".format(id_user))
     data = cur.fetchall()
+
+        
+
+
     print(data)
     return (jsonify({'data': data}))
 

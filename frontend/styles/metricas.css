@@ -32,3 +32,7 @@ border-color: #555;
 #chart-container-stock{
     display: block;
 }
+
+#table-container-historial-ventas{
+    display: none;
+}

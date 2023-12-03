@@ -7,6 +7,25 @@ select.addEventListener('change', (event) => {
 }
 )
 
+function formatearFecha(fechaString) {
+    // Crear un objeto Date a partir de la cadena de fecha
+    let fecha = new Date(fechaString);
+
+    // Obtener los componentes de la fecha
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1; // Los meses en JavaScript son indexados desde 0
+    let anio = fecha.getFullYear();
+
+    // Formatear los componentes para que tengan dos dígitos si es necesario
+    dia = dia < 10 ? '0' + dia : dia;
+    mes = mes < 10 ? '0' + mes : mes;
+
+    // Crear la cadena en el formato deseado
+    let fechaFormateada = `${dia}-${mes}-${anio}`;
+
+    return fechaFormateada;
+}
+
 async function showSection(section) {
     console.log("showSection");
     let stockContainer = document.getElementById('chart-container-stock');
@@ -14,7 +33,7 @@ async function showSection(section) {
     let rankingVentasProductosContainer = document.getElementById('chart-container-ranking-ventas-productos');
     let rankingVentasServiciosContainer = document.getElementById('chart-container-ranking-ventas-servicios');
     let rankingVentasClientesContainer = document.getElementById('chart-container-ranking-ventas-clientes');
-    // let historialVentasContainer = document.getElementById('chart-container-historial-ventas');
+    let historialVentasContainer = document.getElementById('table-container-historial-ventas');
 
     switch (section) {
         case 'Control de Stock':
@@ -57,14 +76,15 @@ async function showSection(section) {
             rankingVentasClientesContainer.style.display = 'block';
             await cargarDatosRankingVentasCliente();
             break;
-        // case 'chart-container-historial-ventas':
-        //     stockContainer.style.display = 'none';
-        //     movimientoStockContainer.style.display = 'none';
-        //     rankingVentasProductosContainer.style.display = 'none';
-        //     rankingVentasServiciosContainer.style.display = 'none';
-        //     rankingVentasClientesContainer.style.display = 'none';
-        //     historialVentasContainer.style.display = 'block';
-        //     break;
+        case 'Historial de ventas':
+            stockContainer.style.display = 'none';
+            movimientoStockContainer.style.display = 'none';
+            rankingVentasProductosContainer.style.display = 'none';
+            rankingVentasServiciosContainer.style.display = 'none';
+            rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'block';
+            await cargarDatosHistorialVentas();
+            break;
         default:
             stockContainer.style.display = 'block';
             movimientoStockContainer.style.display = 'none';
@@ -444,34 +464,61 @@ cargarDatosRankingVentasCliente = () => {
 
 
 
-// function renderTable(){
-//     let tbody = document.getElementById('tbody-historial-ventas');
-//     tbody.innerHTML = '';
-//     buscado.forEach((element) => {
-//         tbody.innerHTML += `
-//         <tr class="body-row" scope="row">
-//             <td class=""> ${element.categoria} </td>
-//             <td class=""> ${element.nombre} </td>
-//             <td class=""> ${element.stock}</td>
-//             <td class=""> ${element.precio}</td>
-//             <td class=""> ${element.descripcion} </td>
-//             <td class=""> 
-//             <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
-//                 <i class="fa-solid fa-pencil"></i>
-//                 </button>
-//                 </td>
-//             <td class=""> 
-//                 <button class="btn" onclick="cambiarEstado(${element.id})">
-//                     <i class="fa-solid fa-trash"></i>
-//                 </button>
-//             </td>
-//         </tr>
-//         `
-//     });
-//     buscado = [];
+function renderTable(historialVentas) {
+    console.log("renderTable");
+    let tbody = document.getElementById('tbody-historial-ventas');
+    tbody.innerHTML = '';
+    historialVentas.forEach((element) => {
+        tbody.innerHTML += `
+        <tr class="body-row" scope="row">
+            <td class=""> ${element[0]} </td>
+            <td class=""> ${element[1]} </td>
+            <td class=""> ${element[2]} </td>
+            <td class=""> ${element[3]} </td>
+            <td class=""> ${element[4]} </td>
+            <td class=""> ${element[5]} </td>
+            <td class=""> ${element[6]} </td>
+        </tr>
+        `
+    });
+    historialVentas = [];
+}
 
+// Funcion para cargar los datos del historial de ventas
+cargarDatosHistorialVentas = () => { 
+    console.log("cargarDatosHistorialVentas");
+    // Se traen el token y el id del usuario logueado desde el localStorage
+    let token = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
 
-// }
+    // Se crea el objeto requestOptions con los datos necesarios para el fetch
+    const requestOptions = {
+        method : 'GET',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': id
+            }
+
+    }
+
+    // Se hace el fetch con la url y el requestOptions
+    return fetch(URL + `/user/${id}/historial_ventas`, requestOptions)
+    .then(response => response.json())
+        .then(data => {
+        console.log("cargarDatosHistorialVentasThen")
+        console.log(data);
+        let historialVentas = [];
+        data.data.forEach(element => {
+            historialVentas.push([element[0], formatearFecha(element[1]), element[2], element[3], element[4], element[5], element[6]]);
+        })
+        console.log("historialVentas");
+        console.log(historialVentas);
+        renderTable(historialVentas);
+                 
+    })
+
+}
+
 
 
 
