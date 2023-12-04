@@ -313,14 +313,34 @@ searchBtn.addEventListener('click', () => {
         switch (option) {
             case 'numero-factura':
                 let facturasNro = listaFacturas.filter(element => element.id == inputSearch);
-                renderTable(facturasNro);
+                if (facturasNro.length == 0) {
+                    Swal.fire({
+                        title: 'No se encontraron facturas con ese número',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                        })
+                    renderTable(listaFacturas);
+                    
+                }else{
+
+                    renderTable(facturasNro);
+                }
                 break;
             case 'cuit-cuil':
                 inputSearch = parseInt(inputSearch);
                 let cliente = listaClientes.filter( cliente => cliente.cuit_cuil === inputSearch)
+                if (cliente.length == 0) {
+                    Swal.fire({
+                        title: 'No se encontraron clientes con ese CUIT/CUIL',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                        })
+                    renderTable(listaFacturas);
+                }else{
                 let facturasClientes = listaFacturas.filter(element => element.id_cliente == cliente[0].id);
-                listaClientes.length !== 0 ? renderTable(facturasClientes) : renderTable(listaFacturas);
-                renderTable(facturasClientes);
+                
+                    renderTable(facturasClientes);
+                }
                 break;
             default:
                 renderTable(listaFacturas);
