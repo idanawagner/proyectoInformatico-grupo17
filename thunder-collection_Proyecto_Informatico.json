@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Proyecto_Informatico",
-    "dateExported": "2023-11-30T12:24:02.029Z",
+    "dateExported": "2023-12-04T01:19:22.263Z",
     "version": "1.1",
     "folders": [
         {
@@ -464,14 +464,14 @@
             "method": "POST",
             "sortNum": 190000,
             "created": "2023-11-14T20:36:30.805Z",
-            "modified": "2023-11-28T11:26:14.843Z",
+            "modified": "2023-12-01T23:10:21.870Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "basic",
                 "basic": {
                     "username": "usuario1",
-                    "password": "nueva_clave_segura2"
+                    "password": "clave_segura1"
                 }
             },
             "tests": []
@@ -508,11 +508,11 @@
             "method": "GET",
             "sortNum": 200000,
             "created": "2023-11-27T21:39:06.111Z",
-            "modified": "2023-11-29T13:41:49.585Z",
+            "modified": "2023-12-03T18:01:11.231Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMjcxMjk0fQ.9WKRVFiFiO9PDbkaeoH8cV4qpORI4VMBmN4g-xH1fZ8"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxNjMyNDQ0fQ.uya29QV5rtGlgPKweZ6EFlnToGOPpeha2-F-Ad8H3WQ"
                 },
                 {
                     "name": "user-id",
@@ -527,15 +527,15 @@
             "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
             "containerId": "2a88374e-5fa5-4a5b-94b4-0c5d09a5c375",
             "name": "GET movimiento de stock",
-            "url": "/user/1/movimiento_stock",
+            "url": "/user/1/movimiento_stock/4",
             "method": "GET",
             "sortNum": 210000,
             "created": "2023-11-28T14:57:10.353Z",
-            "modified": "2023-11-29T21:48:08.360Z",
+            "modified": "2023-12-03T16:43:17.946Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMzAwNDQ5fQ.dc190YWOdD07lhv4Y9KatGHLYCmnoExVVaaEExlmdDE"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxNjE5MzQ4fQ.lVJ0RW-Km2piddb2_ynqqUcvcUgp_fVXj68N3dDJiuI"
                 },
                 {
                     "name": "user-id",
@@ -577,11 +577,11 @@
             "method": "GET",
             "sortNum": 220000,
             "created": "2023-11-28T15:39:41.531Z",
-            "modified": "2023-11-28T16:07:21.372Z",
+            "modified": "2023-12-03T18:01:19.967Z",
             "headers": [
                 {
                     "name": "x-access-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMTkxNjA0fQ.X1X_KdexrrtohzYKR0eqolkQdSv6whAPeG3Rc4RbXSc"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxNjMyNDQ0fQ.uya29QV5rtGlgPKweZ6EFlnToGOPpeha2-F-Ad8H3WQ"
                 },
                 {
                     "name": "user-id",
@@ -628,6 +628,29 @@
                 {
                     "name": "x-access-token",
                     "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxMzQ5NTM5fQ.SIlXttVuZt_eloibshOqnDKc9uWMO5AwvoV-Y8OYDHo"
+                },
+                {
+                    "name": "user-id",
+                    "value": "1"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c32bcdd2-b500-423b-9120-f03a2f812423",
+            "colId": "a5df9229-6a66-4daf-bb3c-9f0d2838bb7f",
+            "containerId": "cbff007b-9c59-48f8-8b43-072b56853d47",
+            "name": "GET historial clientes",
+            "url": "/user/1/historial_clientes",
+            "method": "GET",
+            "sortNum": 240000,
+            "created": "2023-12-01T23:09:01.167Z",
+            "modified": "2023-12-01T23:10:37.680Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzAxNDc4MjIxfQ.tFM1pKOMwfpgEoW5tgIpyIao_mySWzN2CxjTVCL0gZM"
                 },
                 {
                     "name": "user-id",
