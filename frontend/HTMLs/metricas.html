@@ -19,16 +19,13 @@
   <div class="container-box">
     <div id="navbar">
       <!-- Navbar desde javascript-->
-
     </div>
-
       <!-- Contenido de la pagina -->
       <div class="content">
         <div id="dashboard-container">
-
           <label for="dashboard-filter-select">
             Selecciona área de interes:
-              <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
+            <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
               <option value="Control de Stock" > Control de Stock </option>
               <option value="Informe de movimiento del Stock" > Informe de movimiento del Stock </option>
               <option value="Ranking de ventas por Producto" > Ranking de ventas por Producto </option>
@@ -37,25 +34,9 @@
               <option value="Historial de ventas"> Historial de ventas </option>
             </select>
           </label>
-
-
-          <!--=====================================
-          VER SI LLEGO A AGFREGAR EL FILTRO DE FECHA PARA LOS GRAFICOS
-          ======================================-->
-          <!-- <div id="dashboard-filter-date">
-            <label for="dashboard-filter-date-start">
-              Desde:
-              <input type="date" id="dashboard-filter-date-start" name="dashboard-filter-date-start" class="selectEstilizado">
-            </label>
-            <label for="dashboard-filter-date-end">
-              Hasta:
-              <input type="date" id="dashboard-filter-date-end" name="dashboard-filter-date-end" class="selectEstilizado">
-            </label> -->
-
         </div>
       </div>
-
-    </div>
+  </div>
 
     <div id="chart-container-stock" style="width: 600px;height:400px;"></div>
     <div id= "stock-movement">
@@ -71,7 +52,22 @@
     <div id="chart-container-ranking-ventas-clientes" style="width: 600px;height:400px;"></div>
 
     <div id="table-container-historial-ventas">
-      <table class="table">
+          <!--=====================================
+          VER SI LLEGO A AGFREGAR EL FILTRO DE FECHA PARA LOS GRAFICOS
+          ======================================-->
+          <!-- <div id="dashboard-filter-date">
+            <label for="dashboard-filter-date-start">
+              Desde:
+              <input type="date" id="dashboard-filter-date-start" name="dashboard-filter-date-start" class="selectEstilizado">
+            </label>
+            <label for="dashboard-filter-date-end">
+              Hasta:
+              <input type="date" id="dashboard-filter-date-end" name="dashboard-filter-date-end" class="selectEstilizado">
+            </label>
+          </div> -->
+
+
+      <table class="table table-striped table-bordered">
             <thead class="">
               <tr class="">
                 <th scope="col"> Factura </th>
@@ -83,7 +79,7 @@
                 <th scope="col"> Subtotal </th>
               </tr>
             </thead>
-            <tbody id="tbody-historial-ventas">  
+            <tbody class=".table-group-divider"  id="tbody-historial-ventas">  
               <!-- tabla desde  -->
             </tbody>
           </table>

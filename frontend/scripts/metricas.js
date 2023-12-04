@@ -6,14 +6,14 @@ select.addEventListener('change', (event) => {
     showSection(event.target.value);
 }
 )
-
+// Funcion para dar formato a las fechas
 function formatearFecha(fechaString) {
     // Crear un objeto Date a partir de la cadena de fecha
     let fecha = new Date(fechaString);
 
     // Obtener los componentes de la fecha
     let dia = fecha.getDate();
-    let mes = fecha.getMonth() + 1; // Los meses en JavaScript son indexados desde 0
+    let mes = fecha.getMonth() + 1;
     let anio = fecha.getFullYear();
 
     // Formatear los componentes para que tengan dos dígitos si es necesario
@@ -25,7 +25,7 @@ function formatearFecha(fechaString) {
 
     return fechaFormateada;
 }
-
+// Funcion para mostrar la seccion del dashboard elegido
 async function showSection(section) {
     console.log("showSection");
     let stockContainer = document.getElementById('chart-container-stock');
@@ -42,6 +42,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'none';
             await cargarDatosStock();
             break;
         case 'Informe de movimiento del Stock':
@@ -50,6 +51,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'none';
             await traerProductos();
             break;
         case 'Ranking de ventas por Producto':
@@ -58,6 +60,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'block';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'none';
             await cargarDatosRankingVentasProducto();
             break;
         case 'Ranking de ventas por Servicio':
@@ -66,6 +69,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'block';
             rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'none';
             await cargarDatosRankingVentasServicio();
             break;
         case 'Ranking de ventas por cliente':
@@ -74,6 +78,7 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'block';
+            historialVentasContainer.style.display = 'none';
             await cargarDatosRankingVentasCliente();
             break;
         case 'Historial de ventas':
@@ -91,23 +96,28 @@ async function showSection(section) {
             rankingVentasProductosContainer.style.display = 'none';
             rankingVentasServiciosContainer.style.display = 'none';
             rankingVentasClientesContainer.style.display = 'none';
+            historialVentasContainer.style.display = 'none';
     }
 
 }
  
 // Función para graficar el stock de productos
 graficarMetricasStock = (data) => {
-        // Initialize the echarts instance based on the prepared dom
-        var myChart = echarts.init(document.getElementById('chart-container-stock'));
-
-        // Specify the configuration items and data for the chart
+        
+    var myChart = echarts.init(document.getElementById('chart-container-stock'));
+    
         var option = {
               title: {
-                  text: 'Stock de productos'
+                text: 'Stock de productos',
+                left: 'center',
+                textStyle: {
+                    fontSize: 24
+                }
               },
               tooltip: {},
               legend: {
-                  data: ['stock']
+                  data: ['stock'],
+                  top: '10%'
               },
               xAxis: {
                   data: data.productos
@@ -120,10 +130,13 @@ graficarMetricasStock = (data) => {
                   data: data.stock,
                   itemStyle: {color: '#175350'}
               }
-              ]
+            ],
+              grid: {
+                top: '20%',
+                bottom: '10%' 
+            }
           };
 
-        // Display the chart using the configuration items and data just specified.
         myChart.setOption(option);
 }
 // Función para cargar los datos de stock
@@ -153,9 +166,7 @@ cargarDatosStock = () => {
 
 }
 
-// cargarDatosStock();
-
-// traer productos para el select
+// Funcion para traer productos del el select
 traerProductos = () => { 
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
@@ -185,13 +196,12 @@ traerProductos = () => {
     })
 }
 
+// Funcion para cambiar el producto del select
 cambiarProducto = () => { 
     let select = document.getElementById('select-productos');
     let id = select.value;
     console.log(id);
     cargarDatosMovimientoStock(id);
-
-
 }
 
 //Funcion para graficar el movimiento de stock
@@ -210,11 +220,17 @@ graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
     // Specify the configuration items and data for the chart
     var option = {
             title: {
-                text: 'Movimiento de stock'
+                text: 'Movimiento de stock',
+                left: 'center',
+                //tamaño de la fuente
+                textStyle: {
+                    fontSize: 24
+                }
             },
             tooltip: {},
             legend: {
-                data: ['cantidades']
+                data: ['cantidades'],
+                top: '10%'
             },
             xAxis: {
                 data: fechas
@@ -227,7 +243,11 @@ graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
                 data: cantidades,
                 itemStyle: {color: '#175350'}
             }
-            ]
+            ],
+            grid: {
+                top: '20%', // Puedes ajustar el valor según tus necesidades
+                bottom: '10%' // Puedes ajustar el valor según tus necesidades
+            }
         };
 
     // Display the chart using the configuration items and data just specified.
@@ -235,6 +255,8 @@ graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
     
 
 }
+
+// Funcion para cargar los datos de movimiento de stock
 cargarDatosMovimientoStock = (id_producto) => { 
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
@@ -266,22 +288,24 @@ cargarDatosMovimientoStock = (id_producto) => {
     })
 }
 
-// cargarDatosMovimientoStock();
-
 
 //Funcion para graficar el ranking de ventas por producto
 graficarMetricasRankingVentas = (data) => {
-        // Initialize the echarts instance based on the prepared dom
+
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-productos'));
 
-        // Specify the configuration items and data for the chart
         var option = {
               title: {
-                  text: 'Ranking de ventas por producto'
+                text: 'Ranking de ventas por producto',
+                left: 'center',
+                textStyle: {
+                    fontSize: 24
+                }
               },
               tooltip: {},
               legend: {
-                  data: ['ventas']
+                  data: ['ventas'],
+                  top: '10%'
               },
               xAxis: {
                   data: data.productos
@@ -294,10 +318,12 @@ graficarMetricasRankingVentas = (data) => {
                   data: data.ventas,
                   itemStyle: {color: '#175350'}
               }
-              ]
+            ],
+                grid: {
+                    top: '20%',
+                    bottom: '10%'
+                }
           };
-
-        // Display the chart using the configuration items and data just specified.
         myChart.setOption(option);
 }
 
@@ -328,27 +354,27 @@ cargarDatosRankingVentasProducto = () => {
 
 }
 
-// cargarDatosRankingVentasProducto();
-
 //Funcion para graficar el ranking de ventas por servicio
 graficarMetricasRankingVentasServicio = (data) => {
-        // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-servicios'));
 
-        // Specify the configuration items and data for the chart
         var option = {
               title: {
-                  text: 'Ranking de ventas por servicio'
+                text: 'Ranking de ventas por servicio',
+                left: 'center',
+                textStyle: {
+                    fontSize: 24
+                }
               },
               tooltip: {},
               legend: {
-                  data: ['ventas']
+                  data: ['ventas'],
+                    top: '10%'
               },
               xAxis: {
                   data: data.servicios,
                   axisLabel: {
                             interval: 'auto',
-                            rotate: -45
                         }
               },
               yAxis: {},
@@ -359,16 +385,18 @@ graficarMetricasRankingVentasServicio = (data) => {
                   data: data.ventas,
                   itemStyle: {color: '#175350'}
               }
-              ]
+            ],
+                grid: {
+                    top: '20%', 
+                    bottom: '10%'
+                }
           };
-
-        // Display the chart using the configuration items and data just specified.
         myChart.setOption(option);
 }
 
 // Funcion para cargar los datos de ranking de ventas por servicio
 cargarDatosRankingVentasServicio = () => { 
-    // console.log("cargarDatosRankingVentasServicio");
+
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -394,22 +422,22 @@ cargarDatosRankingVentasServicio = () => {
 
 }
 
-// cargarDatosRankingVentasServicio();
-
-
 //Funcion para graficar el ranking de ventas por cliente
 graficarMetricasRankingVentasCliente = (data) => {
-        // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('chart-container-ranking-ventas-clientes'));
 
-        // Specify the configuration items and data for the chart
         var option = {
               title: {
-                  text: 'Ranking de ventas por cliente'
+                text: 'Ranking de ventas por cliente',
+                left: 'center',
+                textStyle: {
+                    fontSize: 24
+                }
               },
               tooltip: {},
               legend: {
-                  data: ['ventas']
+                  data: ['ventas'],
+                    top: '10%'
               },
               xAxis: {
                   data: data.clientes
@@ -422,10 +450,13 @@ graficarMetricasRankingVentasCliente = (data) => {
                   data: data.ventas,
                   itemStyle: {color: '#175350'}
               }
-              ]
+            ],
+                grid: {
+                    top: '20%',
+                    bottom: '10%' 
+                }
           };
 
-        // Display the chart using the configuration items and data just specified.
         myChart.setOption(option);
 }
 
@@ -456,14 +487,8 @@ cargarDatosRankingVentasCliente = () => {
 
 }
 
-// cargarDatosRankingVentasCliente();
-
 
 //Funcion para mostrar la table del historial de ventas
-
-
-
-
 function renderTable(historialVentas) {
     console.log("renderTable");
     let tbody = document.getElementById('tbody-historial-ventas');
