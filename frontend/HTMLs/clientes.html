@@ -23,7 +23,6 @@
     </div>
       <!-- Contenido de la pagina -->
       <div class="content">
-
         <section id="windows">
           <input type="button" id="nw-client" onclick="showSection('uploadClient')" class="button" value="Cargar cliente">
           <input type="button" id="srch-client" onclick="showSection('searchClient')" class="button" value="Buscar clientes">
@@ -32,48 +31,48 @@
         <!-- cargar clientes -->
         <section id="sec-load-cli">
           <form id="form-nw-cli" class="form-new-client">
+            <div class="box-inputs">  
+                  <label for="nw-cli-name" class="labels-inputs">
+                    Nombre
+                    <input type="text" id="nw-cli-name" name="nombre-nuevo-cliente" class="input-billify">
+                  </label>
+        
+                  <label for="nw-cli-lastname" class="labels-inputs">
+                    Apellido
+                    <input type="text" id="nw-cli-lastname" name="apellido-nuevo-cliente" class="input-billify">
+                  </label>
+        
+                  <label for="nw-cli-CUIT" class="labels-inputs">
+                    CUIL/CUIT
+                    <input type="number" id="nw-cli-CUIT" name="CUIT-nuevo-cliente" class="input-billify">
+                  </label>
+  
+                  <label for="nw-cli-email" class="labels-inputs">
+                    Email
+                    <input type="email" id="nw-cli-email" name="Email-nuevo-cliente" class="input-billify">
+                  </label>
+  
+                  <label for="nw-cli-address" class="labels-inputs">
+                    Dirección
+                    <input type="text" id="nw-cli-address" name="direccion-nuevo-cliente" class="input-billify">
+                  </label>
+  
+                  <label for="nw-cli-phone" class="labels-inputs">
+                    Teléfono
+                    <input type="number" id="nw-cli-phone" name="telefono-nuevo-cliente" class="input-billify">
+                  </label>
+                </form>
+            </div>
+                <input type="button" class="button" id="btn-add-nw-cli" value="Agregar nuevo cliente" style="float: inline-end;">
 
-            <label for="nw-cli-name" class="label-body">
-              Nombre
-              <input type="text" id="nw-cli-name" name="nombre-nuevo-cliente" class="input-billify">
-            </label>
-  
-            <label for="nw-cli-lastname" class="label-body">
-              Apellido
-              <input type="text" id="nw-cli-lastname" name="apellido-nuevo-cliente" class="input-billify">
-            </label>
-  
-            <label for="nw-cli-CUIT" class="label-body">
-              CUIL/CUIT
-              <input type="number" id="nw-cli-CUIT" name="CUIT-nuevo-cliente" class="input-billify">
-            </label>
-  
-            <label for="nw-cli-email" class="label-body">
-              Email
-              <input type="email" id="nw-cli-email" name="Email-nuevo-cliente" class="input-billify">
-            </label>
-  
-            <label for="nw-cli-address" class="label-body">
-              Dirección
-              <input type="text" id="nw-cli-address" name="direccion-nuevo-cliente" class="input-billify">
-            </label>
-  
-            <label for="nw-cli-phone" class="label-body">
-              Teléfono
-              <input type="number" id="nw-cli-phone" name="telefono-nuevo-cliente" class="input-billify">
-            </label>
-
-            <input type="button" class="button" id="btn-add-nw-cli" value="Agregar nuevo cliente">
-          </form>
         </section>
 
         <!-- buscar clientes -->
         <section id="sec-search-client">
-
           <div class="container-clientes">
-            <label for="cli-srch-selector" class="label-body"> 
+            <label for="cli-srch-selector" class="label-inputs"> 
               Buscar por:
-              <select id="cli-srch-selector" class="selectEstilizado">
+              <select id="cli-srch-selector" class="input-billify">
                 <option value="Nombre">Nombre</option>
                 <option value="Cuit/Cuil">Cuit/Cuil</option>
               </select>
@@ -81,18 +80,19 @@
 
             <input type="text" id="cli-srch-bar" placeholder="Nombre / Cuit - Cuil" class="input-billify">
   
-            <input type="button" id="btn-cli-srch" class="button" value="Buscar">
+            <input type="button" id="btn-cli-srch" class="button" value="Buscar" >
           </div>
 
-          <table id="" class="table">
+      <div class="table-container">
+          <table id="" class="table table-striped ">
             <thead class="">
-              <tr class="">
+              <tr class="table">
                 <th scope="col"> Nombre </th>
                 <th scope="col"> Apellido </th>
                 <th scope="col"> CUIL/CUIT </th>
-                <th scope="col"> Direccion </th>
-                <th scope="col"> Email </th>
-                <th scope="col"> Teléfono </th>
+                <th scope="col" class="columnNoneMobile"> Direccion </th>
+                <th scope="col" class="columnNoneMobile"> Email </th>
+                <th scope="col" class="columnNoneMobile"> Teléfono </th>
                 <th scope="col">  </th>
                 <th scope="col">  </th>
               </tr>
@@ -133,7 +133,7 @@
                         </form>
                   </div>
                   <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Cancelar">
                         <button type="button" id="submit-editar" class="btn btn-primary">Guardar cambios</button>
                   </div>
               </div>

@@ -1,241 +1,48 @@
 @import './variables.css';
 
-#windows {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.5rem;
-}
-
-#windows > .button {
-    min-width: 270px;
-}
-
-#btn-agregar-producto {
-    display: block;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    border-radius: 10px;
-}
-
-#lbl-bill-srch {
-    width: 33.3%;
-    margin: 10px auto;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
-#bill-srch-bar {
-    border: var(--borde);
-    border-radius: 10px;
-    box-sizing: border-box;
-    width: 33%;
-    height: 30px;
-    margin-top: 20px;
-}
-
-#btn-bill-srch {
-    box-sizing: border-box;
-    margin: 10px auto;
-}
-
-#btn-generate-bill {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 20px auto;
-    justify-content: center;
-    width: 50%;
-}
-
-#txt-prod-selected, #cuantity {
-    border: 1px solid black;
-    border-radius: 10px;
-    height: 30px;
-}
-
-#sec-billing-history{
-    margin-top: 90px;
-}
-
-#sec-generate-bill{
-    display: block;
-}
-
-#sec-billing-history, #sec-search-bill {
+#sec-search-bill{
     display: none;
 }
 
-.label-body {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: justify;
-    align-items: center;
-    box-sizing: border-box;
-    max-width: 100%;
-    width: 30%;
-    min-width: 250px;
-    margin: 100px auto;
-    font-size: 1.3rem;
-}
-
-.label-body > #text {
-    justify-content: center;
-}
-
-.container-bill {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 190px;
-}
-
-.container-bill> .label-body {
-    flex: 2;
-    flex-wrap: wrap;
-    margin: 20px 10px 10px 10px;
-}
-
-.label-body>input{
-    flex-grow: 1;
-    border: var(--borde);
-    box-shadow: var(--sombra);
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.input-generar-factura{
-    flex: 2;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    padding: 10px;
-    width: 33%;
-    box-sizing: border-box;
-
-}
-
-/* ARREGLAR EL TEXTO PORQUE CUANDO SE ACHICA LA PANTALLA SE VE HORRIBLE */
-
-.table-container {
-    max-width: 100%;
-    overflow-x: auto;
-}
-
-.table-body {
-    width: 100%;
-    flex-wrap: wrap;
-    table-layout: fixed;
-    margin: 15px auto;
-    border-collapse: collapse;
-    font-size: 1rem;
-}
-
-.table-row>td {
-    background-color: var(--verde-secundario);
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--blanco);
-}
-
-.body-row:nth-child(odd) {
-    color: var(--blanco);
-    background-color: var(--celeste-principal);
-}
-
-.table-header,
-.table-row>td,
-.body-row>td{
-    padding: 1rem;
-}
-
-.selectEstilizado {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    padding: 8px;
-    font-size: 14px;
-    width: 100%;
-    border-radius: 4px;
-    outline: none; /* Elimina el contorno predeterminado en algunos navegadores */
-    cursor: pointer;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.selectEstilizado:hover {
-border-color: #999;
-}
-
-.selectEstilizado:focus {
-border-color: #555;
-}
-
-.container-bill {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
-
-.container-bill-srch {
-    width: 100%;
-    margin-top: 90px;
+#windows{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    align-items: center;
 }
 
-.container-bill-srch > .label-body,
-.container-bill-srch > .input-billify{
-    flex: 1 0 10rem;
-
+.total-y-generar{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-block: 2rem;
 }
 
-.container-bill-srch > .button {
-    flex: 1 0;
+.filtros{
+    margin-top: 2rem;
+}
+#btn-agregar-producto{
+    width: 50%;
+    margin-bottom: 2rem;
 }
 
-@media (max-width: 650px) {
-    .body-row>td{
-    display: grid;
-    grid-template-columns: 15ch auto;
+@media screen and (max-width:600px){ 
+    .content-facturas{
+        margin: 0;
+        padding: 1rem;
+      
+    }
+    #windows{
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .table-header{
-        display: none;
+    #btn-agregar-producto{
+        justify-content: center;
     }
 
-    .body-row>td::before{
-        font-weight: 700;
-        text-transform: capitalize;
-    }
 
-    .body-row>td:nth-of-type(1)::before{
-        content: "fecha: ";
-    }
-
-    .body-row>td:nth-of-type(2)::before{
-        content: "cliente: ";
-    }
-
-    .body-row>td:nth-of-type(3)::before{
-        content: "producto: ";
-    }
-
-    .body-row>td:nth-of-type(4)::before{
-        content: "cantidad: ";
-    }
-
-    .body-row>td:nth-of-type(5)::before{
-        content: "total: ";
-    }
 }

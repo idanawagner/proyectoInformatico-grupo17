@@ -1,6 +1,30 @@
 
 const URL='http://127.0.0.1:5200';
     
+async function showSection(section){
+    let uploadClient_container = document.getElementById('sec-load-cli');
+    let searchClient_container = document.getElementById('sec-search-client');
+    
+    switch (section ) {
+        case 'uploadClient':
+            uploadClient_container.style.display = 'block';
+            searchClient_container.style.display = 'none';
+            break;
+        case 'searchClient':
+            uploadClient_container.style.display = 'none';
+            searchClient_container.style.display = 'block';
+            await searchAllClients(); 
+            buscado.push(...clientsList)
+            renderTable();
+            
+            break;
+        default:
+            uploadClient_container.style.display = 'block';
+    }
+
+}
+
+
 // CARGAR NUEVO CLIENTE
 // Se trae el boton submit por el id y se le agrega un event listener
 let buttonCreateClient = document.getElementById('btn-add-nw-cli');
@@ -102,28 +126,7 @@ function searchAllClients(){
 
 }
 
-async function showSection(section){
-    let uploadClient_container = document.getElementById('sec-load-cli');
-    let searchClient_container = document.getElementById('sec-search-client');
-    
-    switch (section ) {
-        case 'uploadClient':
-            uploadClient_container.style.display = 'block';
-            searchClient_container.style.display = 'none';
-            break;
-        case 'searchClient':
-            uploadClient_container.style.display = 'none';
-            searchClient_container.style.display = 'block';
-            await searchAllClients(); 
-            buscado.push(...clientsList)
-            renderTable();
-            
-            break;
-        default:
-            uploadClient_container.style.display = 'block';
-    }
 
-}
 
 
 
@@ -188,14 +191,14 @@ function renderTable(){
             <td class=""> ${element.nombre} </td>
             <td class=""> ${element.apellido} </td>
             <td class=""> ${element.cuit_cuil}</td>
-            <td class=""> ${element.direccion}</td>
-            <td class=""> ${element.email} </td>
-            <td class=""> ${element.telefono}</td>
+            <td class="columnNoneMobile"> ${element.direccion}</td>
+            <td class="columnNoneMobile"> ${element.email} </td>
+            <td class="columnNoneMobile"> ${element.telefono}</td>
             <td class=""> 
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
-                <i class="fa-solid fa-pencil"></i>
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
+                    <i class="fa-solid fa-pencil"></i>
                 </button>
-                </td>
+            </td>
             <td class=""> 
                 <button class="btn" onclick="cambiarEstado(${element.id})">
                     <i class="fa-solid fa-trash"></i>
@@ -210,37 +213,41 @@ function renderTable(){
 }
 
 // CAMBIAR ESTADO
+let cliente
 
 function editarCliente(id){
   
-    let cliente = clientsList.find(element =>  element.id === id )
-
+    
+    cliente = clientsList.find(element =>  element.id === id )
+    
     document.getElementById('editar-nombre').value = cliente.nombre;
     document.getElementById('editar-apellido').value = cliente.apellido;
     document.getElementById('editar-cuit').value = cliente.cuit_cuil;
     document.getElementById('editar-email').value = cliente.email;
     document.getElementById('editar-direccion').value = cliente.direccion;
     document.getElementById('editar-telefono').value = cliente.telefono;
-
-    let buttonEditClient = document.getElementById('submit-editar');
-    buttonEditClient.addEventListener('click', ()=>{
-        let inputNombre = document.getElementById('editar-nombre').value;
-        let inputApellido = document.getElementById('editar-apellido').value;
-        let inputCuit = parseInt(document.getElementById('editar-cuit').value);
-        let inputEmail = document.getElementById('editar-email').value;
-        let inputDireccion = document.getElementById('editar-direccion').value;
-        let inputTelefono = parseInt(document.getElementById('editar-telefono').value);
-        let estado = true;
-        cliente.nombre = inputNombre;
-        cliente.apellido = inputApellido;
-        cliente.cuit_cuil = inputCuit;
-        cliente.email = inputEmail;
-        cliente.direccion = inputDireccion;
-        cliente.telefono = inputTelefono;
-        cliente.estado = estado;
-        updateClient(cliente);
-    })
+return cliente;
 }
+
+let buttonEditClient = document.getElementById('submit-editar');
+buttonEditClient.addEventListener('click', ()=>{
+    let inputNombre = document.getElementById('editar-nombre').value;
+    let inputApellido = document.getElementById('editar-apellido').value;
+    let inputCuit = parseInt(document.getElementById('editar-cuit').value);
+    let inputEmail = document.getElementById('editar-email').value;
+    let inputDireccion = document.getElementById('editar-direccion').value;
+    let inputTelefono = parseInt(document.getElementById('editar-telefono').value);
+    let estado = true;
+    cliente.nombre = inputNombre;
+    cliente.apellido = inputApellido;
+    cliente.cuit_cuil = inputCuit;
+    cliente.email = inputEmail;
+    cliente.direccion = inputDireccion;
+    cliente.telefono = inputTelefono;
+    cliente.estado = estado;
+    updateClient(cliente);
+    cliente = {};
+})
 
 function updateClient(cliente){
     // Se traen el token y el id del usuario logueado desde el localStorage
@@ -267,7 +274,7 @@ function updateClient(cliente){
     // Se hace el fetch con la url y el requestOptions
     fetch(URL + `/user/${id}/cliente/${cliente.id}`, requestOptions)
     .then(response => response.json())
-    .then(data => {
+    .then(async data => {
         Swal.fire({
             title: data.message,
             icon: 'success',
@@ -283,12 +290,29 @@ function updateClient(cliente){
             modal.setAttribute('aria-hidden', 'true');
             modalBackdrop.remove();
         }
+        await searchAllClients(); 
+        buscado.push(...clientsList)
+        renderTable();
     })
 }
 
 // CAMBIAR ESTADO A INACTIVO
 
 function cambiarEstado(id){
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar el producto o servicio?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            deleteCliente(id);
+        }
+    })
+}
+
+function deleteCliente(id){
     let clienteAeliminar = clientsList.find(element =>  element.id === id )
     clienteAeliminar.estado = false;
     // Se traen el token y el id del usuario logueado desde el localStorage

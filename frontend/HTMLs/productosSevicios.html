@@ -26,7 +26,7 @@
       <div class="content">
 
         <section id="windows">
-          <input type="button" id="srch-prod-serv" onclick="showSection('search')" class="button" value="Buscar productos/Servicios">
+          <input type="button" id="sch-prod-serv" onclick="showSection('search')" class="button" value="Buscar productos/Servicios">
           <input type="button" id="nw-prod-serv" onclick="showSection('upload')" class="button button-upload" value="+">
         </section>
 
@@ -34,88 +34,175 @@
 
         <!-- Search productos / servicios -->
         <section id="section-search">
-          
-          <div class="container-search-productos">
-            <label for="search-select-prod" class="label-body">
+          <div class="box-inputs-productos">
+            <div class="box-search">
+            <label for="search-select-prod" class="label-inputs">
               Buscar por:
-              <select id="search-select-prod" class="selectEstilizado">
+              <select id="search-select-prod" class="input-billify">
                 <option value="Nombre">Nombre</option>
                 <option value="Stock">Stock</option>
               </select>
             </label>
-            <input type="text" id="input-prod-search" class="input-billify">
-            <button id="btn-prod-search" class="button button-search" >
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+              <input type="text" id="input-prod-search" class="input-billify" placeholder="Buscar...">
+              <button id="btn-prod-search" class="button button-search" >
+                <i class="fas fa-search"></i>
+              </button>
 
-          <div class="container-prod-serv" id="filtros">
-            <div class="btn-group" role="group" aria-label="radio toggle button group">
-                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" >
-                <label class="btn btn-outline-primary" for="vbtn-radio1">Todos</label>
-                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="vbtn-radio2">Productos</label>
-                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="vbtn-radio3">Servicios</label>
-                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
-                <label class="btn btn-outline-primary" for="vbtn-radio4">Borrar Filtro</label>
+
             </div>
-              <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            
+            <div class="container-prod-serv" id="filtros">
+              <div class="btn-group" role="group" aria-label="radio toggle button group">
+                  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" >
+                  <label class="btn btn-outline-primary" for="vbtn-radio1">Todos</label>
+                  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="vbtn-radio2">Productos</label>
+                  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="vbtn-radio3">Servicios</label>
+                  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="vbtn-radio4">Borrar Filtro</label>
+              </div>            
+            </div>
           </div>
 
-          <table class="table">
-            <thead class="">
-              <tr class="">
-                <th scope="col"> Categoria </th>
-                <th scope="col"> Nombre </th>
-                <th scope="col"> Stock </th>
-                <th scope="col"> Precio </th>
-                <th scope="col"> Descripcion </th>
-              </tr>
-            </thead>
-            <tbody id="tbody-productos-servicios">  
-              <!-- tabla desde  -->
-            </tbody>
-          </table>
+          <div class="table-container">
+
+              <table class="table table-striped ">
+                <thead class="">
+                  <tr class="table">
+                    <th scope="col"> Categoria </th>
+                    <th scope="col"> Nombre </th>
+                    <th scope="col" class="columnNoneMobile"> Stock </th>
+                    <th scope="col"> Precio </th>
+                    <th scope="col" class="columnNoneMobile"> Descripcion </th>
+                    <th scope="col" class="">  </th>
+                    <th scope="col" class="">  </th>
+                    <th scope="col" class="columnNoneDesktop">  </th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-productos-servicios">  
+                  <!-- tabla desde  -->
+                </tbody>
+              </table>
+          </div>
+
+          <!-- Modal EDITAR -->
+          <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Producto/servicio</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                          <form id="form-editar">
+                            <select id="select-categoria-edit" class="selectEstilizado">
+                              <option value="Producto"> Producto </option>
+                              <option value="Servicio"> Servicio </option>
+                            </select>
+                              <label for="input-nombre-edit">
+                                <input type="text" id="input-nombre-edit" name="editar-nombre" class="input" placeholder="Nombre">
+                              </label>
+                              <label for="input-stock-edit">
+                                <input type="number" id="input-stock-edit" name="editar-stock" class="input" placeholder="Stock" >
+                              </label>
+                              <label for="input-precio-edit">
+                                <input type="number" id="input-precio-edit" name="editar-precio" class="input" placeholder="Precio">
+                              </label>
+                              <label for="input-descripcion-edit">
+                                <input type="text" id="input-descripcion-edit" name="editar-descripcion" class="input" placeholder="Descripcion">
+                              </label>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="button" id="submit-edit-stock" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- Modal VER MAS DETALLES -->
+          <div class="modal fade" id="verMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle del Producto o Servicio</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <form id="form-verMas">
+                          <p>
+                            Categoria:
+                            <span id="verMas-categoria"></span>
+                          </p>
+                          <p>
+                            Nombre:
+                            <span id="verMas-nombre"></span>
+                          </p>
+                          <p>
+                            Stock:
+                            <span id="verMas-stock"></span>
+                          </p>
+                          <p>
+                            Precio:
+                            <span id="verMas-precio"></span>
+                          </p>
+                          <p>
+                            Descripcion:
+                            <span id="verMas-descripcion"></span>
+                          </p>
+                          
+                        </form>
+                
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+              </div>
+            </div>
+        </div>
+
         </section>
 
         <!-- Agregar nuevo producto o servicio -->
 
         <section id="section-upload">
-          <div id="prod-serv-form-container">
+          <div id="prod-serv-form-container" >
             <form id="prod-serv-form">
+              <div class="box-inputs">
 
-              <label for="select-categoria" class="label-body"> 
+             
+              <label for="select-categoria" class="label-inputs"> 
                 Categoria 
-                <select id="select-categoria" class="selectEstilizado">
+                <select id="select-categoria" class="input-billify">
                   <option value="Producto"> Producto </option>
                   <option value="Servicio"> Servicio </option>
                 </select>
               </label>
 
-              <label for="input-cantidad" class="label-body"> 
-                Cantidad
-                <input type="number" id="input-cantidad" class="input-billify">
-              </label>
-
-              <label for="input-nombre" class="label-body">
+              
+              <label for="input-nombre" class="label-inputs">
                 Nombre
                 <input type="text" id="input-nombre"  class="input-billify">
               </label>
-
-              <label for="input-precio" class="label-body"> 
+              <label for="input-cantidad" class="label-inputs"> 
+                Cantidad
+                <input type="number" id="input-cantidad" class="input-billify">
+              </label>
+           
+              <label for="input-precio" class="label-inputs"> 
                 Precio Unitario
                 <input type="number" id="input-precio" class="input-billify">
               </label>
-              <label for="input-descripcion" class="label-body">
+              <label for="input-descripcion" class="label-inputs">
                 Descripción
                 <input type="text" id="input-descripcion"  class="input-billify">
               </label>
 
-              <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock">
-            </form>
-          </div>
+            </div>
+          </form>
+        </div>
+        <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock" style="float: inline-end;">
         </section>
       </div>
     </div>

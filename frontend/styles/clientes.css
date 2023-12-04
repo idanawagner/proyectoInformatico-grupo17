@@ -1,97 +1,24 @@
 @import './variables.css';
 
 
-#windows {
+#windows{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#windows > .button {
-    min-width: 270px;
-}
-
-#sec-load-cli {
-    margin-top: 100px;
-    display: block;
-}
 #sec-search-client {
     display: none;
 }
 
-#btn-add-nw-cli {
-    margin: 20px auto;
-}
+@media screen and (max-width:600px){ 
+    #windows{
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 
-#btn-cli-srch {
-    display: block;
-    max-width: 2800px;
-    font-size: 1.2rem;
-    border-radius: 10px;
-}
-
-#btn-cli-srch {
-    box-sizing: border-box;
-    margin-right: 100px;
-    margin-top: 10px;
-}
-
-#cli-srch-bar {
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 400px;
-    height: 30px;
-    margin-top: 10px;
-}
-
-.label-body {
-    width: 40%;
-    min-width: 250px;
-    margin: 50px 35px 50px 35px;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
-.form-new-client {
-    background-color: var(--blanco);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    border-radius: 10px;
-}
-
-.selectEstilizado {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    padding: 8px;
-    font-size: 14px;
-    width: 100%;
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-    display: inline-block;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
     
-.selectEstilizado:hover {
-border-color: #999;
-}
-
-.selectEstilizado:focus {
-border-color: #555;
-}
-
-.container-clientes {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 }
 

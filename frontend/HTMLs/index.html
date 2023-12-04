@@ -34,10 +34,10 @@
         servicios, realizar facturas y control de stock.
       </p>
       <div class="container_buttons">
-        <button type="button" class="button" onclick="mostrarFormulario('registro')">
+        <button type="button" class="button button-login" onclick="mostrarFormulario('registro')">
           Registrarse
         </button>
-        <button type="button" class="button" onclick="mostrarFormulario('login')">
+        <button type="button" class="button button-login" onclick="mostrarFormulario('login')">
           Iniciar Sesión
         </button>
       </div>
@@ -48,11 +48,11 @@
   
             <!-- Usuario -->
             <label for="username-login">Usuario:</label>
-            <input type="text" id="username-login" name="username-login"  class="input input-login" />
+            <input type="text" id="username-login" name="username-login"  class="input-billify input-login" />
 
             <!-- Contraseña -->
             <label for="password-login">Contraseña:</label>
-            <input type="password-login" id="password-login" name="password-login" class="input input-login" />
+            <input type="password-login" id="password-login" name="password-login" class="input-billify input-login" />
             <span id="errorLogin"></span>
             <input type="button" id="btn-login" class="button" value="Iniciar Sesion">
           </form>
@@ -62,15 +62,15 @@
           <form action="" method="post" class="register-form">
             <!-- Razon Social -->
             <label for="razon-social">Razon Social:</label>
-            <input type="text" id="razon-social" name="razon-social" class="input input-login" />
+            <input type="text" id="razon-social" name="razon-social" class="input-billify input-login" />
 
             <!-- CUIT -->
             <label for="cuit">Cuit:</label>
-            <input type="text" id="cuit" name="cuit" class="input input-login" />
+            <input type="text" id="cuit" name="cuit" class="input-billify input-login" />
 
             <!-- Usuario -->
             <label for="username-register">Nombre de usuario</label>
-            <input type="username-register" id="username-register" name="username-register" class="input input-login" />
+            <input type="username-register" id="username-register" name="username-register" class="input-billify input-login" />
 
             <!-- Contraseña -->
             <label for="password-register">Contraseña:</label>
@@ -78,7 +78,7 @@
               type="password"
               id="password-register"
               name="password-register"
-              class="input input-login"
+              class="input-billify input-login"
             />
             <!-- Confirmar contraseña -->
             <label for="confirm-password">Confirmar Contraseña:</label>
@@ -86,15 +86,15 @@
               type="password"
               id="confirm-password"
               name="confirm-password"
-              class="input input-login"
+              class="input-billify input-login"
             />
             <!-- Datos de la tarjeta -->
             <input type="button" onclick="mostrarPago()" value="Ingresar pago" class="button">
             <div class="pago_container">
               <label for="tarjeta">Numero de tarjeta</label>
-              <input type="text" name="tarjeta"  value="tarjeta" class="input input-pay">
+              <input type="text" name="tarjeta"  value="tarjeta" class="input-billify input-pay">
               <label for="codigoSeguridad">Codigo de seguridad</label>
-              <input type="text" name="codigoSeguridad"value="codigoSeguridad" class="input input-pay">
+              <input type="text" name="codigoSeguridad"value="codigoSeguridad" class="input-billify input-pay">
             </div>
             <!-- Boton sumbit -->
             <span id="errorRegister"></span>

@@ -27,139 +27,156 @@
         <section id="windows">
           <input type="button" id="newBill" onclick="showSection('newBill')"  class="button" value="Generar nueva factura">
           <input type="button" id="searchBills" onclick="showSection('searchBill')"  class="button" value="Buscar facturas">
-          <input type="button" id="billsList" onclick="showSection('billsList')"  class="button" value="Historial de Facturacion">
         </section>
 
         <!-- generar nueva factura -->
         <section id="sec-generate-bill">
           <form id="form-gen-bill">
-
-            <label for="current-day" class="label-body">
-              Introduzca la fecha actual
-              <input type="date" id="current-day" class="input-billify">
-            </label>
-
-            <input type="button" id="btn-agregar-producto" class="button" value="Agregar un nuevo producto">
-
-            <div class="container-bill">
-              <label for="bill-select" class="label-body"> 
-                Seleccione su producto
-                <select id="bill-select" class="selectEstilizado">
-                  <option value="opcion1">Opción 1</option>
-                  <option value="opcion2">Opción 2</option>
-                  <option value="opcion3">Opción 3</option>
-                </select>
-              </label>
-
-              <label for="txt-prod-selected" class="label-body">
-                Producto seleccionado
-                <input type="text" id="txt-prod-selected" class="input-billify">
-              </label>
-
-              <label for="cuantity" class="label-body">
-                Cantidad
-                <input type="number" id="cuantity" class="input-billify">
-              </label>
+            <div class="btn-group filtros" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="cargarProductos('Producto')">
+                <label class="btn btn-outline-primary" for="btnradio1">Producto</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="cargarProductos('Servicio')">
+                <label class="btn btn-outline-primary" for="btnradio2">Servicio</label>
             </div>
-            <input type="button" id="btn-generate-bill" class="button" value="Generar">
-          </form>
-        </section>
+            <div class="box-inputs">             
+                <label for="bill-date" class="labels-inputs">
+                  Fecha: 
+                  <input type="date" id="bill-date" class="input-billify " required>
+                </label>
+                <label for="txt-prod-selected" class="select-clientes labels-inputs">
+                  Seleccione Cliente:
+                      <select id="select-clientes" class="  input-billify" required>
+                        <!-- lista de productos o servicios dinámicamente desde JavaScript -->
+                      </select>
+                </label>
 
-        <!-- Historial de Facturacion -->
-        <section id="sec-billing-history">
-
+                  <label for="bill-select" class="labels-inputs "> 
+                      Seleccione producto/servicio:
+                        <select id="new-product-select" class="  input-billify" >
+                          <!-- lista de productos o servicios dinámicamente desde JavaScript -->
+                        </select>
+                  </label>
+                  <label for="new-detalle-precio" class="labels-inputs">
+                    Precio unitario:
+                    <input id="new-detalle-precio" class="input-billify" disabled>
+              
+                  </label>
+            
+                  <label for="new-detalle-cantidad" class="labels-inputs">
+                    Cantidad
+                    <input type="number" id="new-detalle-cantidad" class="input-billify" required>
+                  </label>
+                  <label for="new-detalle-subtotal" class="labels-inputs">
+                    Precio final:
+                    <input type="number" id="new-detalle-subtotal" class="input-billify" disabled>
+                  </label>
+              
+                  <input type="button" id="btn-agregar-producto" onclick="agregarDetalle()" class="button" value="Agregar detalle">
+              </div>
+          <div class="tabla-detalle-container">
+              Detalle de la factura:
           <div class="table-container">
-            <table id="historic-billing-table" class="table-body">
-              <thead class="table-header">
-                <tr class="table-row">
-                  <td> Fecha </td>
-                  <td> Cliente </td>
-                  <td> Productos/Servicios </td>
-                  <td> Cantidad </td>
-                  <td> Total </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="body-row">
-                  <td>900900</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> una banda</td>
-                  <td> un monton de guita</td>
-                </tr>
-                <tr class="body-row">
-                  <td>900900</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> una banda</td>
-                  <td> un monton de guita</td>
-                </tr>
-                <tr class="body-row">
-                  <td>900900</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> una banda</td>
-                  <td> un monton de guita</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                <table id="detalle-table" class=" table table-striped ">
+                      <thead>
+                        <tr class="table ">
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                      </thead>
+                      <tbody id="detalle-body">
+                      </tbody>
+                  </table>
+            </div>
+            <div class="total-y-generar">
+                <label class="labels-inputs" >
+                  Total:
+                  <input for="total" id="total" class="input-billify" disabled>
+                </label>
+                <input type="button" id="btn-generate-bill" class="button" value="Generar" onclick="enviarFactura()">
+            </div>
+          </form>
         </section>
 
         <!-- Buscar facturas -->
         <section id="sec-search-bill">
           <div class="container-bill-srch">
-            <label for="bill-search-selector" id="lbl-bill-srch" class="label-body"> 
-              Selecciona un filtro:
-              <select id="bill-search-selector" class="selectEstilizado">
+            <label for="bill-search-selector" id="lbl-bill-srch" class="label-inputs"> 
+              Buscar por:
+              <select id="bill-search-selector" class="input-billify">
+
                 <option value="numero-factura">Número de Factura</option>
-                <option value="cliente">Cliente</option>
-                <option value="fecha">Fecha</option>
+                <option value="cuit-cuil">Cuit-Cuil</option>
               </select>
             </label>
-
-            <input type="text" id="bill-srch-bar" value="Buscar..." class="input-billify">
+            <input type="text" id="bill-search-input" placeholder="Buscar..." class="input-billify">
   
-            <input type="button" id="btn-bill-srch"  value="Buscar" class="button">
+            <input type="button" id="btn-submit-search"  value="Buscar" class="button">
+
           </div>
 
 
           <div class="table-container">
-            <table id="bill-searching-table" class="table-body">
-              <thead class="table-header">
-                <tr class="table-row">
-                  <td> Fecha </td>
-                  <td> Cliente </td>
-                  <td> Productos/Servicios </td>
-                  <td> Cantidad </td>
-                  <td> Total </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="body-row">
-                  <td> 20/11/20</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> 923</td>
-                  <td> $400</td>
-                </tr>
-                <tr class="body-row">
-                  <td>900900</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> una banda</td>
-                  <td> un monton de guita</td>
-                </tr>
-                <tr class="body-row">
-                  <td>900900</td>
-                  <td>Pepe Duckerman</td>
-                  <td> mercatril300</td>
-                  <td> una banda</td>
-                  <td> un monton de guita</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              <table id="bill-searching-table" class="table table-striped ">
+                <thead class="">
+                    <tr class="table">
+                      <th scope="col"> N° Factura </th>
+                      <th scope="col"> Fecha </th>
+                      <th scope="col"> Cliente </th>
+                      <th scope="col" class="columnNoneMobile"> CUIT/CUIL </th>
+                      <th scope="col" class="columnNoneMobile"> Productos/Servicios </th>
+                      <th scope="col" class="columnNoneMobile"> Total </th>
+                      <th scope="col" class="columnNoneDesktop">  </th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-buscar-facturas">
+               <!-- se agrega el contenido de la tabla desde javascript -->
+                </tbody>
+              </table>
+            </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                          <p>
+                            Factura N°
+                            <span id="bill-number-detail"></span>
+                          </p>
+                          <p>
+                            Fecha:
+                            <span id="bill-date-detail"></span>
+                          </p>
+                          <p>
+                            Cliente:
+                          <span id="bill-client-detail"></span>
+                          </p>
+                          <p>
+                            Cuit-Cuil:
+                          <span id="bill-cuit-detail"></span>
+                          </p>
+                          <p>
+                            Productos/Servicios:
+                          </p>
+                          <span id="bill-products-detail"></span>
+                          <p>
+                            Total:
+                          <span id="bill-total-detail"></span>
+                          </p>
+                    </div>
+                    <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+              </div>
+            </div>
         </section>
 
       </div>
@@ -172,11 +189,12 @@
         Cabrera Idana.";
       </span>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
     <script defer src="../scripts/navbar.js"></script>
     <script defer src="../scripts/facturas.js"></script>
-
   </body>
 </html>
