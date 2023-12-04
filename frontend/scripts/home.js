@@ -54,7 +54,6 @@ function updatePassword(new_password, confirm_password, current_password) {
     fetch(URL + `/user/${id}/updatePassword`, requestOptions)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         if (data.message == 'Contraseña actualizada correctamente'){
             Swal.fire({
                 title: data.message,

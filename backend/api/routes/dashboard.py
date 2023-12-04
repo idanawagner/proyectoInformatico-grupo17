@@ -72,10 +72,6 @@ def get_movimiento_stock(id_user, id_producto):
     # Llamar a la función con tu variable 'data'
     datos_reorganizados = reorganizar_datos(data)
 
-    print('Datos reorganizados:')
-    # Imprimir o devolver el resultado
-    print(datos_reorganizados)
-    print('')
 
     
     return jsonify({"data": datos_reorganizados})
@@ -241,9 +237,5 @@ def get_ranking_ventas(id_user):
                         factura.id_usuario = {0};""".format(id_user))
     data = cur.fetchall()
 
-        
-
-
-    print(data)
     return (jsonify({'data': data}))
 

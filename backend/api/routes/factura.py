@@ -112,9 +112,7 @@ def create_factura(id_user):
 @user_resource
 @factura_resource
 def update_factura(id_user, id_factura):
-    print(request.get_json())
     fecha = request.get_json()['fecha']
-    print(type(fecha))
     id_cliente = request.get_json()['id_cliente']
     id_usuario = id_user
     total = request.get_json()['total']

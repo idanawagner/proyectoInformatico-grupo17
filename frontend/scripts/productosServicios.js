@@ -242,7 +242,6 @@ function uploadStock(productoServicio){
 let producto = {};
 function editarProducto(id){
     producto = stockList.find(element => element.id === id);
-    console.log(producto.stock);
     document.getElementById('select-categoria-edit').value = producto.categoria;
     document.getElementById('input-stock-edit').value = producto.stock;
     document.getElementById('input-nombre-edit').value = producto.nombre;

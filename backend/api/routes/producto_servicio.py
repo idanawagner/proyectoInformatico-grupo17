@@ -53,7 +53,6 @@ def create_producto_servicio(id_user):
     """obtener el id del registro creado (con MariaDB)"""
     cur.execute('SELECT LAST_INSERT_ID()') 
     row = cur.fetchone() 
-    print(row) 
 
     """obtener el registro creado (con MariaDB)"""
     cur.execute('SELECT * FROM producto_servicio WHERE id = {0}'.format(row[0]))
@@ -89,7 +88,6 @@ def update_producto_servicio(id_producto_servicio, id_user):
     """obtener el registro creado (con MariaDB)"""
     cur.execute('SELECT * FROM producto_servicio WHERE id = {0}'.format(id))
     data = cur.fetchone()
-    print(data)
     if data:
         objProduct = ProductoServicio(data)
         return jsonify(objProduct.to_json())
@@ -120,7 +118,6 @@ def delete_producto_servicio(id_user, id_producto_servicio):
         else:
             return jsonify({'message': 'producto o servicio no encontrado'})
     except Exception as e:
-        print(e)
         return jsonify({'message': 'Error en la actualizacion del producto o servicio'})
 
 
