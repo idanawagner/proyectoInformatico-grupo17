@@ -27,7 +27,6 @@ function formatearFecha(fechaString) {
 }
 // Funcion para mostrar la seccion del dashboard elegido
 async function showSection(section) {
-    console.log("showSection");
     let stockContainer = document.getElementById('chart-container-stock');
     let movimientoStockContainer = document.getElementById('stock-movement');
     let rankingVentasProductosContainer = document.getElementById('chart-container-ranking-ventas-productos');
@@ -191,7 +190,6 @@ traerProductos = () => {
     return fetch(URL + `/user/${id}/productos_servicios`, requestOptions)
     .then(response => response.json())
     .then(data => {
-    console.log(data);
     let select = document.getElementById('select-productos');
         data.forEach(element => {
             if (element.categoria == 'Producto'){
@@ -205,16 +203,12 @@ traerProductos = () => {
 cambiarProducto = () => { 
     let select = document.getElementById('select-productos');
     let id = select.value;
-    console.log(id);
     cargarDatosMovimientoStock(id);
 }
 
 //Funcion para graficar el movimiento de stock
 graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
-    console.log("graficarMetricasMovimientoStock");
-    console.log(producto);
-    console.log(fechas);
-    console.log(cantidades);
+
     let chartContainer = document.getElementById('chart-container-stock-movement');
     chartContainer.style.display = 'block';
 
@@ -268,8 +262,6 @@ cargarDatosMovimientoStock = (id_producto) => {
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
-    console.log(id);
-    console.log(id_producto);
 
     // Se crea el objeto requestOptions con los datos necesarios para el fetch
     const requestOptions = {
@@ -280,12 +272,10 @@ cargarDatosMovimientoStock = (id_producto) => {
             }
 
     }
-    console.log(requestOptions);
     // Se hace el fetch con la url y el requestOptions
     return fetch(URL + `/user/${id}/movimiento_stock/${id_producto}`, requestOptions)
     .then(response => response.json())
         .then(data => {
-            console.log(data);
             let producto = data.data[0].producto;
             let fechas = data.data[0].fechas;
             let cantidades = data.data[0].cantidades;
@@ -506,7 +496,6 @@ cargarDatosRankingVentasCliente = () => {
 
 //Funcion para mostrar la table del historial de ventas
 function renderTable(historialVentas) {
-    console.log("renderTable");
     let tbody = document.getElementById('tbody-historial-ventas');
     tbody.innerHTML = '';
     historialVentas.forEach((element) => {
@@ -527,7 +516,6 @@ function renderTable(historialVentas) {
 
 // Funcion para cargar los datos del historial de ventas
 cargarDatosHistorialVentas = () => { 
-    console.log("cargarDatosHistorialVentas");
     // Se traen el token y el id del usuario logueado desde el localStorage
     let token = localStorage.getItem('token');
     let id = localStorage.getItem('id');
@@ -546,14 +534,10 @@ cargarDatosHistorialVentas = () => {
     return fetch(URL + `/user/${id}/historial_ventas`, requestOptions)
     .then(response => response.json())
         .then(data => {
-        console.log("cargarDatosHistorialVentasThen")
-        console.log(data);
         let historialVentas = [];
         data.data.forEach(element => {
             historialVentas.push([element[0], formatearFecha(element[1]), element[2], element[3], element[4], element[5], element[6]]);
         })
-        console.log("historialVentas");
-        console.log(historialVentas);
         renderTable(historialVentas);
                  
     })

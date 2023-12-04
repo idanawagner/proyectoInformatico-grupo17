@@ -196,6 +196,22 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/historial_clientes
+                                <ul>
+                                    <li>Funcionalidad: Traer un todos los clientes activos e inactivos</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li>POST
@@ -278,7 +294,7 @@
                 <ul>
                     <li>GET
                         <ul>
-                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/producto_servicio
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/productos_servicios
                                 <ul>
                                     <li>Funcionalidad: Traer todos los productos y servicios</li>
                                     <li>Parametros: 
@@ -301,6 +317,22 @@
                                         <ul>
                                             <li>id_user: identificador del usuario</li>
                                             <li>id: identificador del producto o servicio</li>
+                                        </ul>    
+                                    </li>
+                                    <li>Respuesta:
+                                        <ul>
+                                            <li>200: OK</li>
+                                            <li>404: Not found</li>
+                                        </ul>    
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Endpoint: http://127.0.0.1:5200/user/{id_user}/historial_productos_servicios
+                                <ul>
+                                    <li>Funcionalidad: Traer todos los productos y servicios activos e inactivos</li>
+                                    <li>Parametros: 
+                                        <ul>
+                                            <li>id_user: identificador del usuario</li>
                                         </ul>    
                                     </li>
                                     <li>Respuesta:

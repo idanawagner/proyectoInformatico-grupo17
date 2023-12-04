@@ -1,6 +1,5 @@
 class ProductoServicio():
     def __init__(self, row):
-        try:
             self._id = row[0]
             self._nombre = row[1]
             self._descripcion = row[2]
@@ -12,10 +11,7 @@ class ProductoServicio():
             self._categoria = row[5]
             self._estado = row[6]
             self._id_usuario = row[7]
-        except IndexError as e:
-            print(f"Error al inicializar Cliente con row: {row}")
-            print(f"Detalles del error: {e}")
-            raise
+       
 
     def to_json(self):
         return {

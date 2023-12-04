@@ -17,7 +17,6 @@ def register():
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE cuit_cuil = %s', (cuit,))
     row = cur.fetchone()
-    print(row)
     if row:
         return jsonify({'message': 'El usuario existe en la base de datos'}), 401 
     cur.execute('INSERT INTO usuario (username, password, razon_social, cuit_cuil, estado) VALUES (%s, %s, %s, %s, %s)', (username, password, razonSocial, cuit, estado))
@@ -28,7 +27,6 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     auth = request.authorization
-    print(auth)
     """Control si existe el usuario en la BD"""
     if not auth or not auth.username or not auth.password:
         return jsonify({'message': 'no autorizado'}), 401 

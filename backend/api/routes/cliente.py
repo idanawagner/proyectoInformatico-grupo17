@@ -71,7 +71,6 @@ def create_cliente(id_user):
     """obtener el id del registro creado (con MariaDB)"""
     cur.execute('SELECT LAST_INSERT_ID()') 
     row = cur.fetchone() 
-    print(row) 
     id = row[0] 
     return jsonify({'message': 'cliente creado', 'id': id})
 

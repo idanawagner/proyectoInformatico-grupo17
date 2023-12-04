@@ -8,7 +8,6 @@ from api.db.db_config import mysql
 def token_required(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print(kwargs) 
         token = None
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
@@ -31,7 +30,6 @@ def token_required(func):
                 return jsonify({'message': 'Usuario incorrecto'}), 401
 
         except Exception as e:
-            print(e)
             return jsonify({'message': str(e)}), 401
             
         return func(*args, **kwargs)
@@ -40,7 +38,6 @@ def token_required(func):
 def user_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en user_resources: ", kwargs)
         id_user_route = kwargs['id_user']
         user_id = request.headers['user_id']
         if int(user_id) != int(id_user_route):
@@ -51,7 +48,6 @@ def user_resource(func):
 def client_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en client_resource: ", kwargs)
         id_cliente = kwargs['id_cliente']
         cur = mysql.connection.cursor()
         cur.execute('SELECT id_usuario FROM cliente WHERE id = {0}'.format(id_cliente)) 
@@ -67,7 +63,6 @@ def client_resource(func):
 def  producto_servicio_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en producto_servicio_resource: ", kwargs)
         id_producto_servicio = kwargs['id_producto_servicio']
         cur = mysql.connection.cursor()
         cur.execute('SELECT id_usuario FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio)) 
@@ -83,7 +78,6 @@ def  producto_servicio_resource(func):
 def factura_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en factura_resource: ", kwargs)
         id_factura = kwargs['id_factura']
         cur = mysql.connection.cursor()
         cur.execute('SELECT id_usuario FROM factura WHERE id = {0}'.format(id_factura)) 
@@ -99,7 +93,6 @@ def factura_resource(func):
 def detalle_resource(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        print("Argumentos en detalle_resource: ", kwargs)
         id_detalle = kwargs['id_detalle']
         cur = mysql.connection.cursor()
         cur.execute('SELECT id_usuario FROM detalle WHERE id = {0}'.format(id_detalle)) 

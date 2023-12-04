@@ -1,6 +1,5 @@
 class Cliente():
     def __init__(self, row):
-        try:
             self._id = row[0]
             self._nombre = row[1]
             self._apellido = row[2]
@@ -10,11 +9,7 @@ class Cliente():
             self._direccion = row[6]
             self._estado = row[7]
             self._id_usuario = row[8]
-        # TODO: borrar al finalizar la depuracion
-        except IndexError as e:
-            print(f"Error al inicializar Cliente con row: {row}")
-            print(f"Detalles del error: {e}")
-            raise
+        
 
     def to_json(self):
         return {
