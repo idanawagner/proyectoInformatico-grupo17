@@ -54,7 +54,8 @@ function updatePassword(new_password, confirm_password, current_password) {
     fetch(URL + `/user/${id}/updatePassword`, requestOptions)
     .then(response => response.json())
     .then(data => {
-        if (data){
+        console.log(data);
+        if (data.message == 'Contraseña actualizada correctamente'){
             Swal.fire({
                 title: data.message,
                 icon: 'success',
@@ -71,7 +72,17 @@ function updatePassword(new_password, confirm_password, current_password) {
             document.getElementById('pass-confirm').value ='';
             
         }
+        else{
+            Swal.fire({
+                title: data.message,
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            })
+        }
     })
+    .catch(error => {
+        console.error('Error al realizar la solicitud:', error);
+    });
 
 };
 

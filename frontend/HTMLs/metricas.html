@@ -23,9 +23,9 @@
       <!-- Contenido de la pagina -->
       <div class="content">
         <div id="dashboard-container">
-          <label for="dashboard-filter-select">
+          <label for="dashboard-filter-select" class="label-metricas">
             Selecciona área de interes:
-            <select name="Dashboard" id="dashboard-filter-select" class="selectEstilizado">
+            <select name="Dashboard" id="dashboard-filter-select" class="input-billify ">
               <option value="Control de Stock" > Control de Stock </option>
               <option value="Informe de movimiento del Stock" > Informe de movimiento del Stock </option>
               <option value="Ranking de ventas por Producto" > Ranking de ventas por Producto </option>
@@ -34,56 +34,62 @@
               <option value="Historial de ventas"> Historial de ventas </option>
             </select>
           </label>
+        
+
+
+
+        <div id="chart-container-stock" style="width: 100%;height:500%;"></div>
+        <div id= "stock-movement">
+            <!-- Menú desplegable para seleccionar el producto -->
+            <label for="select-productos">Seleccionar Producto:</label>
+            <select id="select-productos" onchange="cambiarProducto()" class="input-billify input-metricas">
+                <!-- Opciones del menú desplegable se generan dinámicamente con JavaScript -->
+            </select>
+            <div id="chart-container-stock-movement" style="width: 100%;height:500%;"></div>
         </div>
+        <div id="chart-container-ranking-ventas-productos" style="width: 100%;height:500%;"></div>
+        <div id="chart-container-ranking-ventas-servicios" style="width: 100%;height:500%;"></div>
+        <div id="chart-container-ranking-ventas-clientes" style="width: 100%;height:500%;"></div>
+      
+        <div id="table-container-historial-ventas">
+              <!--=====================================
+              VER SI LLEGO A AGFREGAR EL FILTRO DE FECHA PARA LOS GRAFICOS
+              ======================================-->
+              <!-- <div id="dashboard-filter-date">
+                <label for="dashboard-filter-date-start">
+                  Desde:
+                  <input type="date" id="dashboard-filter-date-start" name="dashboard-filter-date-start" class="selectEstilizado">
+                </label>
+                <label for="dashboard-filter-date-end">
+                  Hasta:
+                  <input type="date" id="dashboard-filter-date-end" name="dashboard-filter-date-end" class="selectEstilizado">
+                </label>
+              </div> -->
+      
+      
+          <table class="table table-striped table-bordered">
+                <thead class="">
+                  <tr class="">
+                    <th scope="col"> Factura </th>
+                    <th scope="col"> Fecha </th>
+                    <th scope="col"> Total </th>
+                    <th scope="col"> Cliente </th>
+                    <th scope="col" class="columnNoneMobile"> Producto </th>
+                    <th scope="col" class="columnNoneMobile"> Cantidad </th>
+                    <th scope="col" class="columnNoneMobile"> Subtotal </th>
+                  </tr>
+                </thead>
+                <tbody class=".table-group-divider"  id="tbody-historial-ventas">  
+                  <!-- tabla desde  -->
+                </tbody>
+              </table>
+        </div>
+      </div>
+
+
       </div>
   </div>
 
-    <div id="chart-container-stock" style="width: 600px;height:400px;"></div>
-    <div id= "stock-movement">
-        <!-- Menú desplegable para seleccionar el producto -->
-        <label for="select-productos">Seleccionar Producto:</label>
-        <select id="select-productos" onchange="cambiarProducto()">
-            <!-- Opciones del menú desplegable se generan dinámicamente con JavaScript -->
-        </select>
-        <div id="chart-container-stock-movement" style="width: 800px; height: 400px;"></div>
-    </div>
-    <div id="chart-container-ranking-ventas-productos" style="width: 600px;height:400px;"></div>
-    <div id="chart-container-ranking-ventas-servicios" style="width: 600px;height:400px;"></div>
-    <div id="chart-container-ranking-ventas-clientes" style="width: 600px;height:400px;"></div>
-
-    <div id="table-container-historial-ventas">
-          <!--=====================================
-          VER SI LLEGO A AGFREGAR EL FILTRO DE FECHA PARA LOS GRAFICOS
-          ======================================-->
-          <!-- <div id="dashboard-filter-date">
-            <label for="dashboard-filter-date-start">
-              Desde:
-              <input type="date" id="dashboard-filter-date-start" name="dashboard-filter-date-start" class="selectEstilizado">
-            </label>
-            <label for="dashboard-filter-date-end">
-              Hasta:
-              <input type="date" id="dashboard-filter-date-end" name="dashboard-filter-date-end" class="selectEstilizado">
-            </label>
-          </div> -->
-
-
-      <table class="table table-striped table-bordered">
-            <thead class="">
-              <tr class="">
-                <th scope="col"> Factura </th>
-                <th scope="col"> Fecha </th>
-                <th scope="col"> Total </th>
-                <th scope="col"> Cliente </th>
-                <th scope="col"> Producto </th>
-                <th scope="col"> Cantidad </th>
-                <th scope="col"> Subtotal </th>
-              </tr>
-            </thead>
-            <tbody class=".table-group-divider"  id="tbody-historial-ventas">  
-              <!-- tabla desde  -->
-            </tbody>
-          </table>
-    </div>
 
 
 

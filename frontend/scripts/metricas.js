@@ -138,6 +138,11 @@ graficarMetricasStock = (data) => {
           };
 
         myChart.setOption(option);
+
+    
+    window.addEventListener('resize', function () {
+        myChart.resize(); 
+    });
 }
 // Función para cargar los datos de stock
 cargarDatosStock = () => { 
@@ -252,7 +257,9 @@ graficarMetricasMovimientoStock = (producto, fechas, cantidades) => {
 
     // Display the chart using the configuration items and data just specified.
     myChart.setOption(option);
-    
+    window.addEventListener('resize', function () {
+        myChart.resize(); 
+    });
 
 }
 
@@ -325,6 +332,9 @@ graficarMetricasRankingVentas = (data) => {
                 }
           };
         myChart.setOption(option);
+        window.addEventListener('resize', function () {
+            myChart.resize(); 
+        });
 }
 
 // Funcion para cargar los datos de ranking de ventas por producto
@@ -392,6 +402,9 @@ graficarMetricasRankingVentasServicio = (data) => {
                 }
           };
         myChart.setOption(option);
+        window.addEventListener('resize', function () {
+            myChart.resize(); 
+        });
 }
 
 // Funcion para cargar los datos de ranking de ventas por servicio
@@ -458,6 +471,9 @@ graficarMetricasRankingVentasCliente = (data) => {
           };
 
         myChart.setOption(option);
+        window.addEventListener('resize', function () {
+            myChart.resize(); 
+        });
 }
 
 // Funcion para cargar los datos de ranking de ventas por cliente
@@ -500,9 +516,9 @@ function renderTable(historialVentas) {
             <td class=""> ${element[1]} </td>
             <td class=""> ${element[2]} </td>
             <td class=""> ${element[3]} </td>
-            <td class=""> ${element[4]} </td>
-            <td class=""> ${element[5]} </td>
-            <td class=""> ${element[6]} </td>
+            <td class="columnNoneMobile"> ${element[4]} </td>
+            <td class="columnNoneMobile"> ${element[5]} </td>
+            <td class="columnNoneMobile"> ${element[6]} </td>
         </tr>
         `
     });
