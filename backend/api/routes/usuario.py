@@ -69,7 +69,8 @@ def updatePassword(id_user):
     row = cur.fetchone()
     if not row:
         return jsonify({'message': 'El usuario no existe en la base de datos'}), 401
-    
+    if password != row[0]:
+        return jsonify({'message': 'La contraseña actual no es correcta'}), 401
     """Actualizar contraseña"""
     new_password = request.get_json()['new_password']
     confirm_password = request.get_json()['confirm_password']
