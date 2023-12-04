@@ -1,12 +1,12 @@
 @import './variables.css';
 
-
 #sec-search-bill{
     display: none;
 }
 
 #windows{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -43,5 +43,6 @@
     #btn-agregar-producto{
         justify-content: center;
     }
+
 
 }

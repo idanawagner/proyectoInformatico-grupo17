@@ -9,12 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
-  
-
     <link rel="stylesheet" href="../styles/facturas.css">
-    <script defer src="../scripts/navbar.js"></script>
-    <script defer src="../scripts/facturas.js"></script>
+
 </head>
 <body id="body">
   <div id="header">
@@ -27,7 +23,6 @@
     </div>
       <!-- Contenido de la pagina -->
       <div class="content">
-        <input type="button" id="btn-hs-nav" class="button" value="Ocultar navegador">
 
         <section id="windows">
           <input type="button" id="newBill" onclick="showSection('newBill')"  class="button" value="Generar nueva factura">
@@ -37,7 +32,6 @@
         <!-- generar nueva factura -->
         <section id="sec-generate-bill">
           <form id="form-gen-bill">
-
             <div class="btn-group filtros" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="cargarProductos('Producto')">
                 <label class="btn btn-outline-primary" for="btnradio1">Producto</label>
@@ -112,15 +106,15 @@
             <label for="bill-search-selector" id="lbl-bill-srch" class="label-inputs"> 
               Buscar por:
               <select id="bill-search-selector" class="input-billify">
+
                 <option value="numero-factura">Número de Factura</option>
                 <option value="cuit-cuil">Cuit-Cuil</option>
               </select>
             </label>
-
-
             <input type="text" id="bill-search-input" placeholder="Buscar..." class="input-billify">
   
             <input type="button" id="btn-submit-search"  value="Buscar" class="button">
+
           </div>
 
 
@@ -195,6 +189,7 @@
         Cabrera Idana.";
       </span>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

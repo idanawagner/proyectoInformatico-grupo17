@@ -17,47 +17,46 @@
     <div id="header">
       <!-- Header desde javascript -->
     </div>
+   
     <div class="container-box" id="container">
-      <div id="navbar">
-        <!-- Navbar desde javascript-->
-      </div>
 
       <!-- Contenido de la pagina -->
       <div class="content">
-        <article>
+        <article class="article-body">
           <span> Nombre de usuario: </span>
           <span id="username">  </span>
         </article>
         
         <section id="info_usuario">
           <form id="usuario_info_form">
-            <h2> Datos de identificación </h2>
+            <h2 class="h2-body"> Datos de identificación </h2>
             
-            <div class="inline1">
-              <h3> Razon social </h3>
-              <span id="razon_social"> </span>
-            </div>
-
-            <div class="inline1">
-              <h3> CUIT </h3>
-              <span id="cuit_cuil"></span>
+            <div class="container-datos">
+              <div class="inline1">
+                <h3 class="h3-body"> Razon social </h3>
+                <span id="razon_social"></span>
+              </div>
+              <div class="inline1">
+                <h3 class="h3-body"> CUIT </h3>
+                <span id="cuit_cuil"></span>
+              </div>
             </div>
             
-            <h2> Cambiar Contraseña </h2>
+            <h2 class="h2-body"> Cambiar Contraseña </h2>
 
-            <div class="inline2"> 
-              <h3> Contraseña actual </h3>
-              <input type="password" id="current-pass" name="user-current-pass" class="input current-pass">
-            </div>
-
-            <div class="inline2">
-              <h3> Nueva Contraseña </h3>
-              <input type="password" id="new-pass" name="user-new-pass" class="input new-pass">
-            </div>
-
-            <div class="inline2">
-              <h3> Confirmar Contraseña</h3>
-              <input type="password" id="pass-confirm" name="user-pass-confirm" class="input pass-confirm">
+            <div class="container-passwords">
+              <div class="inline2">
+                <label for="current-pass" class="label-body">Ingrese su Contraseña Actual</label>
+                <input type="password" id="current-pass" name="user-current-pass" class="input-billify">
+              </div>
+              <div class="inline2">
+                <label for="new-pass" class="label-body">Ingrese la Nueva Contraseña</label>
+                <input type="password" id="new-pass" name="user-new-pass" class="input-billify">
+              </div>
+              <div class="inline2">
+                <label for="pass-confirm" class="label-body">Vuelva a ingresar la nueva Contraseña</label>
+                <input type="password" id="pass-confirm" name="user-pass-confirm" class="input-billify">
+              </div>
             </div>
 
             <input type="button" id="btn-change-user-data" class="button" value="Guardar cambios">
@@ -74,10 +73,15 @@
         Cabrera Idana.";
       </span>
     </footer>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/9adda98406.js" crossorigin="anonymous"></script>
     <script defer src="../scripts/navbar.js"></script>
     <script defer src="../scripts/home.js"></script>
   </body>
 </html>
+
+
+
+

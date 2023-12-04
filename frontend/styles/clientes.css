@@ -1,14 +1,8 @@
 @import './variables.css';
 
-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-}
-
 
 #windows{
     display: flex;
-
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -18,13 +12,13 @@ body {
     display: none;
 }
 
-
 @media screen and (max-width:600px){ 
     #windows{
         flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
+
     
 }
 

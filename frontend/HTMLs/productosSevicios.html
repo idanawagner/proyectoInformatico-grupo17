@@ -24,7 +24,6 @@
 
       <!-- Contenido de la pagina -->
       <div class="content">
-        <input type="button" id="btn-hs-nav" class="button" value="Ocultar navegador">
 
         <section id="windows">
           <input type="button" id="sch-prod-serv" onclick="showSection('search')" class="button" value="Buscar productos/Servicios">
@@ -35,8 +34,6 @@
 
         <!-- Search productos / servicios -->
         <section id="section-search">
-          
-
           <div class="container-search-productos box-inputs-productos">
             <div>
             <label for="search-select-prod" class="label-inputs">
@@ -173,7 +170,7 @@
           <div id="prod-serv-form-container">
             <form id="prod-serv-form">
 
-              <label for="prod-serv-cat-selector"> 
+              <label for="select-categoria" class="label-body"> 
                 Categoria 
                 <select id="select-categoria" class="selectEstilizado">
                   <option value="Producto"> Producto </option>
@@ -181,23 +178,23 @@
                 </select>
               </label>
 
-              <label for="input-cantidad"> 
+              <label for="input-cantidad" class="label-body"> 
                 Cantidad
-                <input type="number" id="input-cantidad" class="input-estilizado">
+                <input type="number" id="input-cantidad" class="input-billify">
               </label>
 
-              <label for="input-nombre">
+              <label for="input-nombre" class="label-body">
                 Nombre
-                <input type="text" id="input-nombre"  class="input-estilizado">
+                <input type="text" id="input-nombre"  class="input-billify">
               </label>
 
-              <label for="input-precio"> 
+              <label for="input-precio" class="label-body"> 
                 Precio Unitario
-                <input type="number" id="input-precio" class="input-estilizado">
+                <input type="number" id="input-precio" class="input-billify">
               </label>
-              <label for="input-descripcion">
+              <label for="input-descripcion" class="label-body">
                 Descripción
-                <input type="text" id="input-descripcion"  class="input-estilizado">
+                <input type="text" id="input-descripcion"  class="input-billify">
               </label>
 
               <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock">

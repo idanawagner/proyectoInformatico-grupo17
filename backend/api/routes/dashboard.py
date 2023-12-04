@@ -4,6 +4,7 @@ from api.models.producto_servicio import ProductoServicio
 from api.utils import token_required, user_resource, producto_servicio_resource
 from flask import request, jsonify
 from api.db.db_config import mysql
+from datetime import datetime
 
 
 """dashboard de stock"""
@@ -28,6 +29,7 @@ def get_stock(id_user):
 @token_required
 @user_resource
 def get_movimiento_stock(id_user):
+
     """ traer los movimientos de stock desde detalle_factura """
     cur = mysql.connection.cursor()
     cur.execute("""SELECT
@@ -42,10 +44,31 @@ def get_movimiento_stock(id_user):
                     JOIN
                         producto_servicio ON detalle_factura.id_producto_servicio = producto_servicio.id
                     WHERE
-                        factura.id_usuario = {0};""".format(id_user))
+                        factura.id_usuario = {0}
+                    ORDER BY
+                        factura.fecha DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    fechasList = []
+    productosList = []
+    cantidadesList = []
+    for item in data:
+        if item[2] not in productosList:
+            productosList.append(item[2])
+
+    for producto in productosList:
+        cantidadesList.append([])
+        fechasList.append([])
+        for item in data:
+            if item[2] == producto:
+                cantidadesList[productosList.index(producto)].append(item[3])
+                fecha = item[1]
+                if fecha is not None:
+                    fecha = fecha.strftime("%d-%m-%Y")
+                    fechasList[productosList.index(producto)].append(fecha)
+                else:
+                    fechasList[productosList.index(producto)].append('12-12-2099')
+    return jsonify({'productos': productosList, 'cantidades': cantidadesList, 'fechas': fechasList})
+
 
 """ Dashboard de ranking de ventas por producto """
 @app.route('/user/<int:id_user>/ranking_ventas_producto', methods=['GET'])
@@ -69,8 +92,12 @@ def get_ranking_ventas_producto(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listProductos = []
+    listVentas = []
+    for item in data:
+        listProductos.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'productos': listProductos, 'ventas': listVentas}))
 
 """ Dashboard de ranking de ventas por servicio """
 @app.route('/user/<int:id_user>/ranking_ventas_servicio', methods=['GET'])
@@ -94,8 +121,12 @@ def get_ranking_ventas_servicio(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listProductos = []
+    listVentas = []
+    for item in data:
+        listProductos.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'servicios': listProductos, 'ventas': listVentas}))
 
 
 """ Dashboard de ranking de ventas por cliente """
@@ -121,8 +152,12 @@ def get_ranking_ventas_cliente(id_user):
                     ORDER BY
                         total_ventas DESC;""".format(id_user))
     data = cur.fetchall()
-    print(data)
-    return (jsonify({'data': data}))
+    listClientes = []
+    listVentas = []
+    for item in data:
+        listClientes.append(item[0])
+        listVentas.append(item[1])
+    return (jsonify({'clientes': listClientes, 'ventas': listVentas}))
 
 
 """ Dashboard de historial de ventas"""
@@ -150,3 +185,4 @@ def get_ranking_ventas(id_user):
     data = cur.fetchall()
     print(data)
     return (jsonify({'data': data}))
+

@@ -1,14 +1,12 @@
 .button{
     background-color: var(--verde-secundario);
     border-radius: 1rem;
-
     padding: 1rem ;
     color: var(--blanco);
     font-family: var(--fuente-principal);
     transition: 0.2s;
     border: var(--borde);
     border-radius: 2rem;
-
 }
 .button:hover{
     background-color: var(--verde-hover);
@@ -20,10 +18,15 @@
 }
 
 
-.input{
+.input-billify{
+    font-family: var(--fuente-principal);
+    font-size: 1rem;
     border: var(--borde);
+    box-shadow: var(--sombra);
+    box-sizing: border-box;
     border-radius: 5px;
     padding: 0.5rem;
+    width: 100%;
     outline: none;
 }
 

@@ -1,11 +1,5 @@
 @import './variables.css';
 
-
-
-#section-upload{
-    display: none;
-}
-
 #windows {
     display: flex;
     justify-content: space-between;
@@ -24,9 +18,19 @@
     align-content: center;
     align-items: center;
     margin-block: 2rem;
-    flex-direction: row-reverse;
+
 }
 
+.btn-group{
+    width: 100%;
+    margin-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
 
 #filtros{
     display: flex;
@@ -35,4 +39,18 @@
     align-items: center;
     justify-content: flex-end;
     /* margin: 1rem; */
+}
+
+@media screen and (max-width: 600px) {
+    .box-inputs-productos{
+        display: flex;
+        gap: 2rem;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        margin-block: 2rem;
+        flex-direction: column;
+    }
+    
 }

@@ -12,7 +12,6 @@ async function showSection( section){
             newBill_container.style.display = 'none';
             searchBills_container.style.display = 'block';
             await searchAllBills();
-
             break;
         default:
             newBill_container.style.display = 'block';
