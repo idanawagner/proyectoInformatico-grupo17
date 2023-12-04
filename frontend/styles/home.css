@@ -24,7 +24,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 article>span {
@@ -90,16 +90,15 @@ form {
 }
 
 .h2-body {
-    width: 60%;
+    width: 100%;
     min-width: 250px;
     background-color: var(--verde-secundario);
     color: var(--gris-claro);
     border: var(--borde);
     border-radius: 10px;
-    margin: 20px auto;
     padding: 10px;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
