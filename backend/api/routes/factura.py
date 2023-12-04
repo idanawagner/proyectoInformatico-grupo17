@@ -5,7 +5,7 @@ from flask import request, jsonify
 from api.db.db_config import mysql
 from api.models.detalle import DetalleFactura
 
-@app.route('/user/<int:id_user>/factura', methods=['GET'])
+@app.route('/user/<int:id_user>/facturas', methods=['GET'])
 @token_required
 @user_resource
 def get_all_facturas(id_user):
@@ -66,9 +66,7 @@ def create_factura(id_user):
 
     """obtener el id del registro creado (con MariaDB)"""
     cur.execute('SELECT LAST_INSERT_ID()')
-    print('llegue aca')
     row = cur.fetchone()
-    print(row)
     id = row[0]
 
     """Obtener los datos del request para la creacion del detalle de la factura"""

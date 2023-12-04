@@ -109,3 +109,17 @@ def delete_cliente(id_user, id_cliente):
         return jsonify({'error': 'Ocurrió un error al procesar la solicitud.'})
     finally:
         cur.close()
+
+
+@app.route('/user/<int:id_user>/historial_clientes', methods=['GET'])
+@token_required
+@user_resource
+def get_historial_clientes(id_user):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM cliente WHERE id_usuario = {0}'.format(id_user))
+    data = cur.fetchall()
+    clientList = []
+    for row in data:
+        objClient = Cliente(row)
+        clientList.append(objClient.to_json())
+    return jsonify(clientList)

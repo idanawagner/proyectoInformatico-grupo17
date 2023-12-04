@@ -1,11 +1,14 @@
 .button{
     background-color: var(--verde-secundario);
     border-radius: 1rem;
-    border: none;
-    padding: 1rem 2rem;
+
+    padding: 1rem ;
     color: var(--blanco);
     font-family: var(--fuente-principal);
     transition: 0.2s;
+    border: var(--borde);
+    border-radius: 2rem;
+
 }
 .button:hover{
     background-color: var(--verde-hover);
@@ -21,8 +24,13 @@
     border: var(--borde);
     border-radius: 5px;
     padding: 0.5rem;
-    font-family: var(--fuente-principal);
-    font-size: 1rem;
-    box-shadow: var(--sombra);
     outline: none;
+}
+
+
+@media screen and (max-width:600px){ 
+    .button{
+        margin-block: 0.5rem;
+    }
+    
 }

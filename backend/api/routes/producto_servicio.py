@@ -122,3 +122,18 @@ def delete_producto_servicio(id_user, id_producto_servicio):
     except Exception as e:
         print(e)
         return jsonify({'message': 'Error en la actualizacion del producto o servicio'})
+
+
+
+@app.route('/user/<int:id_user>/historial_productos_servicios', methods=['GET'])
+@token_required
+@user_resource
+def get_historial_productos_servicios(id_user):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM producto_servicio WHERE id_usuario = {0}'.format(id_user))
+    data = cur.fetchall()
+    productList = []
+    for row in data:
+        objProduct = ProductoServicio(row)
+        productList.append(objProduct.to_json())
+    return jsonify( productList )

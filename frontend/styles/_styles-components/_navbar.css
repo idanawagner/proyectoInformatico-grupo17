@@ -48,6 +48,10 @@
     flex: 1;
     display: flex;
     flex-wrap: wrap;
+    text-decoration: none;
+    color: var(--blanco);
+    /* font-size: 1rem; */
+    padding: 1rem;
     text-align: center;
     align-items: center;
     list-style: none;

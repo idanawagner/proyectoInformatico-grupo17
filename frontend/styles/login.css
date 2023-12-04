@@ -2,6 +2,7 @@
 
 .header-login{
     background-color: transparent;
+    justify-content: center;
 }
 
 .login{
@@ -31,8 +32,6 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 4rem;
-    height: 4rem;
     margin-top: 4rem;
    
 }
@@ -72,4 +71,44 @@
     font-size: 0.8rem;
     height: 1rem;
     text-align: start;
+}
+
+.button-login{
+    margin: 1rem;
+}
+
+@media screen and (max-width: 600px){
+    .register-container{
+        display: flex;
+    }
+    .login-container{
+        display: none;
+    }
+    .register-form, .login-form{
+        width: 100%;
+    }
+    .input-login, .input-pay{
+        width: 100%;
+    }
+
+    .pago_container{
+        display: flex;
+    }
+    .button-login{
+        margin: 0.5rem;
+    }
+    .descripcion{
+        margin: 0 1rem;
+    }
+    .container_buttons{
+        margin-top: 2rem;
+    }
+    .logotipo_img {
+        width: 10rem;
+        height: 100%;
+    }
+    .login{
+        padding-bottom: 2rem;
+    }
+    
 }

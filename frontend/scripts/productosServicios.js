@@ -152,23 +152,27 @@ function renderTable(){
     buscado.forEach((element) => {
         tbody.innerHTML += `
         <tr class="body-row" scope="row">
-            <td class=""> ${element.categoria} </td>
-            <td class=""> ${element.nombre} </td>
-            <td class=""> ${element.stock}</td>
-            <td class=""> ${element.precio}</td>
-            <td class=""> ${element.descripcion} </td>
+            <td> ${element.categoria} </td>
+            <td> ${element.nombre} </td>
+            <td class="columnNoneMobile"> ${element.stock} </td>
+            <td> ${element.precio} </td>
+            <td class="columnNoneMobile"> ${element.descripcion} </td>
             <td class=""> 
-            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editarCliente(${element.id})">
-                <i class="fa-solid fa-pencil"></i>
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#editar" onclick="editarProducto(${element.id})">
+                    <i class="fa-solid fa-pencil"></i>
                 </button>
-                </td>
+            </td>
             <td class=""> 
                 <button class="btn" onclick="cambiarEstado(${element.id})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </td>
-        </tr>
-        `
+            <td class="columnMas columnNoneDesktop"> 
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#verMas" onclick="showProducto(${element.id})">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </td>
+        </tr>`
     });
     buscado = [];
 
@@ -234,6 +238,153 @@ function uploadStock(productoServicio){
 }
 
 
+// EDITAR PRODUCTO O SERVICIO
+let producto = {};
+function editarProducto(id){
+    producto = stockList.find(element => element.id === id);
+    console.log(producto.stock);
+    document.getElementById('select-categoria-edit').value = producto.categoria;
+    document.getElementById('input-stock-edit').value = producto.stock;
+    document.getElementById('input-nombre-edit').value = producto.nombre;
+    document.getElementById('input-precio-edit').value = producto.precio;
+    document.getElementById('input-descripcion-edit').value = producto.descripcion;
+    
+    return producto;
+}
+
+let buttonEditStock = document.getElementById('submit-edit-stock');
+buttonEditStock.addEventListener('click', () => {
+    let selectCategoria = document.getElementById('select-categoria-edit').value;
+    let inputStock= document.getElementById('input-stock-edit').value;
+    let inputNombre = document.getElementById('input-nombre-edit').value;
+    let inputPrecio = document.getElementById('input-precio-edit').value;
+    let inputDescripcion = document.getElementById('input-descripcion-edit').value;
+    let id = producto.id;
+    let productoServicio = {
+        categoria: selectCategoria,
+        nombre: inputNombre,
+        stock: parseInt(inputStock),
+        precio: parseInt(inputPrecio),
+        descripcion: inputDescripcion,
+        estado: true
+    }
+    editStock(productoServicio, id);
+    producto = {};
+})
+
+function editStock(productoServicio, id){
+    let token = localStorage.getItem('token');
+    let idUsuario = localStorage.getItem('id');
+
+    const requestOptions = {
+        method : 'PUT',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': idUsuario
+            },
+        body: JSON.stringify(productoServicio)
+    }
+    fetch(URL + `/user/${idUsuario}/producto_servicio/${id}`, requestOptions)
+    .then(response => response.json())
+    .then(async data => {
+        if (data ){
+            Swal.fire({
+                title: 'Stock editado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                
+            })
+            let modal = document.getElementById('editar');
+            let modalBackdrop = document.querySelector('.modal-backdrop');
+            if (modal) {
+                modal.classList.remove('show');
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+                document.body.style.paddingRight = '0';
+                modal.setAttribute('aria-hidden', 'true');
+                modalBackdrop.remove();
+            }
+            await searchAllStock(); 
+            buscado.push(...stockList)
+            renderTable();
+        }
+    })
+    .catch(error => {
+        console.log('error', error)
+        Swal.fire({
+            title: 'No se pudo editar el producto o servicio',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        })  
+    })
+
+}
+
+
+
+function cambiarEstado(id){
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar el producto o servicio?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            deleteStock(id);
+        }
+    })
+}
+
+function deleteStock(id){
+    let token = localStorage.getItem('token');
+    let idUsuario = localStorage.getItem('id');
+
+    const requestOptions = {
+        method : 'PATCH',
+        headers: {'Content-Type':'application/json',
+                'x-access-token': token,
+                'user-id': idUsuario
+            }
+    }
+    fetch(URL + `/user/${idUsuario}/producto_servicio/${id}`, requestOptions)
+    .then(response => response.json())
+    .then(async data => {
+        if (data ){
+            Swal.fire({
+                title: 'Producto o servicio eliminado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+                
+            })
+            await searchAllStock(); 
+            buscado.push(...stockList)
+            renderTable();
+        }
+    })
+    .catch(error => {
+        console.log('error', error)
+        Swal.fire({
+            title: 'No se pudo eliminar el producto o servicio',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        })  
+    })
+}
+
+function showProducto(id){
+    producto = stockList.find(element => element.id === id);
+    document.getElementById('verMas-categoria').innerHTML = producto.categoria;
+    document.getElementById('verMas-nombre').innerHTML = producto.nombre;
+    document.getElementById('verMas-stock').innerHTML = producto.stock;
+    document.getElementById('verMas-precio').innerHTML = producto.precio;
+    document.getElementById('verMas-descripcion').innerHTML = producto.descripcion;
+    
+
+
+}
 
 
 // Al cargar la pagina se ejecuta la funcion searchAllClients para traer todos los productos y servicios de la base de datos
