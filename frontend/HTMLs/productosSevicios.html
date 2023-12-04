@@ -34,8 +34,8 @@
 
         <!-- Search productos / servicios -->
         <section id="section-search">
-          <div class="container-search-productos box-inputs-productos">
-            <div>
+          <div class="box-inputs-productos">
+            <div class="box-search">
             <label for="search-select-prod" class="label-inputs">
               Buscar por:
               <select id="search-select-prod" class="input-billify">
@@ -167,39 +167,42 @@
         <!-- Agregar nuevo producto o servicio -->
 
         <section id="section-upload">
-          <div id="prod-serv-form-container">
+          <div id="prod-serv-form-container" >
             <form id="prod-serv-form">
+              <div class="box-inputs">
 
-              <label for="select-categoria" class="label-body"> 
+             
+              <label for="select-categoria" class="label-inputs"> 
                 Categoria 
-                <select id="select-categoria" class="selectEstilizado">
+                <select id="select-categoria" class="input-billify">
                   <option value="Producto"> Producto </option>
                   <option value="Servicio"> Servicio </option>
                 </select>
               </label>
 
-              <label for="input-cantidad" class="label-body"> 
-                Cantidad
-                <input type="number" id="input-cantidad" class="input-billify">
-              </label>
-
-              <label for="input-nombre" class="label-body">
+              
+              <label for="input-nombre" class="label-inputs">
                 Nombre
                 <input type="text" id="input-nombre"  class="input-billify">
               </label>
-
-              <label for="input-precio" class="label-body"> 
+              <label for="input-cantidad" class="label-inputs"> 
+                Cantidad
+                <input type="number" id="input-cantidad" class="input-billify">
+              </label>
+           
+              <label for="input-precio" class="label-inputs"> 
                 Precio Unitario
                 <input type="number" id="input-precio" class="input-billify">
               </label>
-              <label for="input-descripcion" class="label-body">
+              <label for="input-descripcion" class="label-inputs">
                 Descripción
                 <input type="text" id="input-descripcion"  class="input-billify">
               </label>
 
-              <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock">
-            </form>
-          </div>
+            </div>
+          </form>
+        </div>
+        <input type="button" id="submit-upload-stock" class="button" value="Agregar al Stock" style="float: inline-end;">
         </section>
       </div>
     </div>

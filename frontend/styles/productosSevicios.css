@@ -12,7 +12,7 @@
 
 .box-inputs-productos{
     display: flex;
-    gap: 2rem;
+    gap:1rem;
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-content: center;
@@ -20,17 +20,16 @@
     margin-block: 2rem;
 
 }
-
-.btn-group{
-    width: 100%;
-    margin-top: 90px;
+.box-search{
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-start;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+    align-items: flex-end;
+    gap: 1rem;
+
 }
+
+
 
 #filtros{
     display: flex;
