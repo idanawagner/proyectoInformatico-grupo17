@@ -134,3 +134,66 @@ def delete_factura(id_user, id_factura):
     cur.execute('DELETE FROM factura WHERE id = {0}'.format(id_factura))
     mysql.connection.commit()
     return jsonify({'message': 'factura eliminada'})
+
+
+@app.route('/user/<int:id_user>/nota-credito', methods=['POST'])
+@token_required
+@user_resource
+@factura_resource
+def create_nota_de_credito(id_user):
+
+    # y si usamos el crear factura pero desde el front le pasamos estado = 0 para la factura id = xx y los montos en negativo?
+     
+
+    """Obtener los datos del request para la creacion de la factura"""
+    fecha = request.get_json()['fecha']
+    id_cliente = request.get_json()['id_cliente']
+    id_usuario = id_user
+    total = request.get_json()['total']
+    
+
+    """acceso a BD --> INSERT INTO"""
+    cur = mysql.connection.cursor()
+    cur.execute('INSERT INTO factura (fecha, id_cliente, id_usuario, total) VALUES (%s, %s, %s, %s)', (fecha, id_cliente, id_usuario, total))
+    mysql.connection.commit()
+
+    """obtener el id del registro creado (con MariaDB)"""
+    cur.execute('SELECT LAST_INSERT_ID()')
+    row = cur.fetchone()
+    id = row[0]
+
+    """Obtener los datos del request para la creacion del detalle de la factura"""
+    detalle = request.get_json()['detalle_factura']
+    if detalle:
+        for item in detalle:
+            id_producto_servicio = item['id_producto_servicio']
+            cantidad = item['cantidad']
+            subtotal = item['subtotal']
+
+            """Checkear si es un producto o un servicio"""
+            cur.execute('SELECT categoria FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio))
+            categoria = cur.fetchone()
+            if categoria[0] == 'Producto':
+                """Checkear el stock del producto vendido"""
+                cur.execute('SELECT stock FROM producto_servicio WHERE id = {0}'.format(id_producto_servicio))
+                stock = cur.fetchone()
+                if stock[0] < cantidad:
+                    return jsonify({'message': 'No hay stock suficiente para realizar la venta', "stock": stock[0]})
+            
+                """acceso a BD --> INSERT INTO"""
+                cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
+                mysql.connection.commit()
+
+                cur.execute('UPDATE producto_servicio SET stock = stock - {0} WHERE id = {1}'.format(cantidad, id_producto_servicio))
+                mysql.connection.commit()
+
+            if categoria[0] == 'Servicio':
+                """acceso a BD --> INSERT INTO"""
+                cur.execute('INSERT INTO detalle_factura (id_factura, id_producto_servicio, cantidad, subtotal) VALUES (%s, %s, %s, %s)', (id, id_producto_servicio, cantidad, subtotal))
+                mysql.connection.commit()
+    else:
+        return jsonify({'message': 'No se puede crear una factura sin detalle'})
+
+
+
+    return jsonify({'message': 'factura creada', 'id': id})

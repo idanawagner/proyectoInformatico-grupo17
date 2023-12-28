@@ -1,20 +1,33 @@
 
 const URL='http://127.0.0.1:5200';
-    
+
+// se muestra la seccion especifica de acuerdo al caso que se envie en el click desde el html
+
 async function showSection(section){
     let upload_container = document.getElementById('section-upload');
     let search_container = document.getElementById('section-search');
+    let mostrar_container = document.getElementById('section-mostrar');
     switch (section ) {
         case 'upload':
             upload_container.style.display = 'block';
             search_container.style.display = 'none';
+            mostrar_container.style.display = 'none';
             break;
         case 'search':
             upload_container.style.display = 'none';
             search_container.style.display = 'block';
+            mostrar_container.style.display = 'none';
             await searchAllStock(); 
             buscado.push(...stockList)
             renderTable();
+            break;
+        case 'mostrar':
+            upload_container.style.display = 'none';
+            search_container.style.display = 'none';
+            mostrar_container.style.display = 'block';
+            await searchAllStock(); 
+            buscado.push(...stockList)
+            renderCards();
             break;
         default:
             search_container.style.display = 'block';
@@ -22,10 +35,10 @@ async function showSection(section){
 
 }
 
-
-// SEARCH STOCK
 let stockList = []
 let buscado = [];
+
+// SEARCH STOCK
 
 function searchAllStock(){
     // Se traen el token y el id del usuario logueado desde el localStorage
@@ -58,7 +71,6 @@ buttonSearchStock.addEventListener('click',  ( ) => {
         renderTable();
     }
 )
-
 
 function searchStockbyInput(){
     let inputSearch = document.getElementById('input-prod-search').value;
@@ -108,6 +120,7 @@ function searchStockbyInput(){
 }
 
 // Filtrar por categoria
+
 let archivado = []
 let containerFiltros = document.getElementById('filtros');
 
@@ -115,7 +128,6 @@ containerFiltros.addEventListener('click', () => {
     buscado.push(...filtros());
     renderTable();
 })
-
 
 function filtros(){
     let radioTodos = document.getElementById('vbtn-radio1').checked;
@@ -146,6 +158,9 @@ function filtros(){
 
 }
 
+
+// se renderiza la tabla con el array buscado que contiene solo los datos filtrados o buscados
+
 function renderTable(){
     let tbody = document.getElementById('tbody-productos-servicios');
     tbody.innerHTML = '';
@@ -158,7 +173,7 @@ function renderTable(){
             <td> ${element.precio} </td>
             <td class="columnNoneMobile"> ${element.descripcion} </td>
             <td class=""> 
-                <button class="btn" data-bs-toggle="modal" data-bs-target="#editar" onclick="editarProducto(${element.id})">
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#editar" onclick="editar(${element.id})">
                     <i class="fa-solid fa-pencil"></i>
                 </button>
             </td>
@@ -240,7 +255,8 @@ function uploadStock(productoServicio){
 
 // EDITAR PRODUCTO O SERVICIO
 let producto = {};
-function editarProducto(id){
+// cuando se abre el modal se llenan los inputs con los datos del producto/servicio seleccionado
+function editar(id){
     producto = stockList.find(element => element.id === id);
     document.getElementById('select-categoria-edit').value = producto.categoria;
     document.getElementById('input-stock-edit').value = producto.stock;
@@ -250,14 +266,15 @@ function editarProducto(id){
     
     return producto;
 }
-
 let buttonEditStock = document.getElementById('submit-edit-stock');
+// se escucha el evento del boton guardar cambios del modal
 buttonEditStock.addEventListener('click', () => {
     let selectCategoria = document.getElementById('select-categoria-edit').value;
     let inputStock= document.getElementById('input-stock-edit').value;
     let inputNombre = document.getElementById('input-nombre-edit').value;
     let inputPrecio = document.getElementById('input-precio-edit').value;
     let inputDescripcion = document.getElementById('input-descripcion-edit').value;
+    // se recuperan los valores de los inputs
     let id = producto.id;
     let productoServicio = {
         categoria: selectCategoria,
@@ -266,12 +283,13 @@ buttonEditStock.addEventListener('click', () => {
         precio: parseInt(inputPrecio),
         descripcion: inputDescripcion,
         estado: true
-    }
-    editStock(productoServicio, id);
+    } 
+    // se llama a la funcion enviarEdicion con el objeto creado con el nuevo producto
+    enviarEdicion(productoServicio, id);
     producto = {};
 })
 
-function editStock(productoServicio, id){
+function enviarEdicion(productoServicio, id){
     let token = localStorage.getItem('token');
     let idUsuario = localStorage.getItem('id');
 
@@ -321,7 +339,7 @@ function editStock(productoServicio, id){
 }
 
 
-
+// Eliminar producto-servicio
 function cambiarEstado(id){
     Swal.fire({
         title: '¿Está seguro que desea eliminar el producto o servicio?',
@@ -373,6 +391,7 @@ function deleteStock(id){
     })
 }
 
+// En mobile se quitan columnas en la tabla y se agrega un ver mas que muestra todo el detalle del producto o servicio
 function showProducto(id){
     producto = stockList.find(element => element.id === id);
     document.getElementById('verMas-categoria').innerHTML = producto.categoria;
@@ -385,6 +404,49 @@ function showProducto(id){
 
 }
 
+// En la seccion Stock se muestran cards con los productos o servicios y se les agrega un borde rojo a aquellas que tengan 3 unidades o menos en stock
+
+function renderCards(){
+    listaProductos = [];
+    listaServicios = [];
+    
+    buscado.forEach((element) => {
+        element.categoria == 'Producto' ? listaProductos.push(element) : listaServicios.push(element);
+    });
+    listaProductos = listaProductos.sort((a, b) => a.stock - b.stock);
+    buscado = [...listaProductos, ...listaServicios];
+
+
+    let containerCards = document.getElementById('container-cards');
+    containerCards.innerHTML = '';
+    buscado.forEach((element) => {
+        imagen = element.imagen? element.imagen : 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg';
+        containerCards.innerHTML += `
+        <div class="card" id=${element.id}>          
+                <h5 class="cardTitle">${element.nombre}</h5>
+                <div style="heigth: 5rem" >  
+                    <img src="${imagen}" class="cardImagen" alt="Imagen producto o servicio">
+                </div>
+                <div class="stock-precio"> 
+                    <p class="cardTexto" id='stock-${element.id}'> Stock: ${element.stock}</p>
+                    <p class="cardTexto">Precio: ${element.precio}</p>
+                </div>
+                    <p class="cardTexto">${element.descripcion}</p>
+                    <button class="button"> Añadir al carrito </button>
+        </div>`
+        let card = document.getElementById(`${element.id}`)
+        let stock = document.getElementById(`stock-${element.id}`)
+        if (element.categoria !== 'Servicio'){
+            if (element.stock === 0){
+                card.setAttribute('class','card card-sinStock');
+                stock.setAttribute('class', 'cardTexto stock')
+            }else if ( 3 >= element.stock > 0 ){
+                card.setAttribute('class','card card-pocoStock');
+                stock.setAttribute('class', 'cardTexto stockPoco')
+            }
+        }
+    });
+}
 
 // Al cargar la pagina se ejecuta la funcion searchAllClients para traer todos los productos y servicios de la base de datos
 window.addEventListener('load', async () => {

@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_informatico`.`producto_servicio`(
     `id` INT NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(45) NOT NULL,
     `descripcion` VARCHAR(45) NOT NULL,
+    `imagen` VARCHAR(45) NOT NULL,
     `precio` INT NOT NULL,
     `stock` INT NOT NULL,
     `categoria` VARCHAR(45) NOT NULL,

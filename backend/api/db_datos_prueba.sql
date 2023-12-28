@@ -3,9 +3,9 @@ USE `proyecto_informatico`;
 
 -- Insertar datos de prueba en la tabla 'usuario'
 INSERT INTO `usuario` (`username`, `password`, `razon_social`, `cuit_cuil`, `estado`) VALUES
-('usuario1', 'clave_segura1', 'Empresa A', 12345678901, 1),
-('usuario2', 'clave_segura2', 'Empresa B', 98765432109, 1),
-('usuario3', 'clave_segura3', 'Empresa C', 34567890123, 0);
+('nsaTecnologia', '1', 'NSA Tecnologia SRL', 30254938211, 1),
+('witoTecnologia', '2', 'Wito Tecnologia SA', 30212465433, 1),
+('bunerTecnologia', '3', 'Buener Tecnologia SA', 30258596248, 0);
 
 
 -- Insertar datos de prueba en la tabla 'cliente'
@@ -27,32 +27,32 @@ INSERT INTO `cliente` (`nombre`, `apellido`, `email`, `cuit_cuil`, `telefono`, `
 ('Carolina', 'Ruiz', 'carolina.ruiz@example.com', 67890123456, 5552345, 'Boulevard 654', 0, 3);
 
 -- Insertar datos de prueba en la tabla 'producto_servicio'
-INSERT INTO `producto_servicio` (`nombre`, `descripcion`, `precio`, `stock`, `categoria`, `estado`, `id_usuario`) VALUES
-('Tablet', 'Electronica', 107990, 25, 'Producto', 1, 1),
-('Iphone', 'Electronica', 188880, 14, 'Producto', 1, 2),
-('Mouse', 'Electronica', 5000, 36, 'Producto', 1, 3),
-('Teclado', 'Electronica', 10000, 14, 'Producto', 0, 1),
-('Monitor', 'Electronica', 20000, 36, 'Producto', 1, 2),
-('Impresora', 'Electronica', 30000, 55, 'Producto', 1, 3),
-('Laptop Lenovo', 'Portátil con procesador Intel i5 y 8GB RAM', 150000, 12, 'Producto', 1, 1),
-('Laptop Dell', 'Portátil con procesador Intel i7 y 16GB RAM', 170000, 15, 'Producto', 0, 2),
-('Laptop HP EliteBook', 'Portátil con procesador Intel i7 y 16GB RAM', 120000, 19, 'Producto', 1, 3),
-('Placa de video', 'placa gamer', 70000, 12, 'Producto', 1, 1),
-('UX', 'Consultoría para desarrollo de sitios web', 12390, 1, 'Servicio', 0, 2),
-('Frontend', 'Consultoría para desarrollo de sitios web', 12397, 1, 'Servicio', 1, 3),
-('Backend', 'Consultoría para desarrollo de sitios web', 15780, 1, 'Servicio', 1, 1),
-('Desarrollo Web', 'Desarrollo de sitios web', 14000, 1, 'Servicio', 0, 2),
-('Aplicaciones', 'Consultoría para desarrollo de aplicaciones', 13000, 1, 'Servicio', 0, 3),
-('Software', 'Consultoría para desarrollo de software', 11000, 1, 'Servicio', 1, 1),
-('Aplicaciones Móviles', 'Consultoría para desarrollo de aplicaciones móviles', 15963, 1, 'Servicio', 0, 2),
-('Contable', 'Consultoría', 13050, 1, 'Servicio', 1, 3),
-('Ingeniería', 'Consultoría', 25000, 1, 'Servicio', 1, 1),
-('Aula Virtual', 'Consultoría', 8000, 1, 'Servicio', 1, 2),
-('CM', 'Asesoría en redes sociales', 7000, 1, 'Servicio', 1, 2),
-('Diseño', 'Contenido para redes sociales', 9500, 1, 'Servicio', 0, 3),
-('ERP', 'Sofware de gestion integral', 12000, 1, 'Servicio', 1, 1),
-('Servidor', 'Almacenamiento en la nube', 8500, 1, 'Servicio', 0, 2),
-('A Medida', 'Consultoría', 12300, 1, 'Servicio', 1, 3);
+INSERT INTO `producto_servicio` (`nombre`, `descripcion`,`imagen`, `precio`, `stock`, `categoria`, `estado`, `id_usuario`) VALUES
+('Tablet', 'Electronica','../assets/images_productos/tablet.webp', 107990, 25, 'Producto', 1, 1),
+('Iphone', 'Electronica','../assets/images_productos/iphone.jpg', 188880, 14, 'Producto', 1, 2),
+('Mouse', 'Electronica','../assets/images_productos/mouse.jpeg', 5000, 36, 'Producto', 1, 3),
+('Teclado', 'Electronica','../assets/images_productos/teclado.jpeg', 10000, 14, 'Producto', 0, 1),
+('Monitor', 'Electronica','../assets/images_productos/monitor.jpg', 20000, 36, 'Producto', 1, 2),
+('Impresora', 'Electronica','../assets/images_productos/impresora.jpg', 30000, 55, 'Producto', 1, 3),
+('Laptop Lenovo', 'Portátil con procesador Intel i5 y 8GB RAM','../assets/images_productos/laptopLenovo.jpg', 150000, 12, 'Producto', 1, 1),
+('Laptop Dell', 'Portátil con procesador Intel i7 y 16GB RAM','../assets/images_productos/LaptopDell.jpg', 170000, 15, 'Producto', 0, 2),
+('Laptop HP EliteBook', 'Portátil con procesador Intel i7 y 16GB RAM','../assets/images_productos/laptopHPEliteBook.jpg', 120000, 19, 'Producto', 1, 3),
+('Placa de video', 'placa gamer','../assets/images_productos/placaDeVideo.jpg', 70000, 12, 'Producto', 1, 1),
+('UX', 'Consultoría para desarrollo de sitios web','../assets/images_productos/ux.jpg', 12390, 1, 'Servicio', 0, 2),
+('Frontend', 'Consultoría para desarrollo de sitios web','../assets/images_productos/frontend.jpg', 12397, 1, 'Servicio', 1, 3),
+('Backend', 'Consultoría para desarrollo de sitios web','../assets/images_productos/backend.png', 15780, 1, 'Servicio', 1, 1),
+('Desarrollo Web', 'Desarrollo de sitios web','../assets/images_productos/desarrolloWeb.png', 14000, 1, 'Servicio', 0, 2),
+('Aplicaciones', 'Consultoría para desarrollo de aplicaciones','../assets/images_productos/aplicaciones.png', 13000, 1, 'Servicio', 0, 3),
+('Software', 'Consultoría para desarrollo de software','../assets/images_productos', 11000, 1, 'Servicio', 1, 1),
+('Aplicaciones Móviles', 'Consultoría para desarrollo de aplicaciones móviles','../assets/images_productos/aplicaciones.png', 15963, 1, 'Servicio', 0, 2),
+('Contable', 'Consultoría','../assets/images_productos/contable.jpg', 13050, 1, 'Servicio', 1, 3),
+('Ingeniería', 'Consultoría','../assets/images_productos/ingenieria.jpg', 25000, 1, 'Servicio', 1, 1),
+('Aula Virtual', 'Consultoría','../assets/images_productos/aulaVirtual.jpg', 8000, 1, 'Servicio', 1, 2),
+('CM', 'Asesoría en redes sociales','../assets/images_productos/communityManager.jpg', 7000, 1, 'Servicio', 1, 2),
+('Diseño', 'Contenido para redes sociales','../assets/images_productos/diseño.webp', 9500, 1, 'Servicio', 0, 3),
+('ERP', 'Sofware de gestion integral','../assets/images_productos/erp.webp', 12000, 1, 'Servicio', 1, 1),
+('Servidor', 'Almacenamiento en la nube','../assets/images_productos/servidor.jpg', 8500, 1, 'Servicio', 0, 2),
+('A Medida', 'Consultoría','../assets/images_productos/aMedida.jpg', 12300, 1, 'Servicio', 1, 3);
 
 
 

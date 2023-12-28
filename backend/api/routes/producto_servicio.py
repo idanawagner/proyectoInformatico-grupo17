@@ -36,6 +36,7 @@ def get_producto_servicio(id_user, id_producto_servicio):
 def create_producto_servicio(id_user):
     nombre = request.get_json()['nombre'] 
     descripcion = request.get_json()['descripcion']
+    imagen = request.get_json()['imagen']
     precio = request.get_json()['precio']
     categoria = request.get_json()['categoria']
     if categoria == 'Producto':
@@ -47,7 +48,7 @@ def create_producto_servicio(id_user):
 
     """acceso a BD --> INSERT INTO"""
     cur = mysql.connection.cursor()
-    cur.execute('INSERT INTO producto_servicio (nombre, descripcion, precio, stock, categoria, estado, id_usuario) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nombre, descripcion, precio, stock, categoria,estado, id_usuario))
+    cur.execute('INSERT INTO producto_servicio (nombre, descripcion, imagen, precio, stock, categoria, estado, id_usuario) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nombre, descripcion, imagen, precio, stock, categoria,estado, id_usuario))
     mysql.connection.commit()
 
     """obtener el id del registro creado (con MariaDB)"""
@@ -71,6 +72,7 @@ def update_producto_servicio(id_producto_servicio, id_user):
     id = id_producto_servicio
     nombre = request.get_json()['nombre'] 
     descripcion = request.get_json()['descripcion']
+    imagen = request.get_json()['imagen']
     precio = request.get_json()['precio']
     categoria = request.get_json()['categoria']
     if categoria == 'Producto':
@@ -82,7 +84,7 @@ def update_producto_servicio(id_producto_servicio, id_user):
 
     """acceso a BD --> UPDATE"""
     cur = mysql.connection.cursor()
-    cur.execute('UPDATE producto_servicio SET nombre = %s, descripcion = %s, precio = %s, stock = %s, categoria = %s, estado = %s, id_usuario = %s WHERE id = %s', (nombre, descripcion, precio, stock, categoria, estado, id_usuario, id))
+    cur.execute('UPDATE producto_servicio SET nombre = %s, descripcion = %s,imagen = %s, precio = %s, stock = %s, categoria = %s, estado = %s, id_usuario = %s WHERE id = %s', (nombre, descripcion, imagen, precio, stock, categoria, estado, id_usuario, id))
     mysql.connection.commit()
 
     """obtener el registro creado (con MariaDB)"""
